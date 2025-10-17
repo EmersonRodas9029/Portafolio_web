@@ -1,33 +1,125 @@
-<!doctype html>
-<html class="no-js" lang="">
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio Profesional - Emerson Rodas</title>
+  <meta name="description" content="Portafolio profesional de Emerson Rodas. Desarrollador especializado en HTML, CSS y JavaScript.">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+  <!-- Meta tags SEO -->
+  <meta name="keywords" content="portafolio, desarrollador, HTML, CSS, JavaScript, frontend">
+  <meta name="author" content="Emerson Rodas">
+  <meta name="robots" content="index, follow">
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portafolio Profesional - Emerson Rodas">
+  <meta property="og:description" content="Portafolio profesional desarrollado con las últimas tecnologías web.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tudominio.com">
 
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
-
 <body>
+<!-- Navegación Principal -->
+<header class="header" role="banner">
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
+    <div class="nav__brand">
+      <a href="#inicio" class="nav__logo">[Logo]</a>
+    </div>
+    <ul class="nav__menu">
+      <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
+      <li class="nav__item"><a href="#sobre-mi" class="nav__link">Sobre Mí</a></li>
+      <li class="nav__item"><a href="#habilidades" class="nav__link">Habilidades</a></li>
+      <li class="nav__item"><a href="#proyectos" class="nav__link">Proyectos</a></li>
+      <li class="nav__item"><a href="#contacto" class="nav__link">Contacto</a></li>
+    </ul>
+    <button class="theme-toggle" aria-label="Cambiar modo claro/oscuro">
+      <span class="theme-toggle__icon">🌙</span>
+    </button>
+  </nav>
+</header>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+<!-- Contenido Principal -->
+<main class="main" role="main">
+  <!-- Sección Hero -->
+  <section id="inicio" class="hero" aria-labelledby="hero-title">
+    <div class="hero__content">
+      <h1 id="hero-title" class="hero__title">Hola, soy <span class="hero__name">Emerson Rodas</span></h1>
+      <p class="hero__description">Desarrollador Frontend especializado en crear experiencias web excepcionales</p>
+      <div class="hero__buttons">
+        <a href="#proyectos" class="btn btn--primary">Ver Proyectos</a>
+        <a href="#contacto" class="btn btn--secondary">Contactar</a>
+      </div>
+    </div>
+    <div class="hero__image">
+      <img src="img/profile.webp" alt="Emerson Rodas - Desarrollador" loading="lazy">
+    </div>
+  </section>
 
+  <!-- Sección Sobre Mí -->
+  <section id="sobre-mi" class="about" aria-labelledby="about-title">
+    <h2 id="about-title" class="section__title">Sobre Mí</h2>
+    <div class="about__content">
+      <div class="about__text">
+        <p>Describir experiencia, pasión por el desarrollo y objetivos profesionales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Habilidades -->
+  <section id="habilidades" class="skills" aria-labelledby="skills-title">
+    <h2 id="skills-title" class="section__title">Habilidades Técnicas</h2>
+    <div class="skills__grid">
+      <!-- Las habilidades se cargarán con JavaScript -->
+    </div>
+  </section>
+
+  <!-- Sección Proyectos -->
+  <section id="proyectos" class="projects" aria-labelledby="projects-title">
+    <h2 id="projects-title" class="section__title">Proyectos Destacados</h2>
+    <div class="projects__grid">
+      <!-- Los proyectos se cargarán con JavaScript -->
+    </div>
+  </section>
+
+  <!-- Sección Contacto -->
+  <section id="contacto" class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title" class="section__title">Contacto</h2>
+    <form class="contact__form" id="contact-form">
+      <div class="form__group">
+        <label for="name" class="form__label">Nombre</label>
+        <input type="text" id="name" name="name" class="form__input" required>
+      </div>
+      <div class="form__group">
+        <label for="email" class="form__label">Email</label>
+        <input type="email" id="email" name="email" class="form__input" required>
+      </div>
+      <div class="form__group">
+        <label for="message" class="form__label">Mensaje</label>
+        <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Enviar Mensaje</button>
+    </form>
+  </section>
+</main>
+
+<!-- Pie de Página -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__content">
+    <p>&copy; 2025 Emerson Eduardo Rodas Lopez. Todos los derechos reservados.</p>
+    <div class="footer__social">
+      <!-- Enlaces a redes sociales -->
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="js/main.js" type="module"></script>
 </body>
-
 </html>
