@@ -1,0 +1,41 @@
+/* css/themes/dark.css */
+[data-theme="dark"] {
+  /* Colores principales - Modo Oscuro */
+  --primary-color: #3b82f6;
+  --secondary-color: #8b5cf6;
+  --accent-color: #06b6d4;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --border-color: #475569;
+
+  /* Sombras ajustadas para modo oscuro */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .footer {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .project-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .skill-card {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .skill-card:hover {
+  background: var(--border-color);
+}
