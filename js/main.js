@@ -96,7 +96,7 @@ class PortfolioApp {
           technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design'],
           image: 'img/projects/portfolio.webp',
           demoUrl: 'https://emersonrodas.dev',
-          codeUrl: 'https://github.com/emersonrodas/portfolio',
+          codeUrl: 'https://github.com/EmersonRodas9029/portfolio',
           featured: true
         },
         {
@@ -105,7 +105,7 @@ class PortfolioApp {
           technologies: ['JavaScript', 'LocalStorage', 'CSS Grid', 'Flexbox'],
           image: 'img/projects/task-manager.webp',
           demoUrl: '#',
-          codeUrl: 'https://github.com/emersonrodas/task-manager',
+          codeUrl: 'https://github.com/EmersonRodas9029/task-manager',
           featured: true
         },
         {
@@ -114,7 +114,7 @@ class PortfolioApp {
           technologies: ['JavaScript', 'CSS3', 'HTML5', 'Responsive Design'],
           image: 'img/projects/ecommerce.webp',
           demoUrl: '#',
-          codeUrl: 'https://github.com/emersonrodas/ecommerce',
+          codeUrl: 'https://github.com/EmersonRodas9029/ecommerce',
           featured: true
         },
         {
@@ -123,7 +123,7 @@ class PortfolioApp {
           technologies: ['JavaScript', 'API REST', 'Async/Await', 'CSS3'],
           image: 'img/projects/weather-app.webp',
           demoUrl: '#',
-          codeUrl: 'https://github.com/emersonrodas/weather-app',
+          codeUrl: 'https://github.com/EmersonRodas9029/weather-app',
           featured: false
         },
         {
@@ -132,7 +132,7 @@ class PortfolioApp {
           technologies: ['JavaScript', 'CSS3', 'HTML5', 'LocalStorage'],
           image: 'img/projects/blog.webp',
           demoUrl: '#',
-          codeUrl: 'https://github.com/emersonrodas/blog',
+          codeUrl: 'https://github.com/EmersonRodas9029/blog',
           featured: false
         }
       ];
