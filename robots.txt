@@ -1,13 +1,18 @@
+# https://www.robots.txt.org/
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://juanperez.dev/sitemap.xml
 
-Allow: /css/
-Allow: /js/
-Allow: /img/
+# No permitir archivos de sistema
+Disallow: /css/
+Disallow: /js/
+Disallow: /img/
+Allow: /css/base.css
+Allow: /js/main.js
+Allow: /img/profile.webp
 
+# No permitir archivos de configuración
 Disallow: /package.json
 Disallow: /README.md
-Disallow: /node_modules/
-Disallow: /.git/
