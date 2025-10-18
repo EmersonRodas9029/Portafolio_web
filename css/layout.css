@@ -158,7 +158,7 @@ section {
   }
 
   .nav__menu {
-    display: none; /* Implementaremos menú  después */
+    display: none; /* Implementaremos menú hamburguesa después */
   }
 
   .footer__content {
