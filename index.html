@@ -1,77 +1,157 @@
 <!DOCTYPE html>
-<html lang="es" class="no-js">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portafolio Profesional - Emerson Rodas</title>
-  <meta name="description" content="Portafolio profesional de Emerson Rodas. Desarrollador especializado en HTML, CSS y JavaScript.">
 
-  <!-- Meta tags SEO -->
-  <meta name="keywords" content="portafolio, desarrollador, HTML, CSS, JavaScript, frontend">
-  <meta name="author" content="Emerson Rodas">
-  <meta name="robots" content="index, follow">
+  <!-- Meta Tags SEO Básicos -->
+  <title>Juan Pérez - Desarrollador Frontend | Portfolio Profesional</title>
+  <meta name="description" content="Portfolio de Juan Pérez - Desarrollador Frontend especializado en HTML, CSS y JavaScript. Creo experiencias web excepcionales, accesibles y de alto rendimiento.">
+  <meta name="keywords" content="desarrollador frontend, portfolio, HTML, CSS, JavaScript, React, desarrollo web, accesibilidad web">
+  <meta name="author" content="Juan Pérez">
+  <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Portafolio Profesional - Emerson Rodas">
-  <meta property="og:description" content="Portafolio profesional desarrollado con las últimas tecnologías web.">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://juanperez.dev">
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tudominio.com">
-  <meta property="og:image" content="img/og-image.jpg">
-  <meta property="og:image:alt" content="Portafolio Emerson Rodas">
+  <meta property="og:url" content="https://juanperez.dev/">
+  <meta property="og:title" content="Juan Pérez - Desarrollador Frontend | Portfolio Profesional">
+  <meta property="og:description" content="Portfolio de Juan Pérez - Desarrollador Frontend especializado en HTML, CSS y JavaScript.">
+  <meta property="og:image" content="https://juanperez.dev/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
 
-  <!-- Favicon -->
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://juanperez.dev/">
+  <meta property="twitter:title" content="Juan Pérez - Desarrollador Frontend | Portfolio Profesional">
+  <meta property="twitter:description" content="Portfolio de Juan Pérez - Desarrollador Frontend especializado en HTML, CSS y JavaScript.">
+  <meta property="twitter:image" content="https://juanperez.dev/img/twitter-image.jpg">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Juan Pérez",
+      "jobTitle": "Desarrollador Frontend",
+      "url": "https://juanperez.dev",
+      "sameAs": [
+        "https://github.com/juanperez",
+        "https://linkedin.com/in/juanperez",
+        "https://twitter.com/juanperez"
+      ],
+      "knowsAbout": ["HTML5", "CSS3", "JavaScript", "React", "Accesibilidad Web", "SEO"],
+      "description": "Desarrollador Frontend especializado en crear experiencias web excepcionales.",
+      "image": "https://juanperez.dev/img/profile.webp"
+    }
+  </script>
+
+  <!-- Favicon y iconos -->
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-  <link rel="apple-touch-icon" href="img/icon.png">
-
-  <!-- Manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
 
-  <!-- CSS Architecture -->
+  <!-- Preload crítico -->
+  <link rel="preload" href="css/base.css" as="style">
+  <link rel="preload" href="css/layout.css" as="style">
+  <link rel="preload" href="js/main.js" as="script">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <!-- Temas -->
   <link rel="stylesheet" href="css/themes/light.css" id="theme-stylesheet">
-  <!-- Animaciones y estilos personalizados -->
   <link rel="stylesheet" href="css/custom/animations.css">
   <link rel="stylesheet" href="css/custom/sections.css">
-</head>
 
+  <!-- Preconnect a dominios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
 <body>
+<!-- Skip link para accesibilidad -->
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
 <!-- Navegación Principal -->
 <header class="header" role="banner">
-  <nav class="nav container" role="navigation" aria-label="Navegación principal">
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
     <div class="nav__brand">
-      <a href="#inicio" class="nav__logo">[Tu Logo]</a>
+      <a href="#inicio" class="nav__logo" aria-label="Juan Pérez - Inicio">
+        <strong>JP</strong>
+      </a>
     </div>
-    <ul class="nav__menu">
-      <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
-      <li class="nav__item"><a href="#sobre-mi" class="nav__link">Sobre Mí</a></li>
-      <li class="nav__item"><a href="#habilidades" class="nav__link">Habilidades</a></li>
-      <li class="nav__item"><a href="#proyectos" class="nav__link">Proyectos</a></li>
-      <li class="nav__item"><a href="#contacto" class="nav__link">Contacto</a></li>
+
+    <button class="nav__toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-menu">
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+
+    <ul class="nav__menu" id="main-menu" role="menubar">
+      <li class="nav__item" role="none">
+        <a href="#inicio" class="nav__link" role="menuitem" aria-current="page">Inicio</a>
+      </li>
+      <li class="nav__item" role="none">
+        <a href="#sobre-mi" class="nav__link" role="menuitem">Sobre Mí</a>
+      </li>
+      <li class="nav__item" role="none">
+        <a href="#habilidades" class="nav__link" role="menuitem">Habilidades</a>
+      </li>
+      <li class="nav__item" role="none">
+        <a href="#proyectos" class="nav__link" role="menuitem">Proyectos</a>
+      </li>
+      <li class="nav__item" role="none">
+        <a href="#contacto" class="nav__link" role="menuitem">Contacto</a>
+      </li>
     </ul>
-    <button class="theme-toggle" aria-label="Cambiar modo claro/oscuro">
-      <span class="theme-toggle__icon">🌙</span>
+
+    <button class="theme-toggle" aria-label="Cambiar a modo oscuro" title="Alternar tema claro/oscuro">
+      <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
     </button>
   </nav>
 </header>
 
 <!-- Contenido Principal -->
-<main class="main" role="main">
+<main id="main-content" class="main" role="main" tabindex="-1">
   <!-- Sección Hero -->
-  <section id="inicio" class="hero container" aria-labelledby="hero-title">
-    <div class="hero__content">
-      <h1 id="hero-title" class="hero__title">Hola, soy <span class="hero__name text-gradient">Emerson Rodas</span></h1>
-      <p class="hero__description">Desarrollador Frontend especializado en crear experiencias web excepcionales</p>
-      <div class="hero__buttons">
-        <a href="#proyectos" class="btn btn--primary hover-lift">Ver Proyectos</a>
-        <a href="#contacto" class="btn btn--secondary hover-lift">Contactar</a>
+  <section id="inicio" class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero__content">
+        <h1 id="hero-title" class="hero__title">
+          Hola, soy <span class="hero__name text-gradient">Juan Pérez</span>
+        </h1>
+        <p class="hero__description">
+          <strong>Desarrollador Frontend</strong> especializado en crear experiencias web
+          <strong>accesibles</strong>, <strong>rápidas</strong> y <strong>excepcionales</strong>
+        </p>
+        <div class="hero__buttons">
+          <a href="#proyectos" class="btn btn--primary">
+            Ver Proyectos
+            <span class="sr-only">, navegar a la sección de proyectos</span>
+          </a>
+          <a href="#contacto" class="btn btn--secondary">
+            Contactar
+            <span class="sr-only">, navegar a la sección de contacto</span>
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="hero__image">
-      <img src="img/profile.webp" alt="Emerson Rodas - Desarrollador" loading="lazy" class="hover-scale">
+      <div class="hero__image">
+        <img
+          src="img/profile.webp"
+          alt="Juan Pérez - Desarrollador Frontend sonriendo"
+          width="400"
+          height="400"
+          loading="eager"
+        >
+      </div>
     </div>
   </section>
 
@@ -81,11 +161,27 @@
       <h2 id="about-title" class="section__title">Sobre Mí</h2>
       <div class="about__content">
         <div class="about__text">
-          <p>Texto descriptivo sobre tu experiencia, pasión por el desarrollo y objetivos profesionales. Cuenta tu historia y lo que te motiva en el desarrollo web.</p>
-          <p>Puedes hablar sobre tu formación, proyectos anteriores y lo que te apasiona de la tecnología.</p>
+          <p>
+            Soy un <strong>desarrollador frontend apasionado</strong> con más de 3 años de experiencia
+            creando interfaces web modernas y accesibles. Mi enfoque combina las mejores prácticas
+            de desarrollo con un fuerte compromiso con la <strong>calidad y el rendimiento</strong>.
+          </p>
+          <p>
+            Especializado en <strong>HTML5 semántico</strong>, <strong>CSS3 avanzado</strong> y
+            <strong>JavaScript moderno</strong>, me aseguro de que cada proyecto no solo se vea bien,
+            sino que también sea <strong>accesible para todos los usuarios</strong> y optimizado
+            para los motores de búsqueda.
+          </p>
         </div>
-        <div class="about__image">
-          <img src="img/about-placeholder.jpg" alt="Sobre Emerson Rodas" loading="lazy" class="hover-scale">
+        <div class="about__stats">
+          <div class="stat-card">
+            <span class="stat-number" data-count="50">0</span>
+            <span class="stat-label">Proyectos Completados</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-count="3">0</span>
+            <span class="stat-label">Años de Experiencia</span>
+          </div>
         </div>
       </div>
     </div>
@@ -95,37 +191,11 @@
   <section id="habilidades" class="skills" aria-labelledby="skills-title">
     <div class="container">
       <h2 id="skills-title" class="section__title">Habilidades Técnicas</h2>
-      <div class="skills__grid">
-        <div class="skill-card hover-lift reveal-item">
-          <div class="skill-card__icon">💻</div>
-          <h3 class="skill-card__name">HTML5</h3>
-          <p class="skill-card__level">Avanzado</p>
-        </div>
-        <div class="skill-card hover-lift reveal-item">
-          <div class="skill-card__icon">🎨</div>
-          <h3 class="skill-card__name">CSS3</h3>
-          <p class="skill-card__level">Avanzado</p>
-        </div>
-        <div class="skill-card hover-lift reveal-item">
-          <div class="skill-card__icon">⚡</div>
-          <h3 class="skill-card__name">JavaScript</h3>
-          <p class="skill-card__level">Intermedio-Avanzado</p>
-        </div>
-        <div class="skill-card hover-lift reveal-item">
-          <div class="skill-card__icon">📱</div>
-          <h3 class="skill-card__name">Responsive Design</h3>
-          <p class="skill-card__level">Avanzado</p>
-        </div>
-        <div class="skill-card hover-lift reveal-item">
-          <div class="skill-card__icon">🔧</div>
-          <h3 class="skill-card__name">Git</h3>
-          <p class="skill-card__level">Intermedio</p>
-        </div>
-        <div class="skill-card hover-lift reveal-item">
-          <div class="skill-card__icon">🚀</div>
-          <h3 class="skill-card__name">Performance</h3>
-          <p class="skill-card__level">Intermedio</p>
-        </div>
+      <p class="section__description">
+        Tecnologías y herramientas que utilizo para crear productos digitales de calidad
+      </p>
+      <div class="skills__grid" role="list" aria-label="Lista de habilidades técnicas">
+        <!-- Las habilidades se cargarán dinámicamente -->
       </div>
     </div>
   </section>
@@ -134,69 +204,11 @@
   <section id="proyectos" class="projects section--alt" aria-labelledby="projects-title">
     <div class="container">
       <h2 id="projects-title" class="section__title">Proyectos Destacados</h2>
-      <div class="projects__grid">
-        <article class="project-card hover-lift reveal-item">
-          <div class="project-card__image-container">
-            <img src="img/projects/project1.jpg" alt="Proyecto 1" class="project-card__image" loading="lazy">
-            <div class="project-card__overlay">
-              <div class="project-card__links--overlay">
-                <a href="#" class="btn btn--primary">Demo</a>
-                <a href="#" class="btn btn--secondary">Código</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <h3 class="project-card__title">Landing Page Moderna</h3>
-            <p class="project-card__description">Una landing page responsiva construida con HTML, CSS y JavaScript vanilla.</p>
-            <div class="project-card__tags">
-              <span class="project-card__tag">HTML</span>
-              <span class="project-card__tag">CSS</span>
-              <span class="project-card__tag">JS</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card hover-lift reveal-item">
-          <div class="project-card__image-container">
-            <img src="img/projects/project2.jpg" alt="Proyecto 2" class="project-card__image" loading="lazy">
-            <div class="project-card__overlay">
-              <div class="project-card__links--overlay">
-                <a href="#" class="btn btn--primary">Demo</a>
-                <a href="#" class="btn btn--secondary">Código</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <h3 class="project-card__title">E-commerce Básico</h3>
-            <p class="project-card__description">Tienda online con carrito de compras funcional usando JavaScript.</p>
-            <div class="project-card__tags">
-              <span class="project-card__tag">HTML</span>
-              <span class="project-card__tag">CSS</span>
-              <span class="project-card__tag">JavaScript</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card hover-lift reveal-item">
-          <div class="project-card__image-container">
-            <img src="img/projects/project3.jpg" alt="Proyecto 3" class="project-card__image" loading="lazy">
-            <div class="project-card__overlay">
-              <div class="project-card__links--overlay">
-                <a href="#" class="btn btn--primary">Demo</a>
-                <a href="#" class="btn btn--secondary">Código</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <h3 class="project-card__title">App de Tareas</h3>
-            <p class="project-card__description">Aplicación de lista de tareas con persistencia local.</p>
-            <div class="project-card__tags">
-              <span class="project-card__tag">HTML</span>
-              <span class="project-card__tag">CSS</span>
-              <span class="project-card__tag">LocalStorage</span>
-            </div>
-          </div>
-        </article>
+      <p class="section__description">
+        Una selección de mis trabajos más recientes y desafiantes
+      </p>
+      <div class="projects__grid" role="list" aria-label="Lista de proyectos destacados">
+        <!-- Los proyectos se cargarán dinámicamente -->
       </div>
     </div>
   </section>
@@ -205,20 +217,65 @@
   <section id="contacto" class="contact" aria-labelledby="contact-title">
     <div class="container">
       <h2 id="contact-title" class="section__title">Contacto</h2>
-      <form class="contact__form" id="contact-form">
+      <p class="section__description">
+        ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte a hacerlo realidad.
+      </p>
+
+      <form class="contact__form" id="contact-form" aria-labelledby="contact-title">
         <div class="form__group">
-          <label for="name" class="form__label">Nombre</label>
-          <input type="text" id="name" name="name" class="form__input" required>
+          <label for="name" class="form__label">
+            Nombre Completo <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form__input"
+            required
+            aria-required="true"
+            autocomplete="name"
+          >
+          <span class="form__error-message" id="name-error" role="alert" aria-live="polite"></span>
         </div>
+
         <div class="form__group">
-          <label for="email" class="form__label">Email</label>
-          <input type="email" id="email" name="email" class="form__input" required>
+          <label for="email" class="form__label">
+            Email <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form__input"
+            required
+            aria-required="true"
+            autocomplete="email"
+          >
+          <span class="form__error-message" id="email-error" role="alert" aria-live="polite"></span>
         </div>
+
         <div class="form__group">
-          <label for="message" class="form__label">Mensaje</label>
-          <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
+          <label for="message" class="form__label">
+            Mensaje <span class="required" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            class="form__textarea"
+            rows="5"
+            required
+            aria-required="true"
+            placeholder="Cuéntame sobre tu proyecto..."
+          ></textarea>
+          <span class="form__error-message" id="message-error" role="alert" aria-live="polite"></span>
         </div>
-        <button type="submit" class="btn btn--primary hover-lift">Enviar Mensaje</button>
+
+        <button type="submit" class="btn btn--primary btn--submit">
+          <span class="btn__text">Enviar Mensaje</span>
+          <span class="btn__loading" aria-hidden="true">Enviando...</span>
+          <span class="btn__success" aria-hidden="true">¡Enviado!</span>
+          <span class="btn__error" aria-hidden="true">Error</span>
+        </button>
       </form>
     </div>
   </section>
@@ -228,20 +285,21 @@
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer__content">
-      <p>&copy; 2025 Emerson Eduardo Rodas Lopez. Todos los derechos reservados.</p>
+      <p>&copy; 2024 <strong>Juan Pérez</strong>. Todos los derechos reservados.</p>
+
       <div class="footer__social">
-        <a href="#" class="social-link" aria-label="GitHub">
-          <span class="social-icon">🐙</span>
-        </a>
-        <a href="#" class="social-link" aria-label="LinkedIn">
-          <span class="social-icon">💼</span>
-        </a>
-        <a href="#" class="social-link" aria-label="Twitter">
-          <span class="social-icon">🐦</span>
-        </a>
-        <a href="#" class="social-link" aria-label="Email">
-          <span class="social-icon">📧</span>
-        </a>
+        <p class="sr-only">Redes sociales</p>
+        <div class="social-links" role="list">
+          <a href="https://github.com/juanperez" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub (se abre en nueva ventana)">
+            <span class="social-icon" aria-hidden="true">🐙</span>
+          </a>
+          <a href="https://linkedin.com/in/juanperez" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (se abre en nueva ventana)">
+            <span class="social-icon" aria-hidden="true">💼</span>
+          </a>
+          <a href="https://twitter.com/juanperez" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter (se abre en nueva ventana)">
+            <span class="social-icon" aria-hidden="true">🐦</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

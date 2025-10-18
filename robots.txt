@@ -1,5 +1,13 @@
-# www.robotstxt.org/
-
-# Allow crawling of all content
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://juanperez.dev/sitemap.xml
+
+Allow: /css/
+Allow: /js/
+Allow: /img/
+
+Disallow: /package.json
+Disallow: /README.md
+Disallow: /node_modules/
+Disallow: /.git/
