@@ -13,12 +13,16 @@ class NavigationManager {
   }
 
   setupNavigation() {
-    const navLinks = document.querySelectorAll('.nav__link');
+    // EXCLUIR el enlace de CV de la navegación suave
+    const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cv)');
+
+    console.log('🔗 Enlaces de navegación encontrados:', navLinks.length);
 
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href').substring(1);
+        console.log('📍 Navegando a sección:', targetId);
         this.navigateToSection(targetId);
       });
     });
@@ -33,7 +37,9 @@ class NavigationManager {
 
   setupScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav__link');
+    const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cv)');
+
+    console.log('👀 Configurando ScrollSpy para secciones:', sections.length);
 
     const observerOptions = {
       root: null,
@@ -56,7 +62,7 @@ class NavigationManager {
   }
 
   updateActiveNavLink(activeSection) {
-    const navLinks = document.querySelectorAll('.nav__link');
+    const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cv)');
 
     navLinks.forEach(link => {
       const linkSection = link.getAttribute('href').substring(1);
@@ -82,6 +88,7 @@ class NavigationManager {
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        console.log('📱 Toggle menú móvil:', !isExpanded);
         this.toggleMobileMenu(!isExpanded);
       });
 
@@ -103,10 +110,10 @@ class NavigationManager {
     toggle.setAttribute('aria-label', 'Abrir menú de navegación');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.innerHTML = `
-            <span class="nav__toggle-bar"></span>
-            <span class="nav__toggle-bar"></span>
-            <span class="nav__toggle-bar"></span>
-        `;
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    `;
 
     // Insertar antes del menú
     const menu = document.querySelector('.nav__menu');
@@ -120,62 +127,62 @@ class NavigationManager {
 
   injectMobileMenuStyles() {
     const styles = `
-            .nav__toggle {
-                display: none;
-                flex-direction: column;
-                background: none;
-                border: none;
-                cursor: pointer;
-                padding: var(--spacing-sm);
-                gap: 4px;
-            }
+      .nav__toggle {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--spacing-sm);
+        gap: 4px;
+      }
 
-            .nav__toggle-bar {
-                width: 25px;
-                height: 3px;
-                background: var(--text-primary);
-                transition: all 0.3s ease;
-            }
+      .nav__toggle-bar {
+        width: 25px;
+        height: 3px;
+        background: var(--text-primary);
+        transition: all 0.3s ease;
+      }
 
-            @media (max-width: 768px) {
-                .nav__toggle {
-                    display: flex;
-                }
+      @media (max-width: 768px) {
+        .nav__toggle {
+          display: flex;
+        }
 
-                .nav__menu {
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    right: 0;
-                    background: var(--bg-primary);
-                    border-top: 1px solid var(--border-color);
-                    flex-direction: column;
-                    padding: var(--spacing-lg);
-                    transform: translateY(-10px);
-                    opacity: 0;
-                    visibility: hidden;
-                    transition: all 0.3s ease;
-                }
+        .nav__menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--bg-primary);
+          border-top: 1px solid var(--border-color);
+          flex-direction: column;
+          padding: var(--spacing-lg);
+          transform: translateY(-10px);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+        }
 
-                .nav__menu--open {
-                    transform: translateY(0);
-                    opacity: 1;
-                    visibility: visible;
-                }
+        .nav__menu--open {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
 
-                .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
-                    transform: rotate(45deg) translate(6px, 6px);
-                }
+        .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+          transform: rotate(45deg) translate(6px, 6px);
+        }
 
-                .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
-                    opacity: 0;
-                }
+        .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+          opacity: 0;
+        }
 
-                .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
-                    transform: rotate(-45deg) translate(6px, -6px);
-                }
-            }
-        `;
+        .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+          transform: rotate(-45deg) translate(6px, -6px);
+        }
+      }
+    `;
 
     if (!document.querySelector('#mobile-menu-styles')) {
       const styleSheet = document.createElement('style');
@@ -203,12 +210,12 @@ class NavigationManager {
   }
 
   setupSmoothScroll() {
-    // Smooth scroll para enlaces internos
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
+    // Smooth scroll para enlaces internos (excluir CV)
+    document.querySelectorAll('a[href^="#"]:not(.nav__link--cv)').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
 
-        if (href !== '#') {
+        if (href !== '#' && href !== '#cv') {
           e.preventDefault();
           this.scrollToElement(href.substring(1));
         }

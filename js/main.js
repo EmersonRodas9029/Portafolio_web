@@ -13,6 +13,8 @@ class PortfolioApp {
   }
 
   init() {
+    console.log('🚀 Iniciando Portfolio App - Emerson Rodas');
+
     // Inicializar módulos
     this.initializeModules();
 
@@ -22,19 +24,25 @@ class PortfolioApp {
     // Configurar event listeners globales
     this.setupGlobalEvents();
 
-    console.log('🚀 Portfolio app initialized - Emerson Rodas');
+    console.log('✅ Portfolio app inicializada correctamente');
   }
 
   initializeModules() {
+    console.log('🔧 Inicializando módulos...');
+
     initializeTheme();
     initializeNavigation();
     initializeAnimations();
     initializeContactForm();
     initializeScrollEffects();
-    initializeCVDownload(); // ← Nueva línea para el CV
+    initializeCVDownload();
+
+    console.log('✅ Todos los módulos inicializados');
   }
 
   loadDynamicContent() {
+    console.log('📦 Cargando contenido dinámico...');
+
     // Cargar habilidades
     this.loadSkills();
 
@@ -57,12 +65,19 @@ class PortfolioApp {
 
     // Escuchar evento personalizado de CV descargado
     document.addEventListener('cvDownloaded', (event) => {
-      console.log('CV downloaded successfully:', event.detail);
+      console.log('📄 CV descargado exitosamente:', event.detail);
+    });
+
+    // Escuchar errores de módulos
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('❌ Error no manejado:', event.reason);
     });
   }
 
   async loadSkills() {
     try {
+      console.log('🛠️ Cargando habilidades...');
+
       const skills = [
         { name: 'HTML5', level: 'Avanzado', icon: '⚡', category: 'frontend' },
         { name: 'CSS3', level: 'Avanzado', icon: '🎨', category: 'frontend' },
@@ -79,14 +94,19 @@ class PortfolioApp {
       ];
 
       this.renderSkills(skills);
+      console.log('✅ Habilidades cargadas:', skills.length);
+
     } catch (error) {
-      console.error('Error loading skills:', error);
+      console.error('❌ Error loading skills:', error);
     }
   }
 
   renderSkills(skills) {
     const skillsGrid = document.querySelector('.skills__grid');
-    if (!skillsGrid) return;
+    if (!skillsGrid) {
+      console.warn('⚠️ No se encontró el contenedor de habilidades');
+      return;
+    }
 
     skillsGrid.innerHTML = skills.map(skill => `
       <div class="skill-card reveal-item" data-category="${skill.category}">
@@ -99,6 +119,8 @@ class PortfolioApp {
 
   async loadProjects() {
     try {
+      console.log('💼 Cargando proyectos...');
+
       const projects = [
         {
           title: 'Portfolio Personal',
@@ -130,14 +152,19 @@ class PortfolioApp {
       ];
 
       this.renderProjects(projects);
+      console.log('✅ Proyectos cargados:', projects.length);
+
     } catch (error) {
-      console.error('Error loading projects:', error);
+      console.error('❌ Error loading projects:', error);
     }
   }
 
   renderProjects(projects) {
     const projectsGrid = document.querySelector('.projects__grid');
-    if (!projectsGrid) return;
+    if (!projectsGrid) {
+      console.warn('⚠️ No se encontró el contenedor de proyectos');
+      return;
+    }
 
     const featuredProjects = projects.filter(project => project.featured);
 
@@ -183,6 +210,8 @@ class PortfolioApp {
 
   async loadExperience() {
     try {
+      console.log('📈 Cargando experiencia...');
+
       const experience = [
         {
           period: '2023 - Presente',
@@ -200,14 +229,22 @@ class PortfolioApp {
         }
       ];
 
-      console.log('Experience data loaded:', experience);
+      console.log('✅ Experiencia cargada:', experience.length);
+
     } catch (error) {
-      console.error('Error loading experience:', error);
+      console.error('❌ Error loading experience:', error);
     }
   }
 
   animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
+
+    if (statNumbers.length === 0) {
+      console.warn('⚠️ No se encontraron estadísticas para animar');
+      return;
+    }
+
+    console.log('📊 Animando estadísticas:', statNumbers.length);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -236,7 +273,7 @@ class PortfolioApp {
   }
 
   handleGlobalError(event) {
-    console.error('Global error:', event.error);
+    console.error('🌍 Error global:', event.error);
   }
 
   monitorPerformance() {
@@ -244,7 +281,7 @@ class PortfolioApp {
       if (performance.getEntriesByType('navigation').length > 0) {
         const navEntry = performance.getEntriesByType('navigation')[0];
         const loadTime = navEntry.loadEventEnd - navEntry.navigationStart;
-        console.log(`📊 Page loaded in ${loadTime}ms - Emerson Rodas Portfolio`);
+        console.log(`📊 Página cargada en ${loadTime}ms`);
 
         this.trackPerformanceMetrics(loadTime);
       }
@@ -258,18 +295,19 @@ class PortfolioApp {
       timestamp: new Date().toISOString()
     };
 
-    console.log('Performance Metrics:', metrics);
+    console.log('📈 Métricas de performance:', metrics);
   }
 }
 
 // Inicializar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('📄 DOM cargado, iniciando aplicación...');
   new PortfolioApp();
 });
 
 // Manejar el evento de antes de descargar la página
 window.addEventListener('beforeunload', () => {
-  console.log('User leaving portfolio - Emerson Rodas');
+  console.log('👋 Usuario saliendo del portfolio');
 });
 
 // Export para tests

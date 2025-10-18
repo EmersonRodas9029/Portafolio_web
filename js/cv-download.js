@@ -6,21 +6,32 @@ class CVDownloadManager {
   }
 
   init() {
+    console.log('🔄 CVDownloadManager inicializando...');
     this.setupEventListeners();
     this.checkCVAvailability();
   }
 
   setupEventListeners() {
+    console.log('🔗 Configurando event listeners...');
+
     // Botón en el hero
     const heroCvButton = document.getElementById('hero-cv-download');
+    console.log('Botón hero encontrado:', !!heroCvButton);
+
     if (heroCvButton) {
-      heroCvButton.addEventListener('click', () => this.downloadCV());
+      heroCvButton.addEventListener('click', (e) => {
+        console.log('🎯 Click en botón CV del hero');
+        this.downloadCV();
+      });
     }
 
     // Enlace en la navegación
     const navCvLink = document.getElementById('cv-download-link');
+    console.log('Enlace CV encontrado:', !!navCvLink);
+
     if (navCvLink) {
       navCvLink.addEventListener('click', (e) => {
+        console.log('🎯 Click en enlace CV de navegación');
         e.preventDefault();
         this.downloadCV();
       });
@@ -30,25 +41,30 @@ class CVDownloadManager {
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key === 'd') {
         e.preventDefault();
+        console.log('⌨️ Atajo de teclado Ctrl+D detectado');
         this.downloadCV();
-        this.showMessage('¡Atajo de teclado! Descargando CV...', 'success');
       }
     });
   }
 
   async checkCVAvailability() {
     try {
+      console.log('📁 Verificando CV en:', this.cvUrl);
       const response = await fetch(this.cvUrl, { method: 'HEAD' });
+      console.log('Respuesta del servidor:', response.status);
+
       if (!response.ok) {
-        this.handleCVNotFound();
+        throw new Error(`HTTP ${response.status}`);
       }
+      console.log('✅ CV encontrado y disponible');
     } catch (error) {
+      console.error('❌ Error verificando CV:', error);
       this.handleCVNotFound();
     }
   }
 
   handleCVNotFound() {
-    console.warn('CV no encontrado en:', this.cvUrl);
+    console.warn('⚠️ CV no encontrado en:', this.cvUrl);
 
     const cvButtons = [
       document.getElementById('hero-cv-download'),
@@ -61,6 +77,7 @@ class CVDownloadManager {
         button.style.cursor = 'not-allowed';
         button.title = 'CV no disponible temporalmente';
 
+        const originalOnclick = button.onclick;
         button.onclick = (e) => {
           e.preventDefault();
           this.showMessage('El CV no está disponible en este momento.', 'error');
@@ -71,21 +88,25 @@ class CVDownloadManager {
 
   async downloadCV() {
     try {
+      console.log('⬇️  Iniciando descarga de CV...');
       this.showMessage('Preparando descarga...', 'info');
 
+      // Verificar que el archivo existe
       const response = await fetch(this.cvUrl);
       if (!response.ok) {
-        throw new Error('CV no encontrado');
+        throw new Error(`CV no encontrado: ${response.status}`);
       }
 
+      // Método directo - crear enlace y hacer click
       const link = document.createElement('a');
       link.href = this.cvUrl;
-      link.download = 'CV-Emerson-Rodas-Frontend.pdf';
+      link.download = 'CV-Emerson-Rodas-Desarrollador-Frontend.pdf';
       link.target = '_blank';
 
-      link.setAttribute('data-download', 'cv');
-      link.setAttribute('data-timestamp', new Date().toISOString());
+      // Agregar estilos invisibles
+      link.style.display = 'none';
 
+      console.log('🔗 Enlace de descarga creado');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -93,13 +114,19 @@ class CVDownloadManager {
       this.showMessage('✅ CV descargado correctamente', 'success');
       this.trackDownloadEvent();
 
+      // Limpiar mensaje después de 3 segundos
       setTimeout(() => {
         this.clearMessage();
       }, 3000);
 
     } catch (error) {
-      console.error('Error descargando CV:', error);
-      this.showMessage('Error al descargar el CV. Por favor intenta más tarde.', 'error');
+      console.error('❌ Error descargando CV:', error);
+      this.showMessage('Error al descargar el CV. Verifica que el archivo existe.', 'error');
+
+      // Limpiar mensaje de error después de 5 segundos
+      setTimeout(() => {
+        this.clearMessage();
+      }, 5000);
     }
   }
 
@@ -112,30 +139,35 @@ class CVDownloadManager {
     messageElement.setAttribute('role', type === 'error' ? 'alert' : 'status');
     messageElement.setAttribute('aria-live', 'polite');
 
-    const backgroundColor = type === 'error' ? 'var(--error-color)' :
-      type === 'success' ? 'var(--success-color)' :
-        'var(--primary-color)';
+    // Colores según el tipo de mensaje
+    const backgroundColor = type === 'error' ? '#ef4444' :
+      type === 'success' ? '#10b981' :
+        '#3b82f6';
 
     messageElement.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: ${backgroundColor};
-            color: white;
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            z-index: 10000;
-            font-weight: 500;
-            animation: slideInRight 0.3s ease-out;
-        `;
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: ${backgroundColor};
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      z-index: 10000;
+      font-weight: 500;
+      animation: slideInRight 0.3s ease-out;
+    `;
 
     document.body.appendChild(messageElement);
+    console.log(`💬 Mensaje: ${text}`);
   }
 
   clearMessage() {
     const existingMessages = document.querySelectorAll('.cv-message');
-    existingMessages.forEach(msg => msg.remove());
+    existingMessages.forEach(msg => {
+      msg.style.animation = 'slideInRight 0.3s ease-out reverse';
+      setTimeout(() => msg.remove(), 300);
+    });
   }
 
   trackDownloadEvent() {
@@ -146,23 +178,28 @@ class CVDownloadManager {
       path: this.cvUrl
     };
 
-    console.log('CV Download Event:', downloadEvent);
+    console.log('📊 Evento de descarga registrado:', downloadEvent);
 
+    // Emitir evento personalizado para otros módulos
     document.dispatchEvent(new CustomEvent('cvDownloaded', {
       detail: downloadEvent
     }));
   }
 
+  // Método para cambiar la URL del CV dinámicamente
   updateCVUrl(newUrl) {
     this.cvUrl = newUrl;
     this.checkCVAvailability();
   }
 }
 
+// Inicialización y export
 let cvDownloadManager;
 
 export function initializeCVDownload() {
-  cvDownloadManager = new CVDownloadManager();
+  if (!cvDownloadManager) {
+    cvDownloadManager = new CVDownloadManager();
+  }
   return cvDownloadManager;
 }
 

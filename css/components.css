@@ -395,3 +395,59 @@
     padding: var(--spacing-md);
   }
 }
+/* Agregar al final de css/components.css */
+
+/* Animaciones para mensajes del CV */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Estilos para mensajes del CV */
+.cv-message {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  font-weight: 500;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.cv-message--success {
+  background: #10b981;
+  color: white;
+}
+
+.cv-message--error {
+  background: #ef4444;
+  color: white;
+}
+
+.cv-message--info {
+  background: #3b82f6;
+  color: white;
+}
+
+.cv-message.slide-out {
+  animation: slideOutRight 0.3s ease-out forwards;
+}
