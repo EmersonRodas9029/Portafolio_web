@@ -4,6 +4,7 @@ import { initializeNavigation } from './navigation.js';
 import { initializeAnimations } from './animations.js';
 import { initializeContactForm } from './contact.js';
 import { initializeScrollEffects } from './utils/scroll.js';
+import { initializeCVDownload } from './cv-download.js';
 
 // Inicialización de la aplicación
 class PortfolioApp {
@@ -30,6 +31,7 @@ class PortfolioApp {
     initializeAnimations();
     initializeContactForm();
     initializeScrollEffects();
+    initializeCVDownload(); // ← Nueva línea para el CV
   }
 
   loadDynamicContent() {
@@ -41,6 +43,9 @@ class PortfolioApp {
 
     // Cargar experiencia
     this.loadExperience();
+
+    // Cargar stats animados
+    this.animateStats();
   }
 
   setupGlobalEvents() {
@@ -49,6 +54,11 @@ class PortfolioApp {
 
     // Performance monitoring
     this.monitorPerformance();
+
+    // Escuchar evento personalizado de CV descargado
+    document.addEventListener('cvDownloaded', (event) => {
+      console.log('CV downloaded successfully:', event.detail);
+    });
   }
 
   async loadSkills() {
@@ -116,24 +126,6 @@ class PortfolioApp {
           demoUrl: '#',
           codeUrl: 'https://github.com/EmersonRodas9029/ecommerce',
           featured: true
-        },
-        {
-          title: 'Weather App',
-          description: 'Aplicación del clima con API integration, geolocalización y interfaz intuitiva.',
-          technologies: ['JavaScript', 'API REST', 'Async/Await', 'CSS3'],
-          image: 'img/projects/weather-app.webp',
-          demoUrl: '#',
-          codeUrl: 'https://github.com/EmersonRodas9029/weather-app',
-          featured: false
-        },
-        {
-          title: 'Blog Personal',
-          description: 'Blog desarrollado con JavaScript vanilla, sistema de comentarios y diseño minimalista.',
-          technologies: ['JavaScript', 'CSS3', 'HTML5', 'LocalStorage'],
-          image: 'img/projects/blog.webp',
-          demoUrl: '#',
-          codeUrl: 'https://github.com/EmersonRodas9029/blog',
-          featured: false
         }
       ];
 
@@ -208,35 +200,58 @@ class PortfolioApp {
         }
       ];
 
-      // Esta función puede ser extendida para mostrar experiencia en una nueva sección
       console.log('Experience data loaded:', experience);
     } catch (error) {
       console.error('Error loading experience:', error);
     }
   }
 
+  animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumber = entry.target;
+          const target = parseInt(statNumber.getAttribute('data-count'));
+          const duration = 2000; // 2 seconds
+          const step = target / (duration / 16); // 60fps
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            statNumber.textContent = Math.floor(current);
+          }, 16);
+
+          observer.unobserve(statNumber);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(stat => observer.observe(stat));
+  }
+
   handleGlobalError(event) {
     console.error('Global error:', event.error);
-    // Aquí podríamos enviar errores a un servicio de monitoring
-    // Por ejemplo: this.sendErrorToAnalytics(event.error);
   }
 
   monitorPerformance() {
-    // Monitoring básico de performance
     window.addEventListener('load', () => {
       if (performance.getEntriesByType('navigation').length > 0) {
         const navEntry = performance.getEntriesByType('navigation')[0];
         const loadTime = navEntry.loadEventEnd - navEntry.navigationStart;
         console.log(`📊 Page loaded in ${loadTime}ms - Emerson Rodas Portfolio`);
 
-        // Podemos enviar estas métricas a un servicio de analytics
         this.trackPerformanceMetrics(loadTime);
       }
     });
   }
 
   trackPerformanceMetrics(loadTime) {
-    // Aquí podrías integrar con Google Analytics o otro servicio
     const metrics = {
       loadTime: loadTime,
       userAgent: navigator.userAgent,
@@ -245,18 +260,6 @@ class PortfolioApp {
 
     console.log('Performance Metrics:', metrics);
   }
-
-  // Método adicional para futuras expansiones
-  async loadTestimonials() {
-    // Para implementar cuando tengas testimonios de clientes
-    console.log('Testimonials section ready for implementation');
-  }
-
-  // Método para cargar certificaciones
-  async loadCertifications() {
-    // Para implementar cuando tengas certificaciones
-    console.log('Certifications section ready for implementation');
-  }
 }
 
 // Inicializar la aplicación cuando el DOM esté listo
@@ -264,11 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
   new PortfolioApp();
 });
 
-// Manejar el evento de antes de descargar la página (para analytics)
+// Manejar el evento de antes de descargar la página
 window.addEventListener('beforeunload', () => {
-  // Aquí podrías enviar datos de analytics de salida
   console.log('User leaving portfolio - Emerson Rodas');
 });
 
-// Export para tests (si los agregamos después)
+// Export para tests
 export default PortfolioApp;
