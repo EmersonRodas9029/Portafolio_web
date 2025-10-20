@@ -1,4 +1,4 @@
-// js/cv-download.js
+// js/cv-download.js - ACTUALIZADO SOLO CON ICONOS
 class CVDownloadManager {
   constructor() {
     this.cvUrl = 'docs/CV Emerson_Eduardo_ROdas_Lopez.pdf'; // Ruta del cv por defecto
@@ -9,6 +9,27 @@ class CVDownloadManager {
     console.log('🔄 CVDownloadManager inicializando...');
     this.setupEventListeners();
     this.checkCVAvailability();
+    this.updateCVIcons(); // Nueva línea para actualizar iconos
+  }
+
+  updateCVIcons() {
+    // Actualizar icono del botón en el hero
+    const heroCvButton = document.getElementById('hero-cv-download');
+    if (heroCvButton) {
+      heroCvButton.innerHTML = `
+        <i class="fas fa-download btn__icon"></i>
+        Descargar CV
+      `;
+    }
+
+    // Actualizar icono del enlace en navegación
+    const navCvLink = document.getElementById('cv-download-link');
+    if (navCvLink) {
+      navCvLink.innerHTML = `
+        <i class="fas fa-file-pdf nav__cv-icon"></i>
+        CV
+      `;
+    }
   }
 
   setupEventListeners() {
@@ -135,7 +156,17 @@ class CVDownloadManager {
 
     const messageElement = document.createElement('div');
     messageElement.className = `cv-message cv-message--${type}`;
-    messageElement.textContent = text;
+
+    // Iconos para diferentes tipos de mensaje
+    let iconClass = 'fas fa-info-circle';
+    if (type === 'success') iconClass = 'fas fa-check-circle';
+    if (type === 'error') iconClass = 'fas fa-exclamation-circle';
+
+    messageElement.innerHTML = `
+      <i class="${iconClass} cv-message__icon"></i>
+      <span class="cv-message__text">${text}</span>
+    `;
+
     messageElement.setAttribute('role', type === 'error' ? 'alert' : 'status');
     messageElement.setAttribute('aria-live', 'polite');
 
@@ -156,6 +187,9 @@ class CVDownloadManager {
       z-index: 10000;
       font-weight: 500;
       animation: slideInRight 0.3s ease-out;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     `;
 
     document.body.appendChild(messageElement);
