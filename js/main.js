@@ -1,10 +1,11 @@
-// js/main.js
+// js/main.js - ACTUALIZADO CON ICONOS
 import { initializeTheme } from './theme.js';
 import { initializeNavigation } from './navigation.js';
 import { initializeAnimations } from './animations.js';
 import { initializeContactForm } from './contact.js';
 import { initializeScrollEffects } from './utils/scroll.js';
 import { initializeCVDownload } from './cv-download.js';
+import { IconsConfig, getIcon, renderIcon } from './icons-config.js';
 
 // Inicialización de la aplicación
 class PortfolioApp {
@@ -54,6 +55,12 @@ class PortfolioApp {
 
     // Cargar stats animados
     this.animateStats();
+
+    // Actualizar iconos de navegación
+    this.updateNavigationIcons();
+
+    // Actualizar iconos sociales
+    this.updateSocialIcons();
   }
 
   setupGlobalEvents() {
@@ -79,18 +86,18 @@ class PortfolioApp {
       console.log('🛠️ Cargando habilidades...');
 
       const skills = [
-        { name: 'HTML5', level: 'Avanzado', icon: '⚡', category: 'frontend' },
-        { name: 'CSS3', level: 'Avanzado', icon: '🎨', category: 'frontend' },
-        { name: 'JavaScript', level: 'Avanzado', icon: '💻', category: 'frontend' },
-        { name: 'React', level: 'Intermedio', icon: '⚛️', category: 'frontend' },
-        { name: 'Git & GitHub', level: 'Intermedio', icon: '📚', category: 'tools' },
-        { name: 'Responsive Design', level: 'Avanzado', icon: '📱', category: 'frontend' },
-        { name: 'UI/UX Design', level: 'Intermedio', icon: '✨', category: 'design' },
-        { name: 'Node.js', level: 'Básico', icon: '🟢', category: 'backend' },
-        { name: 'Bootstrap', level: 'Intermedio', icon: '🎯', category: 'frontend' },
-        { name: 'SASS/SCSS', level: 'Intermedio', icon: '🔄', category: 'frontend' },
-        { name: 'Webpack', level: 'Básico', icon: '📦', category: 'tools' },
-        { name: 'Figma', level: 'Intermedio', icon: '🎨', category: 'design' }
+        { name: 'HTML5', level: 'Avanzado', category: 'frontend' },
+        { name: 'CSS3', level: 'Avanzado', category: 'frontend' },
+        { name: 'JavaScript', level: 'Avanzado', category: 'frontend' },
+        { name: 'React', level: 'Intermedio', category: 'frontend' },
+        { name: 'Git & GitHub', level: 'Intermedio', category: 'tools' },
+        { name: 'Responsive Design', level: 'Avanzado', category: 'frontend' },
+        { name: 'UI/UX Design', level: 'Intermedio', category: 'design' },
+        { name: 'Node.js', level: 'Básico', category: 'backend' },
+        { name: 'Bootstrap', level: 'Intermedio', category: 'frontend' },
+        { name: 'SASS/SCSS', level: 'Intermedio', category: 'frontend' },
+        { name: 'Webpack', level: 'Básico', category: 'tools' },
+        { name: 'Figma', level: 'Intermedio', category: 'design' }
       ];
 
       this.renderSkills(skills);
@@ -108,13 +115,21 @@ class PortfolioApp {
       return;
     }
 
-    skillsGrid.innerHTML = skills.map(skill => `
-      <div class="skill-card reveal-item" data-category="${skill.category}">
-        <div class="skill-card__icon">${skill.icon}</div>
-        <h3 class="skill-card__name">${skill.name}</h3>
-        <p class="skill-card__level">${skill.level}</p>
-      </div>
-    `).join('');
+    skillsGrid.innerHTML = skills.map(skill => {
+      const iconClass = getIcon(skill.name, 'skills');
+      const iconHTML = renderIcon(iconClass, {
+        size: 'fa-3x',
+        className: 'skill-card__icon'
+      });
+
+      return `
+        <div class="skill-card reveal-item" data-category="${skill.category}">
+          ${iconHTML}
+          <h3 class="skill-card__name">${skill.name}</h3>
+          <p class="skill-card__level">${skill.level}</p>
+        </div>
+      `;
+    }).join('');
   }
 
   async loadProjects() {
@@ -168,44 +183,103 @@ class PortfolioApp {
 
     const featuredProjects = projects.filter(project => project.featured);
 
-    projectsGrid.innerHTML = featuredProjects.map(project => `
-      <article class="project-card reveal-item">
-        <div class="project-card__image-container">
-          <img src="${project.image}" alt="${project.title} - Desarrollado por Emerson Rodas" class="project-card__image" loading="lazy">
-          <div class="project-card__overlay">
-            <div class="project-card__links--overlay">
+    projectsGrid.innerHTML = featuredProjects.map(project => {
+      const demoIcon = renderIcon('fas fa-external-link-alt');
+      const codeIcon = renderIcon('fas fa-code');
+
+      const technologiesHTML = project.technologies.map(tech => {
+        const techIcon = getIcon(tech, 'technologies');
+        const iconHTML = techIcon ? renderIcon(techIcon, { size: 'fa-xs' }) : '';
+
+        return `
+          <span class="project-card__tag">
+            ${iconHTML} ${tech}
+          </span>
+        `;
+      }).join('');
+
+      return `
+        <article class="project-card reveal-item">
+          <div class="project-card__image-container">
+            <img src="${project.image}" alt="${project.title} - Desarrollado por Emerson Rodas" class="project-card__image" loading="lazy">
+            <div class="project-card__overlay">
+              <div class="project-card__links--overlay">
+                ${project.demoUrl !== '#' ? `
+                  <a href="${project.demoUrl}" class="btn btn--primary" target="_blank" rel="noopener noreferrer" aria-label="Ver demo de ${project.title}">
+                    ${demoIcon} Demo
+                  </a>
+                ` : ''}
+                <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer" aria-label="Ver código de ${project.title}">
+                  ${codeIcon} Código
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">${project.title}</h3>
+            <p class="project-card__description">${project.description}</p>
+            <div class="project-card__tags">
+              ${technologiesHTML}
+            </div>
+            <div class="project-card__links">
               ${project.demoUrl !== '#' ? `
-                <a href="${project.demoUrl}" class="btn btn--primary" target="_blank" rel="noopener noreferrer" aria-label="Ver demo de ${project.title}">
-                  Demo
+                <a href="${project.demoUrl}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+                  ${demoIcon} Ver Demo
                 </a>
               ` : ''}
-              <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer" aria-label="Ver código de ${project.title}">
-                Código
+              <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
+                ${codeIcon} Ver Código
               </a>
             </div>
           </div>
-        </div>
-        <div class="project-card__content">
-          <h3 class="project-card__title">${project.title}</h3>
-          <p class="project-card__description">${project.description}</p>
-          <div class="project-card__tags">
-            ${project.technologies.map(tech => `
-              <span class="project-card__tag">${tech}</span>
-            `).join('')}
-          </div>
-          <div class="project-card__links">
-            ${project.demoUrl !== '#' ? `
-              <a href="${project.demoUrl}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-                Ver Demo
-              </a>
-            ` : ''}
-            <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
-              Ver Código
-            </a>
-          </div>
-        </div>
-      </article>
-    `).join('');
+        </article>
+      `;
+    }).join('');
+  }
+
+  updateNavigationIcons() {
+    // Agregar iconos a la navegación
+    const navItems = {
+      '#inicio': 'fas fa-home',
+      '#sobre-mi': 'fas fa-user',
+      '#habilidades': 'fas fa-code',
+      '#proyectos': 'fas fa-briefcase',
+      '#contacto': 'fas fa-envelope'
+    };
+
+    Object.entries(navItems).forEach(([href, iconClass]) => {
+      const navLink = document.querySelector(`.nav__link[href="${href}"]`);
+      if (navLink) {
+        const iconHTML = renderIcon(iconClass, { className: 'nav__icon' });
+        navLink.innerHTML = `${iconHTML} ${navLink.textContent}`;
+      }
+    });
+
+    // Icono para CV en navegación
+    const cvLink = document.getElementById('cv-download-link');
+    if (cvLink) {
+      const cvIcon = renderIcon('fas fa-file-pdf', { className: 'nav__cv-icon' });
+      cvLink.innerHTML = `${cvIcon} CV`;
+    }
+  }
+
+  updateSocialIcons() {
+    // Actualizar iconos de redes sociales
+    const socialLinks = {
+      'github': 'fab fa-github',
+      'linkedin': 'fab fa-linkedin'
+    };
+
+    Object.entries(socialLinks).forEach(([platform, iconClass]) => {
+      const socialLink = document.querySelector(`.social-link[href*="${platform}"]`);
+      if (socialLink) {
+        const iconHTML = renderIcon(iconClass, {
+          size: 'fa-lg',
+          className: 'social-icon'
+        });
+        socialLink.innerHTML = iconHTML;
+      }
+    });
   }
 
   async loadExperience() {
@@ -251,8 +325,8 @@ class PortfolioApp {
         if (entry.isIntersecting) {
           const statNumber = entry.target;
           const target = parseInt(statNumber.getAttribute('data-count'));
-          const duration = 2000; // 2 seconds
-          const step = target / (duration / 16); // 60fps
+          const duration = 2000;
+          const step = target / (duration / 16);
           let current = 0;
 
           const timer = setInterval(() => {
@@ -310,5 +384,4 @@ window.addEventListener('beforeunload', () => {
   console.log('👋 Usuario saliendo del portfolio');
 });
 
-// Export para tests
 export default PortfolioApp;

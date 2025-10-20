@@ -451,3 +451,83 @@
 .cv-message.slide-out {
   animation: slideOutRight 0.3s ease-out forwards;
 }
+
+/* Agregar al final de css/components.css */
+
+/* Estilos para iconos de Font Awesome */
+.skill-card__icon {
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary-color);
+  transition: all var(--transition-normal);
+}
+
+.skill-card:hover .skill-card__icon {
+  transform: scale(1.1);
+  color: var(--secondary-color);
+}
+
+/* Iconos de navegación */
+.nav__icon {
+  margin-right: var(--spacing-xs);
+  width: 16px;
+  text-align: center;
+}
+
+.nav__cv-icon {
+  margin-right: var(--spacing-xs);
+}
+
+/* Iconos sociales */
+.social-icon {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  font-size: 1.2rem;
+}
+
+.social-link:hover .social-icon {
+  color: white;
+}
+
+/* Iconos de botones */
+.btn__icon {
+  margin-right: var(--spacing-sm);
+}
+
+/* Iconos en proyectos */
+.project-card__tag i {
+  margin-right: 4px;
+}
+
+/* Iconos de mensajes del CV */
+.cv-message__icon {
+  font-size: 1.1rem;
+}
+
+/* Iconos del theme toggle */
+.theme-toggle__icon {
+  font-size: 1.1rem;
+  transition: transform var(--transition-normal);
+}
+
+.theme-toggle:hover .theme-toggle__icon {
+  transform: rotate(15deg);
+}
+
+/* Responsive para iconos */
+@media (max-width: 768px) {
+  .nav__icon,
+  .nav__cv-icon {
+    margin-right: 0;
+    margin-bottom: 4px;
+    display: block;
+    font-size: 1.2rem;
+  }
+
+  .nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
