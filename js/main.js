@@ -1,4 +1,4 @@
-// js/main.js - ACTUALIZADO CON ICONOS
+// js/main.js - ACTUALIZADO CON ORDENAMIENTO AUTOMÁTICO POR NIVEL
 import { initializeTheme } from './theme.js';
 import { initializeNavigation } from './navigation.js';
 import { initializeAnimations } from './animations.js';
@@ -44,7 +44,7 @@ class PortfolioApp {
   loadDynamicContent() {
     console.log('📦 Cargando contenido dinámico...');
 
-    // Cargar habilidades
+    // Cargar habilidades con nuevas secciones y niveles actualizados
     this.loadSkills();
 
     // Cargar proyectos
@@ -83,53 +83,227 @@ class PortfolioApp {
 
   async loadSkills() {
     try {
-      console.log('🛠️ Cargando habilidades...');
+      console.log('🛠️ Cargando habilidades organizadas por secciones y niveles...');
 
-      const skills = [
-        { name: 'HTML5', level: 'Avanzado', category: 'frontend' },
-        { name: 'CSS3', level: 'Avanzado', category: 'frontend' },
-        { name: 'JavaScript', level: 'Avanzado', category: 'frontend' },
-        { name: 'React', level: 'Intermedio', category: 'frontend' },
-        { name: 'Git & GitHub', level: 'Intermedio', category: 'tools' },
-        { name: 'Responsive Design', level: 'Avanzado', category: 'frontend' },
-        { name: 'UI/UX Design', level: 'Intermedio', category: 'design' },
-        { name: 'Node.js', level: 'Básico', category: 'backend' },
-        { name: 'Bootstrap', level: 'Intermedio', category: 'frontend' },
-        { name: 'SASS/SCSS', level: 'Intermedio', category: 'frontend' },
-        { name: 'Webpack', level: 'Básico', category: 'tools' },
-        { name: 'Figma', level: 'Intermedio', category: 'design' }
+      const skillsSections = [
+        {
+          id: 'backend',
+          title: 'Backend',
+          description: 'Lenguajes y tecnologías del lado del servidor',
+          skills: [
+            { name: 'Java', level: 'Avanzado', category: 'backend' },
+            { name: 'Node.js', level: 'Intermedio', category: 'backend' },
+            { name: 'Python', level: 'Básico', category: 'backend' },
+            { name: 'C#', level: 'Avanzado', category: 'backend' },
+            { name: 'TypeScript', level: 'Intermedio', category: 'backend' }
+          ]
+        },
+        {
+          id: 'frontend',
+          title: 'Frontend',
+          description: 'Tecnologías del lado del cliente',
+          skills: [
+            { name: 'HTML5', level: 'Avanzado', category: 'frontend' },
+            { name: 'CSS3', level: 'Avanzado', category: 'frontend' },
+            { name: 'JavaScript', level: 'Avanzado', category: 'frontend' },
+            { name: 'TypeScript', level: 'Intermedio', category: 'frontend' },
+            { name: 'React', level: 'Intermedio', category: 'frontend' },
+            { name: 'Vue.js', level: 'Básico', category: 'frontend' },
+            { name: 'Astro', level: 'Intermedio', category: 'frontend' }
+          ]
+        },
+        {
+          id: 'database',
+          title: 'Base de Datos',
+          description: 'Sistemas de gestión de bases de datos',
+          skills: [
+            { name: 'MySQL', level: 'Intermedio', category: 'database' },
+            { name: 'PostgreSQL', level: 'Intermedio', category: 'database' },
+            { name: 'SQLite', level: 'Intermedio', category: 'database' },
+            { name: 'Oracle Database', level: 'Intermedio', category: 'database' },
+            { name: 'SQL Server', level: 'Intermedio', category: 'database' }
+          ]
+        },
+        {
+          id: 'tools',
+          title: 'Herramientas e IDE',
+          description: 'Herramientas de desarrollo, contenedores y entornos de programación',
+          skills: [
+            { name: 'Git', level: 'Intermedio', category: 'tools' },
+            { name: 'GitHub', level: 'Intermedio', category: 'tools' },
+            { name: 'Docker', level: 'Básico', category: 'tools' },
+            { name: 'IntelliJ IDEA', level: 'Intermedio', category: 'tools' },
+            { name: 'Visual Studio', level: 'Intermedio', category: 'tools' },
+            { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
+            { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
+            { name: 'Figma', level: 'Intermedio', category: 'tools' }
+          ]
+        }
       ];
 
-      this.renderSkills(skills);
-      console.log('✅ Habilidades cargadas:', skills.length);
+      // Ordenar habilidades por nivel dentro de cada sección
+      this.sortSkillsByLevel(skillsSections);
+
+      this.renderSkillsSections(skillsSections);
+      console.log('✅ Habilidades organizadas y ordenadas por nivel');
 
     } catch (error) {
       console.error('❌ Error loading skills:', error);
     }
   }
 
-  renderSkills(skills) {
-    const skillsGrid = document.querySelector('.skills__grid');
-    if (!skillsGrid) {
+  // Método para ordenar habilidades por nivel
+  sortSkillsByLevel(sections) {
+    const levelOrder = {
+      'Avanzado': 3,
+      'Intermedio': 2,
+      'Básico': 1
+    };
+
+    sections.forEach(section => {
+      section.skills.sort((a, b) => {
+        // Primero ordenar por nivel (descendente: Avanzado primero)
+        const levelComparison = levelOrder[b.level] - levelOrder[a.level];
+
+        // Si tienen el mismo nivel, ordenar alfabéticamente
+        if (levelComparison === 0) {
+          return a.name.localeCompare(b.name);
+        }
+
+        return levelComparison;
+      });
+
+      console.log(`📊 ${section.title} ordenado:`, section.skills.map(s => `${s.name} (${s.level})`));
+    });
+  }
+
+  renderSkillsSections(sections) {
+    const skillsContainer = document.querySelector('.skills__grid');
+    if (!skillsContainer) {
       console.warn('⚠️ No se encontró el contenedor de habilidades');
       return;
     }
 
-    skillsGrid.innerHTML = skills.map(skill => {
-      const iconClass = getIcon(skill.name, 'skills');
-      const iconHTML = renderIcon(iconClass, {
-        size: 'fa-3x',
-        className: 'skill-card__icon'
+    skillsContainer.className = 'skills-container';
+    skillsContainer.innerHTML = sections.map(section => {
+      const sectionIcon = getIcon(section.id, 'navigation');
+      const iconHTML = renderIcon(sectionIcon, {
+        className: 'skills-section__icon',
+        size: 'fa-lg'
       });
 
+      // Contadores de nivel por sección
+      const levelCounts = this.countLevelsBySection(section.skills);
+      const levelSummary = this.getLevelSummary(levelCounts);
+
+      const skillsHTML = section.skills.map((skill) => {
+        const iconClass = getIcon(skill.name, 'skills');
+        const iconHTML = renderIcon(iconClass, {
+          size: 'fa-2x', // Reducido de fa-3x a fa-2x
+          className: 'skill-card__icon'
+        });
+
+        // Determinar clase CSS según el nivel
+        const levelClass = this.getLevelClass(skill.level);
+
+        return `
+          <div class="skill-card reveal-item ${levelClass}" data-category="${skill.category}" data-skill="${skill.name.toLowerCase()}" data-level="${skill.level.toLowerCase()}">
+            ${iconHTML}
+            <h3 class="skill-card__name">${skill.name}</h3>
+            <div class="skill-card__level-container">
+              <span class="skill-card__level skill-card__level--${skill.level.toLowerCase()}">
+                ${skill.level}
+              </span>
+              ${this.getLevelIndicator(skill.level)}
+            </div>
+          </div>
+        `;
+      }).join('');
+
       return `
-        <div class="skill-card reveal-item" data-category="${skill.category}">
-          ${iconHTML}
-          <h3 class="skill-card__name">${skill.name}</h3>
-          <p class="skill-card__level">${skill.level}</p>
-        </div>
+        <section class="skills-section skills-section--${section.id}" aria-labelledby="${section.id}-title">
+          <div class="skills-section__header">
+            <div class="skills-section__title-row">
+              <h3 id="${section.id}-title" class="skills-section__title">
+                ${iconHTML} ${section.title}
+              </h3>
+              <div class="skills-section__stats">
+                ${levelSummary}
+              </div>
+            </div>
+            <p class="skills-section__description">${section.description}</p>
+            <div class="skills-section__level-breakdown">
+              ${this.getLevelBreakdownHTML(levelCounts)}
+            </div>
+          </div>
+          <div class="skills-grid">
+            ${skillsHTML}
+          </div>
+        </section>
       `;
     }).join('');
+  }
+
+  // Contar niveles por sección
+  countLevelsBySection(skills) {
+    const counts = {
+      'Avanzado': 0,
+      'Intermedio': 0,
+      'Básico': 0
+    };
+
+    skills.forEach(skill => {
+      if (counts[skill.level] !== undefined) {
+        counts[skill.level]++;
+      }
+    });
+
+    return counts;
+  }
+
+  // Obtener resumen de niveles
+  getLevelSummary(counts) {
+    const total = counts.Avanzado + counts.Intermedio + counts.Básico;
+    return `
+      <span class="level-summary">
+        <span class="level-summary__item level-summary__item--advanced">${counts.Avanzado} Avanzado</span>
+        <span class="level-summary__item level-summary__item--intermediate">${counts.Intermedio} Intermedio</span>
+        <span class="level-summary__item level-summary__item--basic">${counts.Básico} Básico</span>
+      </span>
+    `;
+  }
+
+  // Obtener desglose de niveles
+  getLevelBreakdownHTML(counts) {
+    const total = counts.Avanzado + counts.Intermedio + counts.Básico;
+
+    return `
+      <div class="level-breakdown">
+        <div class="level-breakdown__bar">
+          <div class="level-breakdown__segment level-breakdown__segment--advanced" style="width: ${(counts.Avanzado / total) * 100}%"></div>
+          <div class="level-breakdown__segment level-breakdown__segment--intermediate" style="width: ${(counts.Intermedio / total) * 100}%"></div>
+          <div class="level-breakdown__segment level-breakdown__segment--basic" style="width: ${(counts.Básico / total) * 100}%"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  getLevelClass(level) {
+    const levelMap = {
+      'Avanzado': 'skill-card--advanced',
+      'Intermedio': 'skill-card--intermediate',
+      'Básico': 'skill-card--basic'
+    };
+    return levelMap[level] || '';
+  }
+
+  getLevelIndicator(level) {
+    const indicators = {
+      'Avanzado': '<div class="level-indicator level-indicator--advanced"></div>',
+      'Intermedio': '<div class="level-indicator level-indicator--intermediate"></div>',
+      'Básico': '<div class="level-indicator level-indicator--basic"></div>'
+    };
+    return indicators[level] || '';
   }
 
   async loadProjects() {
@@ -156,12 +330,12 @@ class PortfolioApp {
           featured: true
         },
         {
-          title: 'E-commerce Moderno',
-          description: 'Tienda online con carrito de compras, filtros de productos y diseño completamente responsive.',
-          technologies: ['JavaScript', 'CSS3', 'HTML5', 'Responsive Design'],
-          image: 'img/projects/ecommerce.webp',
+          title: 'Aplicación con Docker',
+          description: 'Proyecto de aplicación web containerizada con Docker, incluyendo Dockerfile y docker-compose.',
+          technologies: ['Docker', 'Node.js', 'JavaScript', 'API REST'],
+          image: 'img/projects/docker-app.webp',
           demoUrl: '#',
-          codeUrl: 'https://github.com/EmersonRodas9029/ecommerce',
+          codeUrl: 'https://github.com/EmersonRodas9029/docker-app',
           featured: true
         }
       ];
@@ -186,6 +360,11 @@ class PortfolioApp {
     projectsGrid.innerHTML = featuredProjects.map(project => {
       const demoIcon = renderIcon('fas fa-external-link-alt');
       const codeIcon = renderIcon('fas fa-code');
+
+      // Icono especial para proyectos con Docker
+      const dockerIcon = project.technologies.includes('Docker')
+        ? renderIcon('fab fa-docker', { size: 'fa-xs' })
+        : '';
 
       const technologiesHTML = project.technologies.map(tech => {
         const techIcon = getIcon(tech, 'technologies');
@@ -216,7 +395,10 @@ class PortfolioApp {
             </div>
           </div>
           <div class="project-card__content">
-            <h3 class="project-card__title">${project.title}</h3>
+            <h3 class="project-card__title">
+              ${project.title}
+              ${project.technologies.includes('Docker') ? dockerIcon : ''}
+            </h3>
             <p class="project-card__description">${project.description}</p>
             <div class="project-card__tags">
               ${technologiesHTML}
@@ -291,15 +473,15 @@ class PortfolioApp {
           period: '2023 - Presente',
           position: 'Desarrollador Frontend Freelance',
           company: 'Proyectos Independientes',
-          description: 'Desarrollo de aplicaciones web responsive y sitios portfolio para clientes. Especializado en JavaScript vanilla y mejores prácticas de desarrollo web.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design']
+          description: 'Desarrollo de aplicaciones web responsive y sitios portfolio para clientes. Especializado en JavaScript vanilla y tecnologías modernas como Docker para containerización.',
+          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Docker', 'Responsive Design']
         },
         {
           period: '2022 - 2023',
           position: 'Practicante Desarrollo Web',
           company: 'Proyectos Académicos',
-          description: 'Desarrollo de proyectos académicos y personales para fortalecer habilidades en desarrollo frontend y mejores prácticas de código.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Figma']
+          description: 'Desarrollo de proyectos académicos y personales utilizando diversos IDEs como IntelliJ IDEA, Visual Studio Code y NetBeans.',
+          technologies: ['HTML5', 'CSS3', 'JavaScript', 'IntelliJ IDEA', 'VS Code', 'Figma']
         }
       ];
 
