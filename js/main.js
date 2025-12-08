@@ -1,4 +1,4 @@
-// js/main.js - ACTUALIZADO CON ICONOS
+// js/main.js - ACTUALIZADO CON DOCKER Y NUEVOS IDEs
 import { initializeTheme } from './theme.js';
 import { initializeNavigation } from './navigation.js';
 import { initializeAnimations } from './animations.js';
@@ -44,7 +44,7 @@ class PortfolioApp {
   loadDynamicContent() {
     console.log('📦 Cargando contenido dinámico...');
 
-    // Cargar habilidades
+    // Cargar habilidades con nuevas secciones
     this.loadSkills();
 
     // Cargar proyectos
@@ -83,51 +83,115 @@ class PortfolioApp {
 
   async loadSkills() {
     try {
-      console.log('🛠️ Cargando habilidades...');
+      console.log('🛠️ Cargando habilidades organizadas por secciones...');
 
-      const skills = [
-        { name: 'HTML5', level: 'Avanzado', category: 'frontend' },
-        { name: 'CSS3', level: 'Avanzado', category: 'frontend' },
-        { name: 'JavaScript', level: 'Avanzado', category: 'frontend' },
-        { name: 'React', level: 'Intermedio', category: 'frontend' },
-        { name: 'Git & GitHub', level: 'Intermedio', category: 'tools' },
-        { name: 'Responsive Design', level: 'Avanzado', category: 'frontend' },
-        { name: 'UI/UX Design', level: 'Intermedio', category: 'design' },
-        { name: 'Node.js', level: 'Básico', category: 'backend' },
-        { name: 'Bootstrap', level: 'Intermedio', category: 'frontend' },
-        { name: 'SASS/SCSS', level: 'Intermedio', category: 'frontend' },
-        { name: 'Webpack', level: 'Básico', category: 'tools' },
-        { name: 'Figma', level: 'Intermedio', category: 'design' }
+      const skillsSections = [
+        {
+          id: 'backend',
+          title: 'Backend',
+          description: 'Lenguajes y tecnologías del lado del servidor',
+          skills: [
+            { name: 'Java', level: 'Intermedio', category: 'backend' },
+            { name: 'Node.js', level: 'Intermedio', category: 'backend' },
+            { name: 'Python', level: 'Intermedio', category: 'backend' },
+            { name: 'C#', level: 'Básico', category: 'backend' },
+            { name: 'TypeScript', level: 'Intermedio', category: 'backend' }
+          ]
+        },
+        {
+          id: 'frontend',
+          title: 'Frontend',
+          description: 'Tecnologías del lado del cliente',
+          skills: [
+            { name: 'HTML5', level: 'Avanzado', category: 'frontend' },
+            { name: 'CSS3', level: 'Avanzado', category: 'frontend' },
+            { name: 'JavaScript', level: 'Avanzado', category: 'frontend' },
+            { name: 'TypeScript', level: 'Intermedio', category: 'frontend' },
+            { name: 'React', level: 'Intermedio', category: 'frontend' },
+            { name: 'Vue.js', level: 'Básico', category: 'frontend' },
+            { name: 'Astro', level: 'Básico', category: 'frontend' }
+          ]
+        },
+        {
+          id: 'database',
+          title: 'Base de Datos',
+          description: 'Sistemas de gestión de bases de datos',
+          skills: [
+            { name: 'MySQL', level: 'Intermedio', category: 'database' },
+            { name: 'PostgreSQL', level: 'Intermedio', category: 'database' },
+            { name: 'SQLite', level: 'Básico', category: 'database' },
+            { name: 'Oracle Database', level: 'Básico', category: 'database' },
+            { name: 'SQL Server', level: 'Básico', category: 'database' }
+          ]
+        },
+        {
+          id: 'tools',
+          title: 'Herramientas e IDE',
+          description: 'Herramientas de desarrollo, contenedores y entornos de programación',
+          skills: [
+            { name: 'Git', level: 'Intermedio', category: 'tools' },
+            { name: 'GitHub', level: 'Intermedio', category: 'tools' },
+            { name: 'Docker', level: 'Básico', category: 'tools' },
+            { name: 'IntelliJ IDEA', level: 'Intermedio', category: 'tools' },
+            { name: 'Visual Studio', level: 'Intermedio', category: 'tools' },
+            { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
+            { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
+            { name: 'Figma', level: 'Intermedio', category: 'tools' }
+          ]
+        }
       ];
 
-      this.renderSkills(skills);
-      console.log('✅ Habilidades cargadas:', skills.length);
+      this.renderSkillsSections(skillsSections);
+      console.log('✅ Habilidades organizadas en secciones cargadas');
 
     } catch (error) {
       console.error('❌ Error loading skills:', error);
     }
   }
 
-  renderSkills(skills) {
-    const skillsGrid = document.querySelector('.skills__grid');
-    if (!skillsGrid) {
+  renderSkillsSections(sections) {
+    const skillsContainer = document.querySelector('.skills__grid');
+    if (!skillsContainer) {
       console.warn('⚠️ No se encontró el contenedor de habilidades');
       return;
     }
 
-    skillsGrid.innerHTML = skills.map(skill => {
-      const iconClass = getIcon(skill.name, 'skills');
-      const iconHTML = renderIcon(iconClass, {
-        size: 'fa-3x',
-        className: 'skill-card__icon'
+    skillsContainer.className = 'skills-container';
+    skillsContainer.innerHTML = sections.map(section => {
+      const sectionIcon = getIcon(section.id, 'navigation');
+      const iconHTML = renderIcon(sectionIcon, {
+        className: 'skills-section__icon',
+        size: 'fa-lg'
       });
 
+      const skillsHTML = section.skills.map(skill => {
+        const iconClass = getIcon(skill.name, 'skills');
+        const iconHTML = renderIcon(iconClass, {
+          size: 'fa-3x',
+          className: 'skill-card__icon'
+        });
+
+        return `
+          <div class="skill-card reveal-item" data-category="${skill.category}" data-skill="${skill.name.toLowerCase()}">
+            ${iconHTML}
+            <h3 class="skill-card__name">${skill.name}</h3>
+            <p class="skill-card__level">${skill.level}</p>
+          </div>
+        `;
+      }).join('');
+
       return `
-        <div class="skill-card reveal-item" data-category="${skill.category}">
-          ${iconHTML}
-          <h3 class="skill-card__name">${skill.name}</h3>
-          <p class="skill-card__level">${skill.level}</p>
-        </div>
+        <section class="skills-section skills-section--${section.id}" aria-labelledby="${section.id}-title">
+          <div class="skills-section__header">
+            <h3 id="${section.id}-title" class="skills-section__title">
+              ${iconHTML} ${section.title}
+            </h3>
+            <p class="skills-section__description">${section.description}</p>
+          </div>
+          <div class="skills-grid">
+            ${skillsHTML}
+          </div>
+        </section>
       `;
     }).join('');
   }
@@ -156,12 +220,12 @@ class PortfolioApp {
           featured: true
         },
         {
-          title: 'E-commerce Moderno',
-          description: 'Tienda online con carrito de compras, filtros de productos y diseño completamente responsive.',
-          technologies: ['JavaScript', 'CSS3', 'HTML5', 'Responsive Design'],
-          image: 'img/projects/ecommerce.webp',
+          title: 'Aplicación con Docker',
+          description: 'Proyecto de aplicación web containerizada con Docker, incluyendo Dockerfile y docker-compose.',
+          technologies: ['Docker', 'Node.js', 'JavaScript', 'API REST'],
+          image: 'img/projects/docker-app.webp',
           demoUrl: '#',
-          codeUrl: 'https://github.com/EmersonRodas9029/ecommerce',
+          codeUrl: 'https://github.com/EmersonRodas9029/docker-app',
           featured: true
         }
       ];
@@ -186,6 +250,11 @@ class PortfolioApp {
     projectsGrid.innerHTML = featuredProjects.map(project => {
       const demoIcon = renderIcon('fas fa-external-link-alt');
       const codeIcon = renderIcon('fas fa-code');
+
+      // Icono especial para proyectos con Docker
+      const dockerIcon = project.technologies.includes('Docker')
+        ? renderIcon('fab fa-docker', { size: 'fa-xs' })
+        : '';
 
       const technologiesHTML = project.technologies.map(tech => {
         const techIcon = getIcon(tech, 'technologies');
@@ -216,7 +285,10 @@ class PortfolioApp {
             </div>
           </div>
           <div class="project-card__content">
-            <h3 class="project-card__title">${project.title}</h3>
+            <h3 class="project-card__title">
+              ${project.title}
+              ${project.technologies.includes('Docker') ? dockerIcon : ''}
+            </h3>
             <p class="project-card__description">${project.description}</p>
             <div class="project-card__tags">
               ${technologiesHTML}
@@ -291,15 +363,15 @@ class PortfolioApp {
           period: '2023 - Presente',
           position: 'Desarrollador Frontend Freelance',
           company: 'Proyectos Independientes',
-          description: 'Desarrollo de aplicaciones web responsive y sitios portfolio para clientes. Especializado en JavaScript vanilla y mejores prácticas de desarrollo web.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design']
+          description: 'Desarrollo de aplicaciones web responsive y sitios portfolio para clientes. Especializado en JavaScript vanilla y tecnologías modernas como Docker para containerización.',
+          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Docker', 'Responsive Design']
         },
         {
           period: '2022 - 2023',
           position: 'Practicante Desarrollo Web',
           company: 'Proyectos Académicos',
-          description: 'Desarrollo de proyectos académicos y personales para fortalecer habilidades en desarrollo frontend y mejores prácticas de código.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Figma']
+          description: 'Desarrollo de proyectos académicos y personales utilizando diversos IDEs como IntelliJ IDEA, Visual Studio Code y NetBeans.',
+          technologies: ['HTML5', 'CSS3', 'JavaScript', 'IntelliJ IDEA', 'VS Code', 'Figma']
         }
       ];
 
@@ -347,7 +419,7 @@ class PortfolioApp {
   }
 
   handleGlobalError(event) {
-    console.error('🌍 Error global:', event.error);
+    console.error('🌍 Error global:', error);
   }
 
   monitorPerformance() {

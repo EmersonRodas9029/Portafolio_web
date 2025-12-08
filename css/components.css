@@ -89,33 +89,126 @@
   font-size: var(--font-size-sm);
 }
 
-/* Skills Grid */
+/* Skills Grid - NUEVO: Estructura de secciones */
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.skills-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.skills-section__title {
+  font-size: var(--font-size-xl);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
+}
+
+.skills-section__title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.skills-section--backend .skills-grid,
+.skills-section--frontend .skills-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.skills-section--database .skills-grid,
+.skills-section--tools .skills-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Skill Cards */
 .skill-card {
   background: var(--bg-secondary);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius);
   text-align: center;
   transition: all var(--transition-normal);
+  border: 1px solid var(--border-color);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .skill-card:hover {
   background: var(--bg-tertiary);
-  transform: translateY(-2px);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
 }
 
 .skill-card__icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: var(--spacing-sm);
+  color: var(--primary-color);
+  transition: all var(--transition-normal);
+}
+
+.skill-card:hover .skill-card__icon {
+  transform: scale(1.2);
+  color: var(--secondary-color);
 }
 
 .skill-card__name {
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
 }
 
 .skill-card__level {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+/* Docker card styling - Estilo especial para Docker */
+.skill-card[data-skill*="docker"] {
+  border: 2px solid #2496ed;
+}
+
+.skill-card[data-skill*="docker"] .skill-card__icon {
+  color: #2496ed;
+}
+
+.skill-card[data-skill*="docker"]:hover {
+  border-color: #2496ed;
+  background: rgba(36, 150, 237, 0.05);
+}
+
+/* IDE cards styling */
+.skill-card[data-skill*="intellij"] .skill-card__icon {
+  color: #000000;
+}
+
+.skill-card[data-skill*="visual studio"] .skill-card__icon {
+  color: #5c2d91;
+}
+
+.skill-card[data-skill*="visual studio code"] .skill-card__icon {
+  color: #007acc;
+}
+
+.skill-card[data-skill*="netbeans"] .skill-card__icon {
+  color: #1b6ac6;
 }
 
 /* Project Cards */
@@ -330,18 +423,6 @@
   transition: color var(--transition-fast);
 }
 
-/* Animaciones para mensajes de CV */
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 /* Responsive Components */
 @media (max-width: 768px) {
   .about__content {
@@ -383,6 +464,17 @@
   .stat-number {
     font-size: var(--font-size-2xl);
   }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .skills-section--backend .skills-grid,
+  .skills-section--frontend .skills-grid,
+  .skills-section--database .skills-grid,
+  .skills-section--tools .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -394,8 +486,19 @@
   .stat-card {
     padding: var(--spacing-md);
   }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-section__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .skill-card {
+    padding: var(--spacing-md);
+  }
 }
-/* Agregar al final de css/components.css */
 
 /* Animaciones para mensajes del CV */
 @keyframes slideInRight {
@@ -451,8 +554,6 @@
 .cv-message.slide-out {
   animation: slideOutRight 0.3s ease-out forwards;
 }
-
-/* Agregar al final de css/components.css */
 
 /* Estilos para iconos de Font Awesome */
 .skill-card__icon {
