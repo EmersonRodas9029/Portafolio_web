@@ -202,15 +202,32 @@
     </div>
   </section>
 
-  <!-- Sección Habilidades - ACTUALIZADA CON NUEVAS SECCIONES -->
+  <!-- Sección Habilidades - ACTUALIZADA CON NIVELES Y CATEGORÍAS -->
   <section id="habilidades" class="skills" aria-labelledby="skills-title">
     <div class="container">
       <h2 id="skills-title" class="section__title">Habilidades Técnicas</h2>
       <p class="section__description">
-        Tecnologías y herramientas organizadas por categorías para una mejor visualización
+        Tecnologías y herramientas organizadas por categorías con indicadores de nivel de dominio
       </p>
       <div class="skills__grid" role="region" aria-label="Habilidades técnicas organizadas por categorías">
-        <!-- Las habilidades se cargarán dinámicamente en secciones -->
+        <!-- Las habilidades se cargarán dinámicamente en secciones con niveles -->
+      </div>
+      <div class="skills-legend" style="margin-top: var(--spacing-xl); padding: var(--spacing-md); background: var(--bg-secondary); border-radius: var(--border-radius);">
+        <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); color: var(--text-primary);">Leyenda de Niveles:</h3>
+        <div style="display: flex; gap: var(--spacing-lg); flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #10b981; border-radius: 50%;"></span>
+            <span style="color: var(--text-primary);">Avanzado - Experiencia extensa y dominio completo</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></span>
+            <span style="color: var(--text-primary);">Intermedio - Conocimiento sólido y experiencia práctica</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #3b82f6; border-radius: 50%;"></span>
+            <span style="color: var(--text-primary);">Básico - Conocimiento fundamental y experiencia inicial</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>

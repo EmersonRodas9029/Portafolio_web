@@ -181,13 +181,22 @@
   animation: fadeInDown 0.6s ease-out forwards;
 }
 
-/* Animaciones de tarjetas con delay escalonado */
-.skill-card:nth-child(1) { animation-delay: 0.1s; }
-.skill-card:nth-child(2) { animation-delay: 0.2s; }
-.skill-card:nth-child(3) { animation-delay: 0.3s; }
-.skill-card:nth-child(4) { animation-delay: 0.4s; }
-.skill-card:nth-child(5) { animation-delay: 0.5s; }
-.skill-card:nth-child(6) { animation-delay: 0.6s; }
+/* Animaciones de tarjetas con delay escalonado POR NIVEL */
+/* Avanzados primero (aparecen más rápido) */
+.skill-card--advanced:nth-child(1) { animation-delay: 0.1s; }
+.skill-card--advanced:nth-child(2) { animation-delay: 0.2s; }
+.skill-card--advanced:nth-child(3) { animation-delay: 0.3s; }
+
+/* Intermedios después */
+.skill-card--intermediate:nth-child(1) { animation-delay: 0.4s; }
+.skill-card--intermediate:nth-child(2) { animation-delay: 0.5s; }
+.skill-card--intermediate:nth-child(3) { animation-delay: 0.6s; }
+.skill-card--intermediate:nth-child(4) { animation-delay: 0.7s; }
+.skill-card--intermediate:nth-child(5) { animation-delay: 0.8s; }
+
+/* Básicos al final */
+.skill-card--basic:nth-child(1) { animation-delay: 0.9s; }
+.skill-card--basic:nth-child(2) { animation-delay: 1.0s; }
 
 .project-card:nth-child(1) { animation-delay: 0.1s; }
 .project-card:nth-child(2) { animation-delay: 0.2s; }
@@ -236,6 +245,96 @@
 .form__group:nth-child(1) { animation-delay: 0.1s; }
 .form__group:nth-child(2) { animation-delay: 0.2s; }
 .form__group:nth-child(3) { animation-delay: 0.3s; }
+
+/* Animación de carga para niveles */
+@keyframes levelFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.level-indicator {
+  animation: levelFill 1.5s ease-out forwards;
+  transform-origin: left center;
+}
+
+.level-indicator--advanced {
+  animation-delay: 0.2s;
+}
+
+.level-indicator--intermediate {
+  animation-delay: 0.4s;
+}
+
+.level-indicator--basic {
+  animation-delay: 0.6s;
+}
+
+/* Animación de aparición escalonada para niveles de habilidad */
+.skill-card:nth-child(1) .skill-card__level { animation-delay: 0.1s; }
+.skill-card:nth-child(2) .skill-card__level { animation-delay: 0.2s; }
+.skill-card:nth-child(3) .skill-card__level { animation-delay: 0.3s; }
+.skill-card:nth-child(4) .skill-card__level { animation-delay: 0.4s; }
+.skill-card:nth-child(5) .skill-card__level { animation-delay: 0.5s; }
+.skill-card:nth-child(6) .skill-card__level { animation-delay: 0.6s; }
+.skill-card:nth-child(7) .skill-card__level { animation-delay: 0.7s; }
+.skill-card:nth-child(8) .skill-card__level { animation-delay: 0.8s; }
+
+/* Animación para badge de nivel */
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.skill-level-badge {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+.skill-level-badge--advanced {
+  animation-delay: 0.1s;
+}
+
+.skill-level-badge--intermediate {
+  animation-delay: 0.3s;
+}
+
+.skill-level-badge--basic {
+  animation-delay: 0.5s;
+}
+
+/* Animación para el desglose de niveles */
+@keyframes breakdownGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.level-breakdown__segment {
+  animation: breakdownGrow 1s ease-out forwards;
+  transform-origin: left;
+}
+
+.level-breakdown__segment--advanced {
+  animation-delay: 0.2s;
+}
+
+.level-breakdown__segment--intermediate {
+  animation-delay: 0.4s;
+}
+
+.level-breakdown__segment--basic {
+  animation-delay: 0.6s;
+}
 
 /* Reduce motion para accesibilidad */
 @media (prefers-reduced-motion: reduce) {

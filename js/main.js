@@ -1,4 +1,4 @@
-// js/main.js - ACTUALIZADO CON DOCKER Y NUEVOS IDEs
+// js/main.js - ACTUALIZADO CON ORDENAMIENTO AUTOMÁTICO POR NIVEL
 import { initializeTheme } from './theme.js';
 import { initializeNavigation } from './navigation.js';
 import { initializeAnimations } from './animations.js';
@@ -44,7 +44,7 @@ class PortfolioApp {
   loadDynamicContent() {
     console.log('📦 Cargando contenido dinámico...');
 
-    // Cargar habilidades con nuevas secciones
+    // Cargar habilidades con nuevas secciones y niveles actualizados
     this.loadSkills();
 
     // Cargar proyectos
@@ -83,7 +83,7 @@ class PortfolioApp {
 
   async loadSkills() {
     try {
-      console.log('🛠️ Cargando habilidades organizadas por secciones...');
+      console.log('🛠️ Cargando habilidades organizadas por secciones y niveles...');
 
       const skillsSections = [
         {
@@ -91,10 +91,10 @@ class PortfolioApp {
           title: 'Backend',
           description: 'Lenguajes y tecnologías del lado del servidor',
           skills: [
-            { name: 'Java', level: 'Intermedio', category: 'backend' },
+            { name: 'Java', level: 'Avanzado', category: 'backend' },
             { name: 'Node.js', level: 'Intermedio', category: 'backend' },
-            { name: 'Python', level: 'Intermedio', category: 'backend' },
-            { name: 'C#', level: 'Básico', category: 'backend' },
+            { name: 'Python', level: 'Básico', category: 'backend' },
+            { name: 'C#', level: 'Avanzado', category: 'backend' },
             { name: 'TypeScript', level: 'Intermedio', category: 'backend' }
           ]
         },
@@ -109,7 +109,7 @@ class PortfolioApp {
             { name: 'TypeScript', level: 'Intermedio', category: 'frontend' },
             { name: 'React', level: 'Intermedio', category: 'frontend' },
             { name: 'Vue.js', level: 'Básico', category: 'frontend' },
-            { name: 'Astro', level: 'Básico', category: 'frontend' }
+            { name: 'Astro', level: 'Intermedio', category: 'frontend' }
           ]
         },
         {
@@ -119,9 +119,9 @@ class PortfolioApp {
           skills: [
             { name: 'MySQL', level: 'Intermedio', category: 'database' },
             { name: 'PostgreSQL', level: 'Intermedio', category: 'database' },
-            { name: 'SQLite', level: 'Básico', category: 'database' },
-            { name: 'Oracle Database', level: 'Básico', category: 'database' },
-            { name: 'SQL Server', level: 'Básico', category: 'database' }
+            { name: 'SQLite', level: 'Intermedio', category: 'database' },
+            { name: 'Oracle Database', level: 'Intermedio', category: 'database' },
+            { name: 'SQL Server', level: 'Intermedio', category: 'database' }
           ]
         },
         {
@@ -131,22 +131,50 @@ class PortfolioApp {
           skills: [
             { name: 'Git', level: 'Intermedio', category: 'tools' },
             { name: 'GitHub', level: 'Intermedio', category: 'tools' },
-            { name: 'Docker', level: 'Básico', category: 'tools' },
-            { name: 'IntelliJ IDEA', level: 'Intermedio', category: 'tools' },
-            { name: 'Visual Studio', level: 'Intermedio', category: 'tools' },
+            { name: 'Docker', level: 'Intermedio', category: 'tools' },
+            { name: 'IntelliJ IDEA', level: 'Avanzado', category: 'tools' },
+            { name: 'Visual Studio', level: 'Avanzado', category: 'tools' },
             { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
-            { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
+            { name: 'NetBeans', level: 'Avanzado', category: 'tools' },
             { name: 'Figma', level: 'Intermedio', category: 'tools' }
           ]
         }
       ];
 
+      // Ordenar habilidades por nivel dentro de cada sección
+      this.sortSkillsByLevel(skillsSections);
+
       this.renderSkillsSections(skillsSections);
-      console.log('✅ Habilidades organizadas en secciones cargadas');
+      console.log('✅ Habilidades organizadas y ordenadas por nivel');
 
     } catch (error) {
       console.error('❌ Error loading skills:', error);
     }
+  }
+
+  // Método para ordenar habilidades por nivel
+  sortSkillsByLevel(sections) {
+    const levelOrder = {
+      'Avanzado': 3,
+      'Intermedio': 2,
+      'Básico': 1
+    };
+
+    sections.forEach(section => {
+      section.skills.sort((a, b) => {
+        // Primero ordenar por nivel (descendente: Avanzado primero)
+        const levelComparison = levelOrder[b.level] - levelOrder[a.level];
+
+        // Si tienen el mismo nivel, ordenar alfabéticamente
+        if (levelComparison === 0) {
+          return a.name.localeCompare(b.name);
+        }
+
+        return levelComparison;
+      });
+
+      console.log(`📊 ${section.title} ordenado:`, section.skills.map(s => `${s.name} (${s.level})`));
+    });
   }
 
   renderSkillsSections(sections) {
@@ -164,18 +192,34 @@ class PortfolioApp {
         size: 'fa-lg'
       });
 
-      const skillsHTML = section.skills.map(skill => {
+      // Contadores de nivel por sección
+      const levelCounts = this.countLevelsBySection(section.skills);
+      const levelSummary = this.getLevelSummary(levelCounts);
+
+      const skillsHTML = section.skills.map((skill, index) => {
         const iconClass = getIcon(skill.name, 'skills');
         const iconHTML = renderIcon(iconClass, {
           size: 'fa-3x',
           className: 'skill-card__icon'
         });
 
+        // Determinar clase CSS según el nivel
+        const levelClass = this.getLevelClass(skill.level);
+
         return `
-          <div class="skill-card reveal-item" data-category="${skill.category}" data-skill="${skill.name.toLowerCase()}">
+          <div class="skill-card reveal-item ${levelClass}" data-category="${skill.category}" data-skill="${skill.name.toLowerCase()}" data-level="${skill.level.toLowerCase()}">
             ${iconHTML}
             <h3 class="skill-card__name">${skill.name}</h3>
-            <p class="skill-card__level">${skill.level}</p>
+            <div class="skill-card__level-container">
+              <span class="skill-card__level skill-card__level--${skill.level.toLowerCase()} skill-card__level--${skill.level.toLowerCase()}-${index}">
+                ${skill.level}
+              </span>
+              ${this.getLevelIndicator(skill.level)}
+            </div>
+            <!-- Badge de posición por nivel -->
+            <div class="skill-level-badge skill-level-badge--${skill.level.toLowerCase()}">
+              ${this.getLevelPosition(index + 1, skill.level)}
+            </div>
           </div>
         `;
       }).join('');
@@ -183,10 +227,18 @@ class PortfolioApp {
       return `
         <section class="skills-section skills-section--${section.id}" aria-labelledby="${section.id}-title">
           <div class="skills-section__header">
-            <h3 id="${section.id}-title" class="skills-section__title">
-              ${iconHTML} ${section.title}
-            </h3>
+            <div class="skills-section__title-row">
+              <h3 id="${section.id}-title" class="skills-section__title">
+                ${iconHTML} ${section.title}
+              </h3>
+              <div class="skills-section__stats">
+                ${levelSummary}
+              </div>
+            </div>
             <p class="skills-section__description">${section.description}</p>
+            <div class="skills-section__level-breakdown">
+              ${this.getLevelBreakdownHTML(levelCounts)}
+            </div>
           </div>
           <div class="skills-grid">
             ${skillsHTML}
@@ -194,6 +246,79 @@ class PortfolioApp {
         </section>
       `;
     }).join('');
+  }
+
+  // Contar niveles por sección
+  countLevelsBySection(skills) {
+    const counts = {
+      'Avanzado': 0,
+      'Intermedio': 0,
+      'Básico': 0
+    };
+
+    skills.forEach(skill => {
+      if (counts[skill.level] !== undefined) {
+        counts[skill.level]++;
+      }
+    });
+
+    return counts;
+  }
+
+  // Obtener resumen de niveles
+  getLevelSummary(counts) {
+    const total = counts.Avanzado + counts.Intermedio + counts.Básico;
+    return `
+      <span class="level-summary">
+        <span class="level-summary__item level-summary__item--advanced">${counts.Avanzado} Avanzado</span>
+        <span class="level-summary__item level-summary__item--intermediate">${counts.Intermedio} Intermedio</span>
+        <span class="level-summary__item level-summary__item--basic">${counts.Básico} Básico</span>
+      </span>
+    `;
+  }
+
+  // Obtener desglose de niveles
+  getLevelBreakdownHTML(counts) {
+    const total = counts.Avanzado + counts.Intermedio + counts.Básico;
+
+    return `
+      <div class="level-breakdown">
+        <div class="level-breakdown__bar">
+          <div class="level-breakdown__segment level-breakdown__segment--advanced" style="width: ${(counts.Avanzado / total) * 100}%"></div>
+          <div class="level-breakdown__segment level-breakdown__segment--intermediate" style="width: ${(counts.Intermedio / total) * 100}%"></div>
+          <div class="level-breakdown__segment level-breakdown__segment--basic" style="width: ${(counts.Básico / total) * 100}%"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  getLevelClass(level) {
+    const levelMap = {
+      'Avanzado': 'skill-card--advanced',
+      'Intermedio': 'skill-card--intermediate',
+      'Básico': 'skill-card--basic'
+    };
+    return levelMap[level] || '';
+  }
+
+  getLevelIndicator(level) {
+    const indicators = {
+      'Avanzado': '<div class="level-indicator level-indicator--advanced"></div>',
+      'Intermedio': '<div class="level-indicator level-indicator--intermediate"></div>',
+      'Básico': '<div class="level-indicator level-indicator--basic"></div>'
+    };
+    return indicators[level] || '';
+  }
+
+  // Obtener posición por nivel
+  getLevelPosition(position, level) {
+    const levelIcons = {
+      'Avanzado': '🏆',
+      'Intermedio': '⭐',
+      'Básico': '🌱'
+    };
+
+    return `${levelIcons[level] || '📊'} ${position}`;
   }
 
   async loadProjects() {
@@ -419,7 +544,7 @@ class PortfolioApp {
   }
 
   handleGlobalError(event) {
-    console.error('🌍 Error global:', error);
+    console.error('🌍 Error global:', event.error);
   }
 
   monitorPerformance() {

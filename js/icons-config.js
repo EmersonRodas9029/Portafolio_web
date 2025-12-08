@@ -2,19 +2,19 @@
 // Configuración centralizada de todos los iconos del portfolio
 
 export const IconsConfig = {
-  // Iconos de habilidades
+  // Iconos de habilidades - ACTUALIZADO CON DOCKER Y NUEVOS IDEs
   skills: {
     // Backend
     'Java': 'fab fa-java',
     'Node.js': 'fab fa-node-js',
     'Python': 'fab fa-python',
     'C#': 'fab fa-windows',
-    'TypeScript': 'fab fa-js-square',
 
     // Frontend
     'HTML5': 'fab fa-html5',
     'CSS3': 'fab fa-css3-alt',
     'JavaScript': 'fab fa-js-square',
+    'TypeScript': 'fab fa-js-square',
     'React': 'fab fa-react',
     'Vue.js': 'fab fa-vuejs',
     'Astro': 'fas fa-rocket',
