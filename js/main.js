@@ -131,11 +131,11 @@ class PortfolioApp {
           skills: [
             { name: 'Git', level: 'Intermedio', category: 'tools' },
             { name: 'GitHub', level: 'Intermedio', category: 'tools' },
-            { name: 'Docker', level: 'Intermedio', category: 'tools' },
-            { name: 'IntelliJ IDEA', level: 'Avanzado', category: 'tools' },
-            { name: 'Visual Studio', level: 'Avanzado', category: 'tools' },
+            { name: 'Docker', level: 'Básico', category: 'tools' },
+            { name: 'IntelliJ IDEA', level: 'Intermedio', category: 'tools' },
+            { name: 'Visual Studio', level: 'Intermedio', category: 'tools' },
             { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
-            { name: 'NetBeans', level: 'Avanzado', category: 'tools' },
+            { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
             { name: 'Figma', level: 'Intermedio', category: 'tools' }
           ]
         }
@@ -196,10 +196,10 @@ class PortfolioApp {
       const levelCounts = this.countLevelsBySection(section.skills);
       const levelSummary = this.getLevelSummary(levelCounts);
 
-      const skillsHTML = section.skills.map((skill, index) => {
+      const skillsHTML = section.skills.map((skill) => {
         const iconClass = getIcon(skill.name, 'skills');
         const iconHTML = renderIcon(iconClass, {
-          size: 'fa-3x',
+          size: 'fa-2x', // Reducido de fa-3x a fa-2x
           className: 'skill-card__icon'
         });
 
@@ -211,14 +211,10 @@ class PortfolioApp {
             ${iconHTML}
             <h3 class="skill-card__name">${skill.name}</h3>
             <div class="skill-card__level-container">
-              <span class="skill-card__level skill-card__level--${skill.level.toLowerCase()} skill-card__level--${skill.level.toLowerCase()}-${index}">
+              <span class="skill-card__level skill-card__level--${skill.level.toLowerCase()}">
                 ${skill.level}
               </span>
               ${this.getLevelIndicator(skill.level)}
-            </div>
-            <!-- Badge de posición por nivel -->
-            <div class="skill-level-badge skill-level-badge--${skill.level.toLowerCase()}">
-              ${this.getLevelPosition(index + 1, skill.level)}
             </div>
           </div>
         `;
@@ -308,17 +304,6 @@ class PortfolioApp {
       'Básico': '<div class="level-indicator level-indicator--basic"></div>'
     };
     return indicators[level] || '';
-  }
-
-  // Obtener posición por nivel
-  getLevelPosition(position, level) {
-    const levelIcons = {
-      'Avanzado': '🏆',
-      'Intermedio': '⭐',
-      'Básico': '🌱'
-    };
-
-    return `${levelIcons[level] || '📊'} ${position}`;
   }
 
   async loadProjects() {

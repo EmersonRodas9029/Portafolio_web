@@ -255,43 +255,9 @@
   z-index: 10;
 }
 
-/* Badge de posición por nivel */
-.skill-level-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.skill-level-badge--advanced {
-  background: #10b981;
-}
-
-.skill-level-badge--intermediate {
-  background: #f59e0b;
-}
-
-.skill-level-badge--basic {
-  background: #3b82f6;
-}
-
-.skill-card:hover .skill-level-badge {
-  transform: scale(1.2) rotate(10deg);
-}
-
 /* Efecto de elevación al hacer hover */
 .skill-card:hover .skill-card__icon {
-  transform: scale(1.2) translateY(-5px);
+  transform: scale(1.15) translateY(-3px);
   color: var(--secondary-color);
 }
 
@@ -309,7 +275,7 @@
 }
 
 .skill-card__icon {
-  font-size: 2.5rem;
+  font-size: 2rem; /* Reducido de 2.5rem a 2rem */
   margin-bottom: var(--spacing-sm);
   color: var(--primary-color);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -779,7 +745,7 @@
 }
 
 .skill-card:hover .skill-card__icon {
-  transform: scale(1.2) translateY(-5px);
+  transform: scale(1.15) translateY(-3px);
   color: var(--secondary-color);
 }
 
@@ -908,10 +874,8 @@
     transform: translateY(-4px) scale(1.01);
   }
 
-  .skill-level-badge {
-    width: 24px;
-    height: 24px;
-    font-size: 0.7rem;
+  .skill-card__icon {
+    font-size: 1.8rem;
   }
 }
 
@@ -942,7 +906,7 @@
   }
 
   .skill-card__icon {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .level-summary {

@@ -283,32 +283,6 @@
 .skill-card:nth-child(7) .skill-card__level { animation-delay: 0.7s; }
 .skill-card:nth-child(8) .skill-card__level { animation-delay: 0.8s; }
 
-/* Animación para badge de nivel */
-@keyframes badgePulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-.skill-level-badge {
-  animation: badgePulse 2s ease-in-out infinite;
-}
-
-.skill-level-badge--advanced {
-  animation-delay: 0.1s;
-}
-
-.skill-level-badge--intermediate {
-  animation-delay: 0.3s;
-}
-
-.skill-level-badge--basic {
-  animation-delay: 0.5s;
-}
-
 /* Animación para el desglose de niveles */
 @keyframes breakdownGrow {
   from {
