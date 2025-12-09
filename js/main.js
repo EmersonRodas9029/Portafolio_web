@@ -132,8 +132,8 @@ class PortfolioApp {
             { name: 'Git', level: 'Intermedio', category: 'tools' },
             { name: 'GitHub', level: 'Intermedio', category: 'tools' },
             { name: 'Docker', level: 'Básico', category: 'tools' },
-            { name: 'IntelliJ IDEA', level: 'Intermedio', category: 'tools' },
-            { name: 'Visual Studio', level: 'Intermedio', category: 'tools' },
+            { name: 'IntelliJ IDEA', level: 'Avanzado', category: 'tools' },
+            { name: 'Visual Studio', level: 'Avanzado', category: 'tools' },
             { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
             { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
             { name: 'Figma', level: 'Intermedio', category: 'tools' }
@@ -492,6 +492,8 @@ class PortfolioApp {
     }
   }
 
+  // js/main.js - Modifica la función animateStats()
+
   animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
 
@@ -501,6 +503,9 @@ class PortfolioApp {
     }
 
     console.log('📊 Animando estadísticas:', statNumbers.length);
+
+    // Agregar iconos a las tarjetas de estadísticas
+    this.addStatIcons();
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -516,6 +521,11 @@ class PortfolioApp {
             if (current >= target) {
               current = target;
               clearInterval(timer);
+
+              // Agregar efecto de confeti después de la animación
+              if (target > 10) { // Solo para números grandes
+                setTimeout(() => this.addConfettiEffect(statNumber), 300);
+              }
             }
             statNumber.textContent = Math.floor(current);
           }, 16);
@@ -526,6 +536,70 @@ class PortfolioApp {
     }, { threshold: 0.5 });
 
     statNumbers.forEach(stat => observer.observe(stat));
+  }
+
+// Nueva función para agregar iconos a estadísticas
+  addStatIcons() {
+    const statCards = document.querySelectorAll('.stat-card');
+
+    statCards.forEach((card, index) => {
+      let iconClass = 'fas fa-check-circle'; // Icono por defecto
+
+      // Iconos diferentes para cada tipo de estadística
+      switch(index) {
+        case 0: // Proyectos completados
+          iconClass = 'fas fa-rocket';
+          break;
+        case 1: // Años de experiencia
+          iconClass = 'fas fa-calendar-alt';
+          break;
+        case 2: // Tecnologías dominadas
+          iconClass = 'fas fa-code';
+          break;
+        default:
+          iconClass = 'fas fa-chart-line';
+      }
+
+      // Insertar icono antes del número
+      const statNumber = card.querySelector('.stat-number');
+      if (statNumber) {
+        const icon = document.createElement('i');
+        icon.className = `stat-icon ${iconClass}`;
+        statNumber.parentNode.insertBefore(icon, statNumber);
+      }
+
+      // Agregar tooltip
+      card.setAttribute('data-tooltip', 'Haz hover para ver el efecto');
+    });
+  }
+
+// Efecto de confeti (opcional)
+  addConfettiEffect(element) {
+    const card = element.closest('.stat-card');
+    if (!card) return;
+
+    const confetti = document.createElement('div');
+    confetti.className = 'stat-confetti';
+    confetti.innerHTML = '✨';
+    confetti.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: confettiFall 0.5s ease-out;
+    z-index: 3;
+  `;
+
+    card.appendChild(confetti);
+
+    // Remover después de la animación
+    setTimeout(() => {
+      if (confetti.parentNode) {
+        confetti.remove();
+      }
+    }, 500);
   }
 
   handleGlobalError(event) {
