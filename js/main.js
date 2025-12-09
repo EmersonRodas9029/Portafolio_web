@@ -117,10 +117,10 @@ class PortfolioApp {
           title: 'Base de Datos',
           description: 'Sistemas de gestión de bases de datos',
           skills: [
-            { name: 'MySQL', level: 'Intermedio', category: 'database' },
-            { name: 'PostgreSQL', level: 'Intermedio', category: 'database' },
-            { name: 'SQLite', level: 'Intermedio', category: 'database' },
-            { name: 'Oracle Database', level: 'Intermedio', category: 'database' },
+            { name: 'MySQL', level: 'Avanzado', category: 'database' },
+            { name: 'PostgreSQL', level: 'Básico', category: 'database' },
+            { name: 'SQLite', level: 'Básico', category: 'database' },
+            { name: 'Oracle Database', level: 'Avanzado', category: 'database' },
             { name: 'SQL Server', level: 'Intermedio', category: 'database' }
           ]
         },
