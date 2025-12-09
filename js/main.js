@@ -6,6 +6,8 @@ import { initializeContactForm } from './contact.js';
 import { initializeScrollEffects } from './utils/scroll.js';
 import { initializeCVDownload } from './cv-download.js';
 import { IconsConfig, getIcon, renderIcon } from './icons-config.js';
+import { initializeHeroEffects } from './hero.js';
+
 
 // Inicialización de la aplicación
 class PortfolioApp {
@@ -37,6 +39,7 @@ class PortfolioApp {
     initializeScrollEffects();
     initializeCVDownload();
     initializeContactForm();
+    initializeHeroEffects();
 
     console.log('✅ Todos los módulos inicializados');
   }
