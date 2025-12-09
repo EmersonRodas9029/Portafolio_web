@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Final EmailJS - Emerson Rodas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .container {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 10px;
+      border: 2px solid #2563eb;
+    }
+    h1 {
+      color: #2563eb;
+    }
+    .credentials {
+      background: #e0f2fe;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .success {
+      color: #10b981;
+      font-weight: bold;
+    }
+    .error {
+      color: #ef4444;
+      font-weight: bold;
+    }
+    .log {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🧪 Test Final EmailJS - Emerson Rodas</h1>
+
+  <div class="credentials">
+    <h3>📋 Credenciales configuradas:</h3>
+    <p><strong>Public Key:</strong> aM5Wb0eTPpfVuJkmx</p>
+    <p><strong>Service ID:</strong> service_51gssgi</p>
+    <p><strong>Template ID:</strong> template_cay9twa ✅</p>
+  </div>
+
+  <div>
+    <h3>🔄 Probar inicialización:</h3>
+    <button onclick="testInit()">Probar Inicialización</button>
+    <button onclick="testSend()">Probar Envío</button>
+    <button onclick="testFull()">Probar Todo</button>
+  </div>
+
+  <div>
+    <h3>📝 Datos de prueba:</h3>
+    <input type="text" id="testName" placeholder="Nombre" value="Emerson Rodas" style="padding: 8px; margin: 5px;">
+    <input type="email" id="testEmail" placeholder="Email" value="tuemail@gmail.com" style="padding: 8px; margin: 5px;">
+    <textarea id="testMessage" placeholder="Mensaje" style="padding: 8px; margin: 5px; width: 100%;" rows="3">Este es un mensaje de prueba desde el portfolio de Emerson Rodas</textarea>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="log" id="log"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const log = document.getElementById('log');
+  const result = document.getElementById('result');
+
+  function addLog(message, type = 'info') {
+    const time = new Date().toLocaleTimeString();
+    const div = document.createElement('div');
+    div.innerHTML = `<span style="color: #94a3b8">[${time}]</span> ${message}`;
+    if (type === 'error') div.style.color = '#f87171';
+    if (type === 'success') div.style.color = '#34d399';
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  async function testInit() {
+    try {
+      addLog('🔄 Inicializando EmailJS...');
+      await emailjs.init('aM5Wb0eTPpfVuJkmx');
+      addLog('✅ EmailJS inicializado correctamente', 'success');
+      result.innerHTML = '<p class="success">✅ Inicialización exitosa</p>';
+    } catch (error) {
+      addLog(`❌ Error inicializando: ${error.message}`, 'error');
+      result.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+    }
+  }
+
+  async function testSend() {
+    try {
+      addLog('📤 Preparando envío de prueba...');
+
+      const templateParams = {
+        from_name: document.getElementById('testName').value || 'Test User',
+        from_email: document.getElementById('testEmail').value || 'test@example.com',
+        message: document.getElementById('testMessage').value || 'Mensaje de prueba',
+        date: new Date().toLocaleString(),
+        user_agent: navigator.userAgent
+      };
+
+      addLog('📝 Datos a enviar:', 'info');
+      addLog(JSON.stringify(templateParams, null, 2), 'info');
+
+      const response = await emailjs.send(
+        'service_51gssgi',
+        'template_cay9twa',
+        templateParams
+      );
+
+      addLog(`✅ Email enviado exitosamente! Status: ${response.status}`, 'success');
+      result.innerHTML = '<p class="success">✅ ¡Email enviado correctamente! Revisa tu Gmail.</p>';
+
+    } catch (error) {
+      addLog(`❌ Error enviando email: ${error.message}`, 'error');
+      addLog(`Status: ${error.status}`, 'error');
+      addLog(`Text: ${error.text}`, 'error');
+      result.innerHTML = `<p class="error">❌ Error: ${error.text || error.message}</p>`;
+    }
+  }
+
+  async function testFull() {
+    addLog('🚀 Iniciando prueba completa...');
+    await testInit();
+    await testSend();
+  }
+
+  // Inicializar al cargar
+  document.addEventListener('DOMContentLoaded', () => {
+    addLog('🔧 Página cargada. Listo para probar EmailJS.');
+  });
+</script>
+</body>
+</html>

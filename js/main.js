@@ -34,9 +34,9 @@ class PortfolioApp {
     initializeTheme();
     initializeNavigation();
     initializeAnimations();
-    initializeContactForm();
     initializeScrollEffects();
     initializeCVDownload();
+    initializeContactForm();
 
     console.log('✅ Todos los módulos inicializados');
   }
@@ -199,7 +199,7 @@ class PortfolioApp {
       const skillsHTML = section.skills.map((skill) => {
         const iconClass = getIcon(skill.name, 'skills');
         const iconHTML = renderIcon(iconClass, {
-          size: 'fa-2x', // Reducido de fa-3x a fa-2x
+          size: 'fa-2x',
           className: 'skill-card__icon'
         });
 
@@ -492,8 +492,6 @@ class PortfolioApp {
     }
   }
 
-  // js/main.js - Modifica la función animateStats()
-
   animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
 
@@ -523,7 +521,7 @@ class PortfolioApp {
               clearInterval(timer);
 
               // Agregar efecto de confeti después de la animación
-              if (target > 10) { // Solo para números grandes
+              if (target > 10) {
                 setTimeout(() => this.addConfettiEffect(statNumber), 300);
               }
             }
@@ -538,29 +536,26 @@ class PortfolioApp {
     statNumbers.forEach(stat => observer.observe(stat));
   }
 
-// Nueva función para agregar iconos a estadísticas
   addStatIcons() {
     const statCards = document.querySelectorAll('.stat-card');
 
     statCards.forEach((card, index) => {
-      let iconClass = 'fas fa-check-circle'; // Icono por defecto
+      let iconClass = 'fas fa-check-circle';
 
-      // Iconos diferentes para cada tipo de estadística
       switch(index) {
-        case 0: // Proyectos completados
+        case 0:
           iconClass = 'fas fa-rocket';
           break;
-        case 1: // Años de experiencia
+        case 1:
           iconClass = 'fas fa-calendar-alt';
           break;
-        case 2: // Tecnologías dominadas
+        case 2:
           iconClass = 'fas fa-code';
           break;
         default:
           iconClass = 'fas fa-chart-line';
       }
 
-      // Insertar icono antes del número
       const statNumber = card.querySelector('.stat-number');
       if (statNumber) {
         const icon = document.createElement('i');
@@ -568,12 +563,10 @@ class PortfolioApp {
         statNumber.parentNode.insertBefore(icon, statNumber);
       }
 
-      // Agregar tooltip
       card.setAttribute('data-tooltip', 'Haz hover para ver el efecto');
     });
   }
 
-// Efecto de confeti (opcional)
   addConfettiEffect(element) {
     const card = element.closest('.stat-card');
     if (!card) return;
@@ -582,19 +575,18 @@ class PortfolioApp {
     confetti.className = 'stat-confetti';
     confetti.innerHTML = '✨';
     confetti.style.cssText = `
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.5rem;
-    opacity: 0;
-    animation: confettiFall 0.5s ease-out;
-    z-index: 3;
-  `;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: confettiFall 0.5s ease-out;
+      z-index: 3;
+    `;
 
     card.appendChild(confetti);
 
-    // Remover después de la animación
     setTimeout(() => {
       if (confetti.parentNode) {
         confetti.remove();
