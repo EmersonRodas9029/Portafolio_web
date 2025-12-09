@@ -122,42 +122,140 @@
 
 <!-- Contenido Principal -->
 <main id="main-content" class="main" role="main" tabindex="-1">
-  <!-- Sección Hero -->
+  <!-- Reemplaza la sección Hero actual con esta versión mejorada -->
   <section id="inicio" class="hero" aria-labelledby="hero-title">
     <div class="container">
       <div class="hero__content">
+        <!-- Badge para disponibilidad -->
+        <div class="hero__badge">
+        <span class="badge badge--available">
+          <i class="fas fa-circle"></i>
+          Disponible para proyectos
+        </span>
+        </div>
+
         <h1 id="hero-title" class="hero__title">
-          Hola, soy <span class="hero__name text-gradient">Emerson Rodas</span>
+          <span class="hero__greeting">Hola, soy</span>
+          <span class="hero__name text-gradient">Emerson Rodas</span>
         </h1>
+
+        <div class="hero__subtitle">
+          <span class="typed-text" id="typed-text"></span>
+          <span class="typed-cursor">|</span>
+        </div>
+
         <p class="hero__description">
-          <strong>Desarrollador Frontend</strong> apasionado por crear experiencias web
-          <strong>innovadoras</strong>, <strong>accesibles</strong> y de <strong>alto rendimiento</strong>
+          <strong>Desarrollador Frontend</strong> especializado en crear experiencias web
+          <strong class="highlight">innovadoras</strong>, <strong class="highlight">accesibles</strong>
+          y de <strong class="highlight">alto rendimiento</strong>.
+          Transformo ideas en soluciones digitales excepcionales.
         </p>
+
+        <!-- Stats en línea -->
+        <div class="hero__stats">
+          <div class="hero-stat">
+            <span class="hero-stat__number">2+</span>
+            <span class="hero-stat__label">Años experiencia</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat__number">15+</span>
+            <span class="hero-stat__label">Proyectos</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat__number">100%</span>
+            <span class="hero-stat__label">Satisfacción</span>
+          </div>
+        </div>
+
         <div class="hero__buttons">
-          <a href="#proyectos" class="btn btn--primary">
+          <a href="#proyectos" class="btn btn--primary btn--with-icon">
+            <i class="fas fa-briefcase"></i>
             Ver Proyectos
             <span class="sr-only">, navegar a la sección de proyectos</span>
           </a>
-          <a href="#contacto" class="btn btn--secondary">
-            Contactar
+          <a href="#contacto" class="btn btn--secondary btn--with-icon">
+            <i class="fas fa-paper-plane"></i>
+            Contactar Ahora
             <span class="sr-only">, navegar a la sección de contacto</span>
           </a>
-          <!-- Nuevo botón de CV -->
-          <button class="btn btn--outline" id="hero-cv-download">
-            <span class="btn__icon">📄</span>
+          <button class="btn btn--outline btn--with-icon" id="hero-cv-download">
+            <i class="fas fa-download"></i>
             Descargar CV
           </button>
         </div>
+
+        <!-- Redes sociales en Hero -->
+        <div class="hero__social">
+          <p class="hero__social-label">Conéctate conmigo:</p>
+          <div class="social-links">
+            <a href="https://github.com/EmersonRodas9029" class="social-link social-link--hero" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/emerson-rodas-9029" class="social-link social-link--hero" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:emerson.rodas2004@gmail.com" class="social-link social-link--hero" aria-label="Enviar email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </div>
+
       <div class="hero__image">
-        <img
-          src="img/profile.webp"
-          alt="Emerson Eduardo Rodas López - Desarrollador Frontend"
-          width="400"
-          height="400"
-          loading="eager"
-        >
+        <!-- Imagen con efecto -->
+        <div class="hero__image-container">
+          <img
+            src="img/profile.webp"
+            alt="Emerson Eduardo Rodas López - Desarrollador Frontend"
+            width="400"
+            height="400"
+            loading="eager"
+            class="hero__profile-img"
+          >
+          <!-- Elementos decorativos -->
+          <div class="hero__floating-elements">
+            <div class="floating-element floating-element--1">
+              <i class="fab fa-html5"></i>
+            </div>
+            <div class="floating-element floating-element--2">
+              <i class="fab fa-css3-alt"></i>
+            </div>
+            <div class="floating-element floating-element--3">
+              <i class="fab fa-js"></i>
+            </div>
+            <div class="floating-element floating-element--4">
+              <i class="fab fa-react"></i>
+            </div>
+          </div>
+
+          <!-- Badge de experiencia -->
+          <div class="experience-badge">
+            <div class="experience-badge__content">
+              <span class="experience-badge__years">2+</span>
+              <span class="experience-badge__text">Años de<br>Experiencia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flecha de scroll -->
+        <div class="scroll-indicator">
+          <a href="#sobre-mi" class="scroll-indicator__link" aria-label="Desplazarse hacia abajo">
+          <span class="scroll-indicator__mouse">
+            <span class="scroll-indicator__wheel"></span>
+          </span>
+            <span class="scroll-indicator__text">Desplazar</span>
+          </a>
+        </div>
       </div>
+    </div>
+
+    <!-- Elementos de fondo animados -->
+    <div class="hero__bg-elements">
+      <div class="bg-circle bg-circle--1"></div>
+      <div class="bg-circle bg-circle--2"></div>
+      <div class="bg-circle bg-circle--3"></div>
+      <div class="bg-shape bg-shape--1"></div>
+      <div class="bg-shape bg-shape--2"></div>
     </div>
   </section>
 
