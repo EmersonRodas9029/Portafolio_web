@@ -347,3 +347,78 @@
     left: 100%;
   }
 }
+/* css/custom/animations.css - Agregar al final */
+
+/* Animación de confetti para estadísticas */
+@keyframes confettiFall {
+  0% {
+    transform: translateX(-50%) translateY(-20px) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1.2);
+  }
+  100% {
+    transform: translateX(-50%) translateY(20px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Efecto de pulso para estadísticas al hover */
+@keyframes statPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
+
+.stat-card:hover {
+  animation: statPulse 2s infinite;
+}
+
+/* Efecto de brillo intenso para texto en hover */
+.stat-card:hover .stat-number {
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.3),
+  0 0 20px rgba(37, 99, 235, 0.2),
+  0 0 30px rgba(37, 99, 235, 0.1);
+}
+
+/* Animación de aparición para iconos de estadísticas */
+.stat-icon {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Efecto de onda al hacer hover */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover .wave-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: waveExpand 1s ease-out;
+  pointer-events: none;
+}
+
+@keyframes waveExpand {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}

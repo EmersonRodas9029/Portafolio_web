@@ -10,6 +10,7 @@ class AnimationManager {
     this.setupHoverAnimations();
     this.setupLoadingAnimations();
     this.setupIntersectionObservers();
+
   }
 
   setupScrollAnimations() {
