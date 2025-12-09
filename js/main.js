@@ -1,4 +1,11 @@
 // js/main.js - ACTUALIZADO CON ORDENAMIENTO AUTOMÁTICO POR NIVEL
+
+// En main.js, al inicio del archivo
+document.addEventListener('DOMContentLoaded', () => {
+  // Marcar tema como cargado
+  document.body.classList.add('theme-loaded');
+  console.log('✅ Tema cargado correctamente');
+});
 import { initializeTheme } from './theme.js';
 import { initializeNavigation } from './navigation.js';
 import { initializeAnimations } from './animations.js';

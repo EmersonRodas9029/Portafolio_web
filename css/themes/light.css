@@ -1,3 +1,85 @@
 /* css/themes/light.css */
 /* Los estilos del tema claro ya están definidos en :root de base.css */
 /* Este archivo se mantiene para consistencia en la arquitectura */
+
+/* Sobrescribir variables si es necesario */
+[data-theme="light"] {
+  /* Asegurar que los colores del tema claro están definidos */
+  --primary-color: #2563eb;
+  --secondary-color: #7c3aed;
+  --accent-color: #06b6d4;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --border-color: #d1d5db;
+}
+
+/* Estilos específicos para modo claro */
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="light"] .footer {
+  background: var(--bg-secondary);
+}
+
+[data-theme="light"] .card,
+[data-theme="light"] .project-card {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+[data-theme="light"] .skill-card {
+  background: var(--bg-secondary);
+}
+
+[data-theme="light"] .skill-card:hover {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .form__input,
+[data-theme="light"] .form__textarea {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+/* AGREGAR AL FINAL de css/themes/light.css */
+
+/* NAVBAR EN MODO CLARO - FIX PARA SCROLL */
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+/* Override para cuando se hace scroll en modo claro */
+[data-theme="light"] .header.scrolled {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Asegurar que los enlaces sean visibles */
+[data-theme="light"] .nav__link {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .nav__link:hover,
+[data-theme="light"] .nav__link:focus {
+  background-color: var(--bg-secondary) !important;
+  color: var(--primary-color) !important;
+}
+
+[data-theme="light"] .nav__link--active {
+  color: var(--primary-color) !important;
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Botón CV en modo claro */
+[data-theme="light"] .nav__link--cv {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+  color: white !important;
+}

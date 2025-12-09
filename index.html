@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,8 +63,8 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/themes/light.css" id="theme-stylesheet">
-  <link rel="stylesheet" href="css/custom/animations.css">
+  <link rel="stylesheet" href="css/themes/light.css" id="theme-stylesheet" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="css/themes/dark.css" id="dark-theme-stylesheet" media="(prefers-color-scheme: dark)" disabled>  <link rel="stylesheet" href="css/custom/animations.css">
   <link rel="stylesheet" href="css/custom/sections.css">
 
   <!-- Preconnect a dominios externos -->
@@ -115,7 +115,10 @@
     </ul>
 
     <button class="theme-toggle" aria-label="Cambiar a modo oscuro" title="Alternar tema claro/oscuro">
-      <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+  <span class="theme-toggle__icon" aria-hidden="true">
+    <!-- Icono se actualizará dinámicamente -->
+    <i class="fas fa-moon"></i>
+  </span>
     </button>
   </nav>
 </header>
@@ -158,11 +161,11 @@
             <span class="hero-stat__label">Años experiencia</span>
           </div>
           <div class="hero-stat">
-            <span class="hero-stat__number">15+</span>
+            <span class="hero-stat__number">6+</span>
             <span class="hero-stat__label">Proyectos</span>
           </div>
           <div class="hero-stat">
-            <span class="hero-stat__number">100%</span>
+            <span class="hero-stat__number">80%</span>
             <span class="hero-stat__label">Satisfacción</span>
           </div>
         </div>
@@ -191,7 +194,7 @@
             <a href="https://github.com/EmersonRodas9029" class="social-link social-link--hero" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/emerson-rodas-9029" class="social-link social-link--hero" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/emerson-eduardo-rodas-lopez-92732534a/?skipRedirect=true" class="social-link social-link--hero" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
             <a href="mailto:emerson.rodas2004@gmail.com" class="social-link social-link--hero" aria-label="Enviar email">
@@ -413,15 +416,13 @@
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer__content">
-      <p>&copy; 2025 <strong>Emerson Eduardo Rodas López</strong>. Todos los derechos reservados.</p>
-
       <div class="footer__social">
         <p class="sr-only">Redes sociales</p>
         <div class="social-links" role="list">
           <a href="https://github.com/EmersonRodas9029" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Emerson Rodas (se abre en nueva ventana)">
             <i class="fab fa-github social-icon"></i>
           </a>
-          <a href="https://www.linkedin.com/in/emerson-rodas-9029" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Emerson Rodas (se abre en nueva ventana)">
+          <a href="https://www.linkedin.com/in/emerson-eduardo-rodas-lopez-92732534a/?skipRedirect=true" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Emerson Rodas (se abre en nueva ventana)">
             <i class="fab fa-linkedin social-icon"></i>
           </a>
         </div>
