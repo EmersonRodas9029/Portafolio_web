@@ -1,20 +1,59 @@
-// js/contact.js
+// js/contact.js - VERSIÓN FINAL CON TEMPLATE ID CORRECTO
+import { initializeEmailJS, EmailJSConfig, sendEmail } from './emailjs-config.js';
+
 class ContactForm {
   constructor() {
     this.form = document.getElementById('contact-form');
+    this.isEmailJSInitialized = false;
     this.init();
   }
 
-  init() {
+  async init() {
     if (this.form) {
-      this.setupValidation();
-      this.setupSubmission();
-      this.setupRealTimeValidation();
+      console.log('📧 ContactForm inicializando...');
+      console.log('Configuración EmailJS:', EmailJSConfig);
+
+      try {
+        // Inicializar EmailJS primero
+        await initializeEmailJS();
+        this.isEmailJSInitialized = true;
+        console.log('✅ EmailJS listo para usar');
+
+        // Configurar validación y envío
+        this.setupValidation();
+        this.setupSubmission();
+        this.setupRealTimeValidation();
+
+        console.log('✅ ContactForm configurado correctamente');
+
+      } catch (error) {
+        console.error('❌ Error inicializando ContactForm:', error);
+        this.showInitializationError();
+      }
     }
   }
 
+  showInitializationError() {
+    const submitButton = this.form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = `
+        <i class="fas fa-exclamation-circle"></i>
+        Formulario no disponible
+      `;
+      submitButton.title = 'El formulario de contacto no está disponible temporalmente';
+      submitButton.classList.add('btn--error');
+    }
+
+    // Mostrar mensaje de error al usuario
+    this.showMessage(
+      'El formulario de contacto no está disponible temporalmente. Por favor, contáctame directamente en emerson.rodas2004@gmail.com',
+      'error',
+      true
+    );
+  }
+
   setupValidation() {
-    // Agregar validadores a los campos
     this.addValidators();
   }
 
@@ -102,7 +141,6 @@ class ContactForm {
   }
 
   setupRealTimeValidation() {
-    // Validación en tiempo real para campos críticos
     const emailField = this.form.querySelector('[name="email"]');
     if (emailField) {
       emailField.addEventListener('input', this.debounce(() => {
@@ -116,9 +154,16 @@ class ContactForm {
   setupSubmission() {
     this.form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      console.log('📨 Envío de formulario iniciado...');
+      console.log('EmailJS Config:', EmailJSConfig);
+
+      if (!this.isEmailJSInitialized) {
+        this.showErrorMessage('El servicio de email no está disponible. Por favor, intenta más tarde.');
+        return;
+      }
 
       if (await this.validateForm()) {
-        await this.submitForm();
+        await this.submitFormWithEmailJS();
       }
     });
   }
@@ -142,43 +187,94 @@ class ContactForm {
     return isValid;
   }
 
-  async submitForm() {
+  async submitFormWithEmailJS() {
     const submitButton = this.form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
+    const originalHTML = submitButton.innerHTML;
 
     try {
       // Mostrar estado de carga
       this.setSubmitState(submitButton, 'loading', 'Enviando...');
 
-      // Simular envío (en un proyecto real, aquí iría fetch/axios)
+      // Preparar datos para EmailJS
       const formData = new FormData(this.form);
-      const data = Object.fromEntries(formData);
+      const templateParams = {
+        from_name: formData.get('name'),
+        from_email: formData.get('email'),
+        message: formData.get('message'),
+        date: new Date().toLocaleString('es-ES'),
+        user_agent: navigator.userAgent,
+        page_url: window.location.href
+      };
 
-      // Simular delay de red
-      await this.simulateNetworkRequest();
+      console.log('📤 Enviando email con EmailJS...');
+      console.log('Service ID:', EmailJSConfig.serviceId);
+      console.log('Template ID:', EmailJSConfig.templateId);
+      console.log('Datos:', templateParams);
+
+      // Enviar con EmailJS usando la función del config
+      const response = await sendEmail(templateParams);
+
+      console.log('✅ Email enviado exitosamente:', response);
 
       // Éxito
       this.showSuccessMessage();
       this.form.reset();
       this.setSubmitState(submitButton, 'success', '¡Enviado!');
 
-      // Enviar evento de analytics
-      this.trackFormSubmission(data);
+      // Track event
+      this.trackFormSubmission(templateParams);
 
     } catch (error) {
-      this.showErrorMessage('Error al enviar el mensaje. Por favor intenta nuevamente.');
+      console.error('❌ Error enviando email:', error);
+
+      let errorMessage = 'Error al enviar el mensaje. Por favor intenta nuevamente.';
+
+      // Mensajes de error específicos
+      if (error.status === 412) {
+        errorMessage = 'Error de autenticación. Por favor reconecta tu cuenta de Gmail en EmailJS.';
+      } else if (error.status === 400) {
+        errorMessage = 'Datos del formulario inválidos. Por favor verifica los campos.';
+      } else if (error.status === 429) {
+        errorMessage = 'Límite de envíos excedido. Por favor intenta más tarde.';
+      } else if (error.text && error.text.includes('template')) {
+        errorMessage = 'Error en la plantilla. Verifica la configuración en EmailJS.';
+      }
+
+      this.showErrorMessage(errorMessage);
       this.setSubmitState(submitButton, 'error', 'Error');
-      console.error('Form submission error:', error);
     } finally {
       // Restaurar estado normal después de 3 segundos
       setTimeout(() => {
-        this.setSubmitState(submitButton, 'idle', originalText);
+        this.setSubmitState(submitButton, 'idle', originalHTML);
       }, 3000);
     }
   }
 
   setSubmitState(button, state, text) {
-    button.textContent = text;
+    // Limpiar contenido
+    button.innerHTML = '';
+
+    // Agregar icono según el estado
+    let iconClass = '';
+    switch(state) {
+      case 'loading':
+        iconClass = 'fas fa-spinner fa-spin';
+        break;
+      case 'success':
+        iconClass = 'fas fa-check-circle';
+        break;
+      case 'error':
+        iconClass = 'fas fa-exclamation-circle';
+        break;
+      default:
+        iconClass = 'fas fa-paper-plane';
+    }
+
+    button.innerHTML = `
+      <i class="${iconClass} btn__icon"></i>
+      <span class="btn__text">${text}</span>
+    `;
+
     button.disabled = state !== 'idle';
 
     // Remover clases previas
@@ -193,59 +289,97 @@ class ContactForm {
     }
   }
 
-  async simulateNetworkRequest() {
-    // Simular delay de red (1-3 segundos)
-    const delay = Math.random() * 2000 + 1000;
-    return new Promise(resolve => setTimeout(resolve, delay));
-  }
-
   showSuccessMessage() {
-    this.showMessage('¡Mensaje enviado con éxito! Te contactaré pronto.', 'success');
+    this.showMessage(
+      '<i class="fas fa-check-circle"></i> ¡Mensaje enviado con éxito! Te contactaré pronto.',
+      'success'
+    );
+
+    // Evento de analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'contact_form_submit', {
+        'event_category': 'engagement',
+        'event_label': 'Formulario de contacto enviado'
+      });
+    }
   }
 
   showErrorMessage(message) {
-    this.showMessage(message, 'error');
+    this.showMessage(
+      `<i class="fas fa-exclamation-circle"></i> ${message}`,
+      'error'
+    );
   }
 
-  showMessage(text, type) {
+  showMessage(html, type, permanent = false) {
     // Remover mensajes previos
     this.removeExistingMessages();
 
     const messageElement = document.createElement('div');
     messageElement.className = `form__message form__message--${type}`;
-    messageElement.textContent = text;
-    messageElement.setAttribute('role', 'alert');
-    messageElement.setAttribute('aria-live', 'polite');
+    messageElement.innerHTML = html;
+    messageElement.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    messageElement.setAttribute('aria-live', 'assertive');
 
-    // Insertar antes del formulario
-    this.form.parentNode.insertBefore(messageElement, this.form);
+    // Insertar después del título de la sección
+    const sectionTitle = document.querySelector('#contact-title');
+    if (sectionTitle) {
+      sectionTitle.parentNode.insertBefore(messageElement, sectionTitle.nextSibling);
+    } else {
+      this.form.parentNode.insertBefore(messageElement, this.form);
+    }
 
-    // Auto-remover después de 5 segundos
-    setTimeout(() => {
-      messageElement.remove();
-    }, 5000);
+    // Auto-remover después de 5 segundos (excepto si es permanente)
+    if (!permanent) {
+      setTimeout(() => {
+        if (messageElement.parentNode) {
+          messageElement.style.opacity = '0';
+          messageElement.style.transform = 'translateY(-10px)';
+          setTimeout(() => {
+            if (messageElement.parentNode) {
+              messageElement.remove();
+            }
+          }, 300);
+        }
+      }, 5000);
+    }
   }
 
   removeExistingMessages() {
-    const existingMessages = this.form.parentNode.querySelectorAll('.form__message');
-    existingMessages.forEach(msg => msg.remove());
+    const existingMessages = document.querySelectorAll('.form__message');
+    existingMessages.forEach(msg => {
+      if (msg.parentNode) {
+        msg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        msg.style.opacity = '0';
+        msg.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          if (msg.parentNode) {
+            msg.remove();
+          }
+        }, 300);
+      }
+    });
   }
 
   trackFormSubmission(data) {
-    // Aquí podrías integrar con Google Analytics, etc.
-    console.log('Form submitted:', {
+    console.log('📊 Form submission tracked:', {
       ...data,
       timestamp: new Date().toISOString(),
-      userAgent: navigator.userAgent
+      service: 'EmailJS',
+      config: EmailJSConfig
     });
 
     // Emitir evento personalizado
     document.dispatchEvent(new CustomEvent('contactFormSubmitted', {
-      detail: { formData: data }
+      detail: {
+        formData: data,
+        service: 'EmailJS',
+        config: EmailJSConfig
+      }
     }));
   }
 
-  // Utilidad debounce para performance
+  // Utilidad debounce
   debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -263,7 +397,9 @@ class ContactForm {
 let contactForm;
 
 export function initializeContactForm() {
-  contactForm = new ContactForm();
+  if (!contactForm) {
+    contactForm = new ContactForm();
+  }
   return contactForm;
 }
 
@@ -272,5 +408,12 @@ export function validateContactForm() {
 }
 
 export function submitContactForm() {
-  return contactForm?.submitForm();
+  return contactForm?.submitFormWithEmailJS();
+}
+
+export function getEmailJSStatus() {
+  return contactForm ? {
+    initialized: contactForm.isEmailJSInitialized,
+    config: EmailJSConfig
+  } : null;
 }
