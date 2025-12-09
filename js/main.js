@@ -14,6 +14,7 @@ import { initializeScrollEffects } from './utils/scroll.js';
 import { initializeCVDownload } from './cv-download.js';
 import { IconsConfig, getIcon, renderIcon } from './icons-config.js';
 import { initializeHeroEffects } from './hero.js';
+import { initializeFloatingTech } from './floating-tech.js';
 
 
 // Inicialización de la aplicación
@@ -47,6 +48,7 @@ class PortfolioApp {
     initializeCVDownload();
     initializeContactForm();
     initializeHeroEffects();
+    initializeFloatingTech();
 
     console.log('✅ Todos los módulos inicializados');
   }
