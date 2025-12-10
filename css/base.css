@@ -388,3 +388,32 @@ select:focus-visible {
   width: 100%;
   height: 100%;
 }
+
+/* ===== FIX PARA EL BOTÓN GRIS DEL MENÚ MÓVIL ===== */
+
+/* Eliminar el fondo gris del botón hamburguesa */
+.nav__toggle {
+  background: none !important;
+  border: none !important;
+}
+
+/* Las barras del menú hamburguesa deben ser visibles */
+.nav__toggle-bar {
+  background: var(--text-primary) !important;
+}
+
+/* En modo oscuro */
+[data-theme="dark"] .nav__toggle-bar {
+  background: var(--text-primary) !important;
+}
+
+/* Eliminar cualquier efecto hover que cambie el fondo */
+.nav__toggle:hover {
+  background: none !important;
+  border: none !important;
+}
+
+/* Si hay algún estilo inline que esté causando el problema, sobreescribirlo */
+button.nav__toggle[style*="background"] {
+  background: none !important;
+}
