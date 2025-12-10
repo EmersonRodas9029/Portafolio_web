@@ -1,7 +1,7 @@
 // js/cv-download.js - ACTUALIZADO SOLO CON ICONOS
 class CVDownloadManager {
   constructor() {
-    this.cvUrl = 'docs/CV Emerson_Eduardo_ROdas_Lopez.pdf'; // Ruta del cv por defecto
+    this.cvUrl = 'docs/Emerson_Eduardo_Rodas_Lopez_CV.pdf'; // Ruta del cv por defecto
     this.init();
   }
 

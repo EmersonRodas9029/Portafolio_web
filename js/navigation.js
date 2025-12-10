@@ -92,9 +92,24 @@ class NavigationManager {
         this.toggleMobileMenu(!isExpanded);
       });
 
+      // Cerrar menú al hacer clic en enlaces del menú (IMPORTANTE PARA FIX)
+      const menuLinks = menu.querySelectorAll('.nav__link');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          this.closeMobileMenu();
+        });
+      });
+
       // Cerrar menú al hacer clic fuera
       document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+          this.closeMobileMenu();
+        }
+      });
+
+      // Cerrar menú con tecla Escape (ya está arriba, pero por si acaso)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
           this.closeMobileMenu();
         }
       });
@@ -130,11 +145,18 @@ class NavigationManager {
       .nav__toggle {
         display: none;
         flex-direction: column;
-        background: none;
-        border: none;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
         cursor: pointer;
         padding: var(--spacing-sm);
         gap: 4px;
+        transition: all var(--transition-normal);
+      }
+
+      .nav__toggle:hover {
+        background: var(--bg-tertiary);
+        border-color: var(--primary-color);
       }
 
       .nav__toggle-bar {
@@ -150,18 +172,22 @@ class NavigationManager {
         }
 
         .nav__menu {
-          position: absolute;
-          top: 100%;
+          position: fixed; /* Cambiado de absolute a fixed */
+          top: 80px; /* Debajo del header */
           left: 0;
           right: 0;
           background: var(--bg-primary);
           border-top: 1px solid var(--border-color);
           flex-direction: column;
           padding: var(--spacing-lg);
-          transform: translateY(-10px);
+          transform: translateY(-20px);
           opacity: 0;
           visibility: hidden;
           transition: all 0.3s ease;
+          max-height: calc(100vh - 80px); /* Altura máxima */
+          overflow-y: auto; /* Scroll interno si es necesario */
+          z-index: 1000;
+          box-shadow: var(--shadow-lg);
         }
 
         .nav__menu--open {
@@ -180,6 +206,19 @@ class NavigationManager {
 
         .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
           transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Clase para controlar el scroll del body */
+        body.menu-open {
+          overflow: hidden !important;
+          position: fixed;
+          width: 100%;
+          height: 100%;
+        }
+
+        body:not(.menu-open) {
+          overflow: auto !important;
+          position: static;
         }
       }
     `;
@@ -200,13 +239,34 @@ class NavigationManager {
       toggle.setAttribute('aria-expanded', show.toString());
       menu.classList.toggle('nav__menu--open', show);
 
-      // Prevenir scroll del body cuando el menú está abierto
-      document.body.style.overflow = show ? 'hidden' : '';
+      // FIX: Usar clase en lugar de style directo para mejor control
+      if (show) {
+        document.body.classList.add('menu-open');
+      } else {
+        document.body.classList.remove('menu-open');
+        // Asegurar que el overflow se restablezca
+        document.body.style.overflow = '';
+      }
+
+      console.log('🔄 Menú móvil:', show ? 'abierto' : 'cerrado');
     }
   }
 
   closeMobileMenu() {
-    this.toggleMobileMenu(false);
+    const toggle = document.querySelector('.nav__toggle');
+    const menu = document.querySelector('.nav__menu');
+
+    if (toggle && menu) {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('nav__menu--open');
+
+      // FIX CRÍTICO: Restaurar scroll del body
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+
+      console.log('✅ Menú móvil cerrado, scroll restaurado');
+    }
   }
 
   setupSmoothScroll() {
@@ -225,7 +285,7 @@ class NavigationManager {
 
   navigateToSection(sectionId) {
     this.scrollToElement(sectionId);
-    this.closeMobileMenu();
+    this.closeMobileMenu(); // Asegurar que se cierra el menú
     this.updateActiveNavLink(sectionId);
   }
 
