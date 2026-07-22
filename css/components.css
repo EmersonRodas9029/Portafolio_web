@@ -282,15 +282,21 @@
   display: inline-block;
 }
 
-/* C# no tiene un logo de marca en Font Awesome: se usa el logo oficial en SVG */
+/* C# no tiene un logo de marca en Font Awesome: se usa el logo oficial en SVG
+   como máscara, para que herede el color igual que los íconos de fuente */
 .icon-csharp-svg {
   display: inline-block;
   width: 1em;
   height: 1em;
-  background-image: url('../img/icons/csharp.svg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: currentColor;
+  -webkit-mask-image: url('../img/icons/csharp.svg');
+  mask-image: url('../img/icons/csharp.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   vertical-align: middle;
 }
 
