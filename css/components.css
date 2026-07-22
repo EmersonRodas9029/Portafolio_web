@@ -282,15 +282,20 @@
   display: inline-block;
 }
 
-/* C# no tiene un logo de marca en Font Awesome: se usa el logo oficial en SVG
-   como máscara, para que herede el color igual que los íconos de fuente */
-.icon-csharp-svg {
+/* Logos de marca sin ícono de fuente en Font Awesome: se usan como máscara
+   SVG para que hereden el mismo color que los íconos de fuente (currentColor) */
+.icon-csharp-svg,
+.icon-pandas-svg,
+.icon-nextjs-svg,
+.icon-mysql-svg,
+.icon-visualstudio-svg,
+.icon-vscode-svg,
+.icon-jira-svg,
+.icon-netbeans-svg {
   display: inline-block;
   width: 1em;
   height: 1em;
   background-color: currentColor;
-  -webkit-mask-image: url('../img/icons/csharp.svg');
-  mask-image: url('../img/icons/csharp.svg');
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-position: center;
@@ -299,6 +304,15 @@
   mask-repeat: no-repeat;
   vertical-align: middle;
 }
+
+.icon-csharp-svg { -webkit-mask-image: url('../img/icons/csharp.svg'); mask-image: url('../img/icons/csharp.svg'); }
+.icon-pandas-svg { -webkit-mask-image: url('../img/icons/pandas.svg'); mask-image: url('../img/icons/pandas.svg'); }
+.icon-nextjs-svg { -webkit-mask-image: url('../img/icons/nextjs.svg'); mask-image: url('../img/icons/nextjs.svg'); }
+.icon-mysql-svg { -webkit-mask-image: url('../img/icons/mysql.svg'); mask-image: url('../img/icons/mysql.svg'); }
+.icon-visualstudio-svg { -webkit-mask-image: url('../img/icons/visualstudio.svg'); mask-image: url('../img/icons/visualstudio.svg'); }
+.icon-vscode-svg { -webkit-mask-image: url('../img/icons/vscode.svg'); mask-image: url('../img/icons/vscode.svg'); }
+.icon-jira-svg { -webkit-mask-image: url('../img/icons/jira.svg'); mask-image: url('../img/icons/jira.svg'); }
+.icon-netbeans-svg { -webkit-mask-image: url('../img/icons/netbeans.svg'); mask-image: url('../img/icons/netbeans.svg'); }
 
 .skill-card__name {
   font-weight: 600;
@@ -401,54 +415,6 @@
 .skill-card--basic:hover {
   border-color: #3b82f6;
   box-shadow: 0 12px 20px -5px rgba(59, 130, 246, 0.2);
-}
-
-/* Docker card styling - Estilo especial para Docker */
-.skill-card[data-skill*="docker"] {
-  border: 2px solid #2496ed;
-}
-
-.skill-card[data-skill*="docker"] .skill-card__icon {
-  color: #2496ed;
-}
-
-.skill-card[data-skill*="docker"]:hover {
-  border-color: #2496ed;
-  background: rgba(36, 150, 237, 0.05);
-  box-shadow: 0 12px 20px -5px rgba(36, 150, 237, 0.3);
-}
-
-/* IDE cards styling */
-.skill-card[data-skill*="intellij"] .skill-card__icon {
-  color: #000000;
-}
-
-.skill-card[data-skill*="intellij"]:hover .skill-card__icon {
-  color: #ff6b00;
-}
-
-.skill-card[data-skill*="visual studio"] .skill-card__icon {
-  color: #5c2d91;
-}
-
-.skill-card[data-skill*="visual studio"]:hover .skill-card__icon {
-  color: #68217a;
-}
-
-.skill-card[data-skill*="visual studio code"] .skill-card__icon {
-  color: #007acc;
-}
-
-.skill-card[data-skill*="visual studio code"]:hover .skill-card__icon {
-  color: #005a9e;
-}
-
-.skill-card[data-skill*="netbeans"] .skill-card__icon {
-  color: #1b6ac6;
-}
-
-.skill-card[data-skill*="netbeans"]:hover .skill-card__icon {
-  color: #0d47a1;
 }
 
 /* Efecto de brillo en hover para todas las tarjetas */

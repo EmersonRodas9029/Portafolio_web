@@ -14,7 +14,7 @@ export const IconsConfig = {
     '.NET': 'fab fa-microsoft',
     '.NET Core': 'fab fa-microsoft',
     'NestJS': 'fas fa-cat',
-    'Pandas': 'fas fa-table',
+    'Pandas': 'icon-pandas-svg',
 
     // Frontend
     'HTML5': 'fab fa-html5',
@@ -24,11 +24,11 @@ export const IconsConfig = {
     'React': 'fab fa-react',
     'Vue.js': 'fab fa-vuejs',
     'Astro': 'fas fa-rocket',
-    'Next.js': 'fas fa-layer-group',
+    'Next.js': 'icon-nextjs-svg',
     'Angular': 'fab fa-angular',
 
     // Database
-    'MySQL': 'fas fa-database',
+    'MySQL': 'icon-mysql-svg',
     'PostgreSQL': 'fas fa-database',
     'SQLite': 'fas fa-database',
     'Oracle Database': 'fas fa-database',
@@ -39,11 +39,11 @@ export const IconsConfig = {
     'GitHub': 'fab fa-github',
     'Docker': 'fab fa-docker',
     'IntelliJ IDEA': 'fas fa-lightbulb',
-    'Visual Studio': 'fas fa-code',
-    'Visual Studio Code': 'fas fa-code',
-    'NetBeans': 'fas fa-cube',
+    'Visual Studio': 'icon-visualstudio-svg',
+    'Visual Studio Code': 'icon-vscode-svg',
+    'NetBeans': 'icon-netbeans-svg',
     'Figma': 'fab fa-figma',
-    'Jira': 'fab fa-jira',
+    'Jira': 'icon-jira-svg',
     'Postman': 'fas fa-paper-plane',
 
     // Arquitectura y Diseño
@@ -111,7 +111,7 @@ export const IconsConfig = {
     'Visual Studio Code': 'fas fa-code',
     'NetBeans': 'fas fa-cube',
     'Node.js': 'fab fa-node-js',
-    'Next.js': 'fas fa-layer-group',
+    'Next.js': 'icon-nextjs-svg',
     'PostgreSQL': 'fas fa-database',
     'TypeScript': 'fab fa-js-square',
     'Recharts': 'fas fa-chart-line',
