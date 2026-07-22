@@ -8,7 +8,7 @@ export const IconsConfig = {
     'Java': 'fab fa-java',
     'Node.js': 'fab fa-node-js',
     'Python': 'fab fa-python',
-    'C#': 'icon-csharp-text',
+    'C#': 'icon-csharp-svg',
 
     // Frontend
     'HTML5': 'fab fa-html5',
