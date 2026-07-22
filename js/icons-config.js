@@ -38,13 +38,13 @@ export const IconsConfig = {
     'Git': 'fab fa-git-alt',
     'GitHub': 'fab fa-github',
     'Docker': 'fab fa-docker',
-    'IntelliJ IDEA': 'fas fa-lightbulb',
+    'IntelliJ IDEA': 'icon-intellij-svg',
     'Visual Studio': 'icon-visualstudio-svg',
     'Visual Studio Code': 'icon-vscode-svg',
-    'NetBeans': 'icon-netbeans-svg',
+    'NetBeans': 'fas fa-cube',
     'Figma': 'fab fa-figma',
     'Jira': 'icon-jira-svg',
-    'Postman': 'fas fa-paper-plane',
+    'Postman': 'icon-postman-svg',
 
     // Arquitectura y Diseño
     'Principios SOLID': 'fas fa-cubes',

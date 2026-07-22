@@ -298,7 +298,9 @@
 .icon-postgresql-svg,
 .icon-sqlite-svg,
 .icon-oracle-svg,
-.icon-sqlserver-svg {
+.icon-sqlserver-svg,
+.icon-postman-svg,
+.icon-intellij-svg {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -327,6 +329,8 @@
 .icon-sqlite-svg { -webkit-mask-image: url('../img/icons/sqlite.svg'); mask-image: url('../img/icons/sqlite.svg'); }
 .icon-oracle-svg { -webkit-mask-image: url('../img/icons/oracle.svg'); mask-image: url('../img/icons/oracle.svg'); }
 .icon-sqlserver-svg { -webkit-mask-image: url('../img/icons/sqlserver.svg'); mask-image: url('../img/icons/sqlserver.svg'); }
+.icon-postman-svg { -webkit-mask-image: url('../img/icons/postman.svg'); mask-image: url('../img/icons/postman.svg'); }
+.icon-intellij-svg { -webkit-mask-image: url('../img/icons/intellij.svg'); mask-image: url('../img/icons/intellij.svg'); }
 
 .skill-card__name {
   font-weight: 600;
