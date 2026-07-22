@@ -282,6 +282,13 @@
   display: inline-block;
 }
 
+/* C# no tiene un logo de marca en Font Awesome: se muestra como texto */
+.icon-csharp-text::before {
+  content: 'C#';
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+}
+
 .skill-card__name {
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
