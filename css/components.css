@@ -294,7 +294,11 @@
 .icon-netbeans-svg,
 .icon-nestjs-svg,
 .icon-dotnet-svg,
-.icon-dotnetcore-svg {
+.icon-dotnetcore-svg,
+.icon-postgresql-svg,
+.icon-sqlite-svg,
+.icon-oracle-svg,
+.icon-sqlserver-svg {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -319,6 +323,10 @@
 .icon-nestjs-svg { -webkit-mask-image: url('../img/icons/nestjs.svg'); mask-image: url('../img/icons/nestjs.svg'); }
 .icon-dotnet-svg { -webkit-mask-image: url('../img/icons/dotnet.svg'); mask-image: url('../img/icons/dotnet.svg'); }
 .icon-dotnetcore-svg { -webkit-mask-image: url('../img/icons/dotnetcore.svg'); mask-image: url('../img/icons/dotnetcore.svg'); }
+.icon-postgresql-svg { -webkit-mask-image: url('../img/icons/postgresql.svg'); mask-image: url('../img/icons/postgresql.svg'); }
+.icon-sqlite-svg { -webkit-mask-image: url('../img/icons/sqlite.svg'); mask-image: url('../img/icons/sqlite.svg'); }
+.icon-oracle-svg { -webkit-mask-image: url('../img/icons/oracle.svg'); mask-image: url('../img/icons/oracle.svg'); }
+.icon-sqlserver-svg { -webkit-mask-image: url('../img/icons/sqlserver.svg'); mask-image: url('../img/icons/sqlserver.svg'); }
 
 .skill-card__name {
   font-weight: 600;

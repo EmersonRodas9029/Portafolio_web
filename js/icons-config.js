@@ -29,10 +29,10 @@ export const IconsConfig = {
 
     // Database
     'MySQL': 'icon-mysql-svg',
-    'PostgreSQL': 'fas fa-database',
-    'SQLite': 'fas fa-database',
-    'Oracle Database': 'fas fa-database',
-    'SQL Server': 'fas fa-database',
+    'PostgreSQL': 'icon-postgresql-svg',
+    'SQLite': 'icon-sqlite-svg',
+    'Oracle Database': 'icon-oracle-svg',
+    'SQL Server': 'icon-sqlserver-svg',
 
     // Herramientas e IDE - ACTUALIZADO
     'Git': 'fab fa-git-alt',
