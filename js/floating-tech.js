@@ -60,7 +60,7 @@ export class FloatingTech {
       { name: 'Java', icon: 'fab fa-java', color: '#007396', level: 'avanzado' },
       { name: 'Node.js', icon: 'fab fa-node-js', color: '#339933', level: 'intermedio' },
       { name: 'Python', icon: 'fab fa-python', color: '#3776AB', level: 'básico' },
-      { name: 'C#', icon: 'fab fa-windows', color: '#239120', level: 'avanzado' },
+      { name: 'C#', icon: 'icon-csharp-svg', color: '#239120', level: 'avanzado' },
       { name: 'TypeScript', icon: 'fab fa-js-square', color: '#3178C6', level: 'intermedio' },
       { name: 'MySQL', icon: 'fas fa-database', color: '#00758F', level: 'avanzado' },
       { name: 'PostgreSQL', icon: 'fas fa-database', color: '#336791', level: 'básico' }

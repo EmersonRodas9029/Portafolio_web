@@ -8,7 +8,13 @@ export const IconsConfig = {
     'Java': 'fab fa-java',
     'Node.js': 'fab fa-node-js',
     'Python': 'fab fa-python',
-    'C#': 'fab fa-windows',
+    'C#': 'icon-csharp-svg',
+    'Spring': 'fas fa-leaf',
+    'Spring Boot': 'fas fa-leaf',
+    '.NET': 'icon-dotnet-svg',
+    '.NET Core': 'icon-dotnetcore-svg',
+    'NestJS': 'icon-nestjs-svg',
+    'Pandas': 'icon-pandas-svg',
 
     // Frontend
     'HTML5': 'fab fa-html5',
@@ -18,23 +24,34 @@ export const IconsConfig = {
     'React': 'fab fa-react',
     'Vue.js': 'fab fa-vuejs',
     'Astro': 'fas fa-rocket',
+    'Next.js': 'icon-nextjs-svg',
+    'Angular': 'fab fa-angular',
 
     // Database
-    'MySQL': 'fas fa-database',
-    'PostgreSQL': 'fas fa-database',
-    'SQLite': 'fas fa-database',
-    'Oracle Database': 'fas fa-database',
-    'SQL Server': 'fas fa-database',
+    'MySQL': 'icon-mysql-svg',
+    'PostgreSQL': 'icon-postgresql-svg',
+    'SQLite': 'icon-sqlite-svg',
+    'Oracle Database': 'icon-oracle-svg',
+    'SQL Server': 'icon-sqlserver-svg',
 
     // Herramientas e IDE - ACTUALIZADO
     'Git': 'fab fa-git-alt',
     'GitHub': 'fab fa-github',
     'Docker': 'fab fa-docker',
-    'IntelliJ IDEA': 'fas fa-lightbulb',
-    'Visual Studio': 'fas fa-code',
-    'Visual Studio Code': 'fas fa-code',
+    'IntelliJ IDEA': 'icon-intellij-svg',
+    'Visual Studio': 'icon-visualstudio-svg',
+    'Visual Studio Code': 'icon-vscode-svg',
     'NetBeans': 'fas fa-cube',
-    'Figma': 'fab fa-figma'
+    'Figma': 'fab fa-figma',
+    'Jira': 'icon-jira-svg',
+    'Postman': 'icon-postman-svg',
+
+    // Arquitectura y Diseño
+    'Principios SOLID': 'fas fa-cubes',
+    'API REST': 'fas fa-cloud',
+    'Arquitectura Hexagonal': 'fas fa-draw-polygon',
+    'Arquitectura Limpia': 'fas fa-layer-group',
+    'Arquitectura por Capas': 'fas fa-stream'
   },
 
   // Iconos de redes sociales
@@ -57,7 +74,8 @@ export const IconsConfig = {
     'frontend': 'fas fa-laptop-code',
     'database': 'fas fa-database',
     'tools': 'fas fa-tools',
-    'docker': 'fab fa-docker'
+    'docker': 'fab fa-docker',
+    'architecture': 'fas fa-sitemap'
   },
 
   // Iconos de proyectos y características
@@ -91,7 +109,21 @@ export const IconsConfig = {
     'IntelliJ IDEA': 'fas fa-lightbulb',
     'Visual Studio': 'fas fa-code',
     'Visual Studio Code': 'fas fa-code',
-    'NetBeans': 'fas fa-cube'
+    'NetBeans': 'fas fa-cube',
+    'Node.js': 'fab fa-node-js',
+    'Next.js': 'icon-nextjs-svg',
+    'PostgreSQL': 'fas fa-database',
+    'TypeScript': 'fab fa-js-square',
+    'Recharts': 'fas fa-chart-line',
+    'Arquitectura Hexagonal': 'fas fa-draw-polygon',
+    'React': 'fab fa-react',
+    'Vite': 'fas fa-bolt',
+    'Tailwind CSS': 'fas fa-wind',
+    'Zustand': 'fas fa-cube',
+    'Framer Motion': 'fas fa-film',
+    'C#': 'icon-csharp-svg',
+    'Windows Forms': 'fab fa-windows',
+    'CSV': 'fas fa-file-csv'
   }
 };
 

@@ -282,6 +282,56 @@
   display: inline-block;
 }
 
+/* Logos de marca sin ícono de fuente en Font Awesome: se usan como máscara
+   SVG para que hereden el mismo color que los íconos de fuente (currentColor) */
+.icon-csharp-svg,
+.icon-pandas-svg,
+.icon-nextjs-svg,
+.icon-mysql-svg,
+.icon-visualstudio-svg,
+.icon-vscode-svg,
+.icon-jira-svg,
+.icon-netbeans-svg,
+.icon-nestjs-svg,
+.icon-dotnet-svg,
+.icon-dotnetcore-svg,
+.icon-postgresql-svg,
+.icon-sqlite-svg,
+.icon-oracle-svg,
+.icon-sqlserver-svg,
+.icon-postman-svg,
+.icon-intellij-svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+.icon-csharp-svg { -webkit-mask-image: url('../img/icons/csharp.svg'); mask-image: url('../img/icons/csharp.svg'); }
+.icon-pandas-svg { -webkit-mask-image: url('../img/icons/pandas.svg'); mask-image: url('../img/icons/pandas.svg'); }
+.icon-nextjs-svg { -webkit-mask-image: url('../img/icons/nextjs.svg'); mask-image: url('../img/icons/nextjs.svg'); }
+.icon-mysql-svg { -webkit-mask-image: url('../img/icons/mysql.svg'); mask-image: url('../img/icons/mysql.svg'); }
+.icon-visualstudio-svg { -webkit-mask-image: url('../img/icons/visualstudio.svg'); mask-image: url('../img/icons/visualstudio.svg'); }
+.icon-vscode-svg { -webkit-mask-image: url('../img/icons/vscode.svg'); mask-image: url('../img/icons/vscode.svg'); }
+.icon-jira-svg { -webkit-mask-image: url('../img/icons/jira.svg'); mask-image: url('../img/icons/jira.svg'); }
+.icon-netbeans-svg { -webkit-mask-image: url('../img/icons/netbeans.svg'); mask-image: url('../img/icons/netbeans.svg'); }
+.icon-nestjs-svg { -webkit-mask-image: url('../img/icons/nestjs.svg'); mask-image: url('../img/icons/nestjs.svg'); }
+.icon-dotnet-svg { -webkit-mask-image: url('../img/icons/dotnet.svg'); mask-image: url('../img/icons/dotnet.svg'); }
+.icon-dotnetcore-svg { -webkit-mask-image: url('../img/icons/dotnetcore.svg'); mask-image: url('../img/icons/dotnetcore.svg'); }
+.icon-postgresql-svg { -webkit-mask-image: url('../img/icons/postgresql.svg'); mask-image: url('../img/icons/postgresql.svg'); }
+.icon-sqlite-svg { -webkit-mask-image: url('../img/icons/sqlite.svg'); mask-image: url('../img/icons/sqlite.svg'); }
+.icon-oracle-svg { -webkit-mask-image: url('../img/icons/oracle.svg'); mask-image: url('../img/icons/oracle.svg'); }
+.icon-sqlserver-svg { -webkit-mask-image: url('../img/icons/sqlserver.svg'); mask-image: url('../img/icons/sqlserver.svg'); }
+.icon-postman-svg { -webkit-mask-image: url('../img/icons/postman.svg'); mask-image: url('../img/icons/postman.svg'); }
+.icon-intellij-svg { -webkit-mask-image: url('../img/icons/intellij.svg'); mask-image: url('../img/icons/intellij.svg'); }
+
 .skill-card__name {
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
@@ -383,54 +433,6 @@
 .skill-card--basic:hover {
   border-color: #3b82f6;
   box-shadow: 0 12px 20px -5px rgba(59, 130, 246, 0.2);
-}
-
-/* Docker card styling - Estilo especial para Docker */
-.skill-card[data-skill*="docker"] {
-  border: 2px solid #2496ed;
-}
-
-.skill-card[data-skill*="docker"] .skill-card__icon {
-  color: #2496ed;
-}
-
-.skill-card[data-skill*="docker"]:hover {
-  border-color: #2496ed;
-  background: rgba(36, 150, 237, 0.05);
-  box-shadow: 0 12px 20px -5px rgba(36, 150, 237, 0.3);
-}
-
-/* IDE cards styling */
-.skill-card[data-skill*="intellij"] .skill-card__icon {
-  color: #000000;
-}
-
-.skill-card[data-skill*="intellij"]:hover .skill-card__icon {
-  color: #ff6b00;
-}
-
-.skill-card[data-skill*="visual studio"] .skill-card__icon {
-  color: #5c2d91;
-}
-
-.skill-card[data-skill*="visual studio"]:hover .skill-card__icon {
-  color: #68217a;
-}
-
-.skill-card[data-skill*="visual studio code"] .skill-card__icon {
-  color: #007acc;
-}
-
-.skill-card[data-skill*="visual studio code"]:hover .skill-card__icon {
-  color: #005a9e;
-}
-
-.skill-card[data-skill*="netbeans"] .skill-card__icon {
-  color: #1b6ac6;
-}
-
-.skill-card[data-skill*="netbeans"]:hover .skill-card__icon {
-  color: #0d47a1;
 }
 
 /* Efecto de brillo en hover para todas las tarjetas */
@@ -546,7 +548,7 @@
   outline: none;
   border-color: var(--primary-color);
   transform: scale(1.01);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
 }
 
 .form__textarea {
@@ -1063,7 +1065,7 @@
 
 .stat-card:hover {
   transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 20px -3px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 12px 20px -3px rgba(var(--primary-color-rgb), 0.25);
   border-color: var(--primary-color);
 }
 
@@ -1109,7 +1111,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(var(--primary-color-rgb), 0.1) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;

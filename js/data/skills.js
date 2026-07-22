@@ -9,7 +9,13 @@ export const skillsSections = [
       { name: 'Node.js', level: 'Intermedio', category: 'backend' },
       { name: 'Python', level: 'Básico', category: 'backend' },
       { name: 'C#', level: 'Avanzado', category: 'backend' },
-      { name: 'TypeScript', level: 'Intermedio', category: 'backend' }
+      { name: 'TypeScript', level: 'Intermedio', category: 'backend' },
+      { name: 'Spring', level: 'Intermedio', category: 'backend' },
+      { name: 'Spring Boot', level: 'Intermedio', category: 'backend' },
+      { name: '.NET', level: 'Intermedio', category: 'backend' },
+      { name: '.NET Core', level: 'Intermedio', category: 'backend' },
+      { name: 'NestJS', level: 'Intermedio', category: 'backend' },
+      { name: 'Pandas', level: 'Básico', category: 'backend' }
     ]
   },
   {
@@ -23,7 +29,9 @@ export const skillsSections = [
       { name: 'TypeScript', level: 'Intermedio', category: 'frontend' },
       { name: 'React', level: 'Intermedio', category: 'frontend' },
       { name: 'Vue.js', level: 'Básico', category: 'frontend' },
-      { name: 'Astro', level: 'Intermedio', category: 'frontend' }
+      { name: 'Astro', level: 'Intermedio', category: 'frontend' },
+      { name: 'Next.js', level: 'Avanzado', category: 'frontend' },
+      { name: 'Angular', level: 'Básico', category: 'frontend' }
     ]
   },
   {
@@ -50,7 +58,21 @@ export const skillsSections = [
       { name: 'Visual Studio', level: 'Avanzado', category: 'tools' },
       { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
       { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
-      { name: 'Figma', level: 'Intermedio', category: 'tools' }
+      { name: 'Figma', level: 'Intermedio', category: 'tools' },
+      { name: 'Jira', level: 'Intermedio', category: 'tools' },
+      { name: 'Postman', level: 'Intermedio', category: 'tools' }
+    ]
+  },
+  {
+    id: 'architecture',
+    title: 'Arquitectura y Diseño',
+    description: 'Principios y patrones aplicados en el desarrollo de software',
+    skills: [
+      { name: 'Principios SOLID', level: 'Avanzado', category: 'architecture' },
+      { name: 'API REST', level: 'Avanzado', category: 'architecture' },
+      { name: 'Arquitectura Hexagonal', level: 'Avanzado', category: 'architecture' },
+      { name: 'Arquitectura Limpia', level: 'Avanzado', category: 'architecture' },
+      { name: 'Arquitectura por Capas', level: 'Intermedio', category: 'architecture' }
     ]
   }
 ];
