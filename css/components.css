@@ -291,7 +291,10 @@
 .icon-visualstudio-svg,
 .icon-vscode-svg,
 .icon-jira-svg,
-.icon-netbeans-svg {
+.icon-netbeans-svg,
+.icon-nestjs-svg,
+.icon-dotnet-svg,
+.icon-dotnetcore-svg {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -313,6 +316,9 @@
 .icon-vscode-svg { -webkit-mask-image: url('../img/icons/vscode.svg'); mask-image: url('../img/icons/vscode.svg'); }
 .icon-jira-svg { -webkit-mask-image: url('../img/icons/jira.svg'); mask-image: url('../img/icons/jira.svg'); }
 .icon-netbeans-svg { -webkit-mask-image: url('../img/icons/netbeans.svg'); mask-image: url('../img/icons/netbeans.svg'); }
+.icon-nestjs-svg { -webkit-mask-image: url('../img/icons/nestjs.svg'); mask-image: url('../img/icons/nestjs.svg'); }
+.icon-dotnet-svg { -webkit-mask-image: url('../img/icons/dotnet.svg'); mask-image: url('../img/icons/dotnet.svg'); }
+.icon-dotnetcore-svg { -webkit-mask-image: url('../img/icons/dotnetcore.svg'); mask-image: url('../img/icons/dotnetcore.svg'); }
 
 .skill-card__name {
   font-weight: 600;

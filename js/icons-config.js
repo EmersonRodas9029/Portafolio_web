@@ -11,9 +11,9 @@ export const IconsConfig = {
     'C#': 'icon-csharp-svg',
     'Spring': 'fas fa-leaf',
     'Spring Boot': 'fas fa-leaf',
-    '.NET': 'fab fa-microsoft',
-    '.NET Core': 'fab fa-microsoft',
-    'NestJS': 'fas fa-cat',
+    '.NET': 'icon-dotnet-svg',
+    '.NET Core': 'icon-dotnetcore-svg',
+    'NestJS': 'icon-nestjs-svg',
     'Pandas': 'icon-pandas-svg',
 
     // Frontend
