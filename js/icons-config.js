@@ -9,6 +9,12 @@ export const IconsConfig = {
     'Node.js': 'fab fa-node-js',
     'Python': 'fab fa-python',
     'C#': 'icon-csharp-svg',
+    'Spring': 'fas fa-leaf',
+    'Spring Boot': 'fas fa-leaf',
+    '.NET': 'fab fa-microsoft',
+    '.NET Core': 'fab fa-microsoft',
+    'NestJS': 'fas fa-cat',
+    'Pandas': 'fas fa-table',
 
     // Frontend
     'HTML5': 'fab fa-html5',
@@ -18,6 +24,8 @@ export const IconsConfig = {
     'React': 'fab fa-react',
     'Vue.js': 'fab fa-vuejs',
     'Astro': 'fas fa-rocket',
+    'Next.js': 'fas fa-layer-group',
+    'Angular': 'fab fa-angular',
 
     // Database
     'MySQL': 'fas fa-database',
@@ -34,7 +42,16 @@ export const IconsConfig = {
     'Visual Studio': 'fas fa-code',
     'Visual Studio Code': 'fas fa-code',
     'NetBeans': 'fas fa-cube',
-    'Figma': 'fab fa-figma'
+    'Figma': 'fab fa-figma',
+    'Jira': 'fab fa-jira',
+    'Postman': 'fas fa-paper-plane',
+
+    // Arquitectura y Diseño
+    'Principios SOLID': 'fas fa-cubes',
+    'API REST': 'fas fa-cloud',
+    'Arquitectura Hexagonal': 'fas fa-draw-polygon',
+    'Arquitectura Limpia': 'fas fa-layer-group',
+    'Arquitectura por Capas': 'fas fa-stream'
   },
 
   // Iconos de redes sociales
@@ -57,7 +74,8 @@ export const IconsConfig = {
     'frontend': 'fas fa-laptop-code',
     'database': 'fas fa-database',
     'tools': 'fas fa-tools',
-    'docker': 'fab fa-docker'
+    'docker': 'fab fa-docker',
+    'architecture': 'fas fa-sitemap'
   },
 
   // Iconos de proyectos y características
@@ -91,7 +109,21 @@ export const IconsConfig = {
     'IntelliJ IDEA': 'fas fa-lightbulb',
     'Visual Studio': 'fas fa-code',
     'Visual Studio Code': 'fas fa-code',
-    'NetBeans': 'fas fa-cube'
+    'NetBeans': 'fas fa-cube',
+    'Node.js': 'fab fa-node-js',
+    'Next.js': 'fas fa-layer-group',
+    'PostgreSQL': 'fas fa-database',
+    'TypeScript': 'fab fa-js-square',
+    'Recharts': 'fas fa-chart-line',
+    'Arquitectura Hexagonal': 'fas fa-draw-polygon',
+    'React': 'fab fa-react',
+    'Vite': 'fas fa-bolt',
+    'Tailwind CSS': 'fas fa-wind',
+    'Zustand': 'fas fa-cube',
+    'Framer Motion': 'fas fa-film',
+    'C#': 'icon-csharp-svg',
+    'Windows Forms': 'fab fa-windows',
+    'CSV': 'fas fa-file-csv'
   }
 };
 
