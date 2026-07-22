@@ -4,7 +4,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Marcar tema como cargado
   document.body.classList.add('theme-loaded');
-  console.log('✅ Tema cargado correctamente');
 });
 import { initializeTheme } from './theme.js';
 import { initializeNavigation } from './navigation.js';
@@ -15,7 +14,9 @@ import { initializeCVDownload } from './cv-download.js';
 import { IconsConfig, getIcon, renderIcon } from './icons-config.js';
 import { initializeHeroEffects } from './hero.js';
 import { initializeFloatingTech } from './floating-tech.js';
-
+import { skillsSections } from './data/skills.js';
+import { projects } from './data/projects.js';
+import { experience } from './data/experience.js';
 
 // Inicialización de la aplicación
 class PortfolioApp {
@@ -24,7 +25,6 @@ class PortfolioApp {
   }
 
   init() {
-    console.log('🚀 Iniciando Portfolio App - Emerson Rodas');
 
     // Inicializar módulos
     this.initializeModules();
@@ -35,11 +35,9 @@ class PortfolioApp {
     // Configurar event listeners globales
     this.setupGlobalEvents();
 
-    console.log('✅ Portfolio app inicializada correctamente');
   }
 
   initializeModules() {
-    console.log('🔧 Inicializando módulos...');
 
     initializeTheme();
     initializeNavigation();
@@ -50,11 +48,9 @@ class PortfolioApp {
     initializeHeroEffects();
     initializeFloatingTech();
 
-    console.log('✅ Todos los módulos inicializados');
   }
 
   loadDynamicContent() {
-    console.log('📦 Cargando contenido dinámico...');
 
     // Cargar habilidades con nuevas secciones y niveles actualizados
     this.loadSkills();
@@ -84,7 +80,6 @@ class PortfolioApp {
 
     // Escuchar evento personalizado de CV descargado
     document.addEventListener('cvDownloaded', (event) => {
-      console.log('📄 CV descargado exitosamente:', event.detail);
     });
 
     // Escuchar errores de módulos
@@ -95,69 +90,10 @@ class PortfolioApp {
 
   async loadSkills() {
     try {
-      console.log('🛠️ Cargando habilidades organizadas por secciones y niveles...');
-
-      const skillsSections = [
-        {
-          id: 'backend',
-          title: 'Backend',
-          description: 'Lenguajes y tecnologías del lado del servidor',
-          skills: [
-            { name: 'Java', level: 'Avanzado', category: 'backend' },
-            { name: 'Node.js', level: 'Intermedio', category: 'backend' },
-            { name: 'Python', level: 'Básico', category: 'backend' },
-            { name: 'C#', level: 'Avanzado', category: 'backend' },
-            { name: 'TypeScript', level: 'Intermedio', category: 'backend' }
-          ]
-        },
-        {
-          id: 'frontend',
-          title: 'Frontend',
-          description: 'Tecnologías del lado del cliente',
-          skills: [
-            { name: 'HTML5', level: 'Avanzado', category: 'frontend' },
-            { name: 'CSS3', level: 'Avanzado', category: 'frontend' },
-            { name: 'JavaScript', level: 'Avanzado', category: 'frontend' },
-            { name: 'TypeScript', level: 'Intermedio', category: 'frontend' },
-            { name: 'React', level: 'Intermedio', category: 'frontend' },
-            { name: 'Vue.js', level: 'Básico', category: 'frontend' },
-            { name: 'Astro', level: 'Intermedio', category: 'frontend' }
-          ]
-        },
-        {
-          id: 'database',
-          title: 'Base de Datos',
-          description: 'Sistemas de gestión de bases de datos',
-          skills: [
-            { name: 'MySQL', level: 'Avanzado', category: 'database' },
-            { name: 'PostgreSQL', level: 'Básico', category: 'database' },
-            { name: 'SQLite', level: 'Básico', category: 'database' },
-            { name: 'Oracle Database', level: 'Avanzado', category: 'database' },
-            { name: 'SQL Server', level: 'Intermedio', category: 'database' }
-          ]
-        },
-        {
-          id: 'tools',
-          title: 'Herramientas e IDE',
-          description: 'Herramientas de desarrollo, contenedores y entornos de programación',
-          skills: [
-            { name: 'Git', level: 'Intermedio', category: 'tools' },
-            { name: 'GitHub', level: 'Intermedio', category: 'tools' },
-            { name: 'Docker', level: 'Básico', category: 'tools' },
-            { name: 'IntelliJ IDEA', level: 'Avanzado', category: 'tools' },
-            { name: 'Visual Studio', level: 'Avanzado', category: 'tools' },
-            { name: 'Visual Studio Code', level: 'Avanzado', category: 'tools' },
-            { name: 'NetBeans', level: 'Intermedio', category: 'tools' },
-            { name: 'Figma', level: 'Intermedio', category: 'tools' }
-          ]
-        }
-      ];
-
       // Ordenar habilidades por nivel dentro de cada sección
       this.sortSkillsByLevel(skillsSections);
 
       this.renderSkillsSections(skillsSections);
-      console.log('✅ Habilidades organizadas y ordenadas por nivel');
 
     } catch (error) {
       console.error('❌ Error loading skills:', error);
@@ -185,7 +121,6 @@ class PortfolioApp {
         return levelComparison;
       });
 
-      console.log(`📊 ${section.title} ordenado:`, section.skills.map(s => `${s.name} (${s.level})`));
     });
   }
 
@@ -320,40 +255,7 @@ class PortfolioApp {
 
   async loadProjects() {
     try {
-      console.log('💼 Cargando proyectos...');
-
-      const projects = [
-        {
-          title: 'Portfolio Personal',
-          description: 'Portfolio profesional desarrollado con HTML5, CSS3 y JavaScript vanilla. Incluye diseño responsive, modo oscuro/claro y optimización SEO.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design'],
-          image: 'img/projects/portfolio.webp',
-          demoUrl: 'https://emersonrodas.dev',
-          codeUrl: 'https://github.com/EmersonRodas9029/portfolio',
-          featured: true
-        },
-        {
-          title: 'Sistema de Gestión de Tareas',
-          description: 'Aplicación web para gestión de tareas con LocalStorage, filtros dinámicos y persistencia de datos.',
-          technologies: ['JavaScript', 'LocalStorage', 'CSS Grid', 'Flexbox'],
-          image: 'img/projects/task-manager.webp',
-          demoUrl: '#',
-          codeUrl: 'https://github.com/EmersonRodas9029/task-manager',
-          featured: true
-        },
-        {
-          title: 'Aplicación con Docker',
-          description: 'Proyecto de aplicación web containerizada con Docker, incluyendo Dockerfile y docker-compose.',
-          technologies: ['Docker', 'Node.js', 'JavaScript', 'API REST'],
-          image: 'img/projects/docker-app.webp',
-          demoUrl: '#',
-          codeUrl: 'https://github.com/EmersonRodas9029/docker-app',
-          featured: true
-        }
-      ];
-
       this.renderProjects(projects);
-      console.log('✅ Proyectos cargados:', projects.length);
 
     } catch (error) {
       console.error('❌ Error loading projects:', error);
@@ -478,27 +380,8 @@ class PortfolioApp {
 
   async loadExperience() {
     try {
-      console.log('📈 Cargando experiencia...');
-
-      const experience = [
-        {
-          period: '2023 - Presente',
-          position: 'Desarrollador Frontend Freelance',
-          company: 'Proyectos Independientes',
-          description: 'Desarrollo de aplicaciones web responsive y sitios portfolio para clientes. Especializado en JavaScript vanilla y tecnologías modernas como Docker para containerización.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Docker', 'Responsive Design']
-        },
-        {
-          period: '2022 - 2023',
-          position: 'Practicante Desarrollo Web',
-          company: 'Proyectos Académicos',
-          description: 'Desarrollo de proyectos académicos y personales utilizando diversos IDEs como IntelliJ IDEA, Visual Studio Code y NetBeans.',
-          technologies: ['HTML5', 'CSS3', 'JavaScript', 'IntelliJ IDEA', 'VS Code', 'Figma']
-        }
-      ];
-
-      console.log('✅ Experiencia cargada:', experience.length);
-
+      // Nota: `experience` aún no se renderiza en el DOM (ver js/data/experience.js)
+      void experience;
     } catch (error) {
       console.error('❌ Error loading experience:', error);
     }
@@ -511,8 +394,6 @@ class PortfolioApp {
       console.warn('⚠️ No se encontraron estadísticas para animar');
       return;
     }
-
-    console.log('📊 Animando estadísticas:', statNumbers.length);
 
     // Agregar iconos a las tarjetas de estadísticas
     this.addStatIcons();
@@ -615,7 +496,6 @@ class PortfolioApp {
       if (performance.getEntriesByType('navigation').length > 0) {
         const navEntry = performance.getEntriesByType('navigation')[0];
         const loadTime = navEntry.loadEventEnd - navEntry.navigationStart;
-        console.log(`📊 Página cargada en ${loadTime}ms`);
 
         this.trackPerformanceMetrics(loadTime);
       }
@@ -629,19 +509,16 @@ class PortfolioApp {
       timestamp: new Date().toISOString()
     };
 
-    console.log('📈 Métricas de performance:', metrics);
   }
 }
 
 // Inicializar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('📄 DOM cargado, iniciando aplicación...');
   new PortfolioApp();
 });
 
 // Manejar el evento de antes de descargar la página
 window.addEventListener('beforeunload', () => {
-  console.log('👋 Usuario saliendo del portfolio');
 });
 
 export default PortfolioApp;

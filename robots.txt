@@ -3,16 +3,9 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://juanperez.dev/sitemap.xml
-
-# No permitir archivos de sistema
-Disallow: /css/
-Disallow: /js/
-Disallow: /img/
-Allow: /css/base.css
-Allow: /js/main.js
-Allow: /img/profile.webp
+Sitemap: https://emersonrodas.dev/sitemap.xml
 
 # No permitir archivos de configuración
 Disallow: /package.json
+Disallow: /package-lock.json
 Disallow: /README.md

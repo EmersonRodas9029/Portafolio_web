@@ -1,7 +1,6 @@
 // js/emailjs-config.js - CON TEMPLATE ID CORRECTO
 export async function initializeEmailJS() {
   try {
-    console.log('🔑 Inicializando EmailJS...');
 
     // Verificar que el SDK está cargado
     if (!window.emailjs) {
@@ -11,7 +10,6 @@ export async function initializeEmailJS() {
     // Inicializar con tu Public Key
     emailjs.init('aM5Wb0eTPpfVuJkmx');
 
-    console.log('✅ EmailJS inicializado correctamente');
     return true;
 
   } catch (error) {
@@ -30,10 +28,6 @@ export const EmailJSConfig = {
 // Función para enviar email
 export async function sendEmail(templateParams) {
   try {
-    console.log('📤 Enviando email con EmailJS...');
-    console.log('Service ID:', EmailJSConfig.serviceId);
-    console.log('Template ID:', EmailJSConfig.templateId);
-    console.log('Template params:', templateParams);
 
     const response = await emailjs.send(
       EmailJSConfig.serviceId,
@@ -41,7 +35,6 @@ export async function sendEmail(templateParams) {
       templateParams
     );
 
-    console.log('✅ Email enviado exitosamente:', response);
     return response;
 
   } catch (error) {

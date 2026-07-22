@@ -6,7 +6,6 @@ class CVDownloadManager {
   }
 
   init() {
-    console.log('🔄 CVDownloadManager inicializando...');
     this.setupEventListeners();
     this.checkCVAvailability();
     this.updateCVIcons(); // Nueva línea para actualizar iconos
@@ -33,26 +32,21 @@ class CVDownloadManager {
   }
 
   setupEventListeners() {
-    console.log('🔗 Configurando event listeners...');
 
     // Botón en el hero
     const heroCvButton = document.getElementById('hero-cv-download');
-    console.log('Botón hero encontrado:', !!heroCvButton);
 
     if (heroCvButton) {
       heroCvButton.addEventListener('click', (e) => {
-        console.log('🎯 Click en botón CV del hero');
         this.downloadCV();
       });
     }
 
     // Enlace en la navegación
     const navCvLink = document.getElementById('cv-download-link');
-    console.log('Enlace CV encontrado:', !!navCvLink);
 
     if (navCvLink) {
       navCvLink.addEventListener('click', (e) => {
-        console.log('🎯 Click en enlace CV de navegación');
         e.preventDefault();
         this.downloadCV();
       });
@@ -62,7 +56,6 @@ class CVDownloadManager {
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key === 'd') {
         e.preventDefault();
-        console.log('⌨️ Atajo de teclado Ctrl+D detectado');
         this.downloadCV();
       }
     });
@@ -70,14 +63,11 @@ class CVDownloadManager {
 
   async checkCVAvailability() {
     try {
-      console.log('📁 Verificando CV en:', this.cvUrl);
       const response = await fetch(this.cvUrl, { method: 'HEAD' });
-      console.log('Respuesta del servidor:', response.status);
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      console.log('✅ CV encontrado y disponible');
     } catch (error) {
       console.error('❌ Error verificando CV:', error);
       this.handleCVNotFound();
@@ -109,7 +99,6 @@ class CVDownloadManager {
 
   async downloadCV() {
     try {
-      console.log('⬇️  Iniciando descarga de CV...');
       this.showMessage('Preparando descarga...', 'info');
 
       // Verificar que el archivo existe
@@ -127,7 +116,6 @@ class CVDownloadManager {
       // Agregar estilos invisibles
       link.style.display = 'none';
 
-      console.log('🔗 Enlace de descarga creado');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -193,7 +181,6 @@ class CVDownloadManager {
     `;
 
     document.body.appendChild(messageElement);
-    console.log(`💬 Mensaje: ${text}`);
   }
 
   clearMessage() {
@@ -211,8 +198,6 @@ class CVDownloadManager {
       userAgent: navigator.userAgent,
       path: this.cvUrl
     };
-
-    console.log('📊 Evento de descarga registrado:', downloadEvent);
 
     // Emitir evento personalizado para otros módulos
     document.dispatchEvent(new CustomEvent('cvDownloaded', {

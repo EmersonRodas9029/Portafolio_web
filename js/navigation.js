@@ -16,13 +16,10 @@ class NavigationManager {
     // EXCLUIR el enlace de CV de la navegación suave
     const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cv)');
 
-    console.log('🔗 Enlaces de navegación encontrados:', navLinks.length);
-
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href').substring(1);
-        console.log('📍 Navegando a sección:', targetId);
         this.navigateToSection(targetId);
       });
     });
@@ -38,8 +35,6 @@ class NavigationManager {
   setupScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cv)');
-
-    console.log('👀 Configurando ScrollSpy para secciones:', sections.length);
 
     const observerOptions = {
       root: null,
@@ -88,7 +83,6 @@ class NavigationManager {
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-        console.log('📱 Toggle menú móvil:', !isExpanded);
         this.toggleMobileMenu(!isExpanded);
       });
 
@@ -248,7 +242,6 @@ class NavigationManager {
         document.body.style.overflow = '';
       }
 
-      console.log('🔄 Menú móvil:', show ? 'abierto' : 'cerrado');
     }
   }
 
@@ -265,7 +258,6 @@ class NavigationManager {
       document.body.style.overflow = '';
       document.body.style.position = '';
 
-      console.log('✅ Menú móvil cerrado, scroll restaurado');
     }
   }
 

@@ -10,21 +10,16 @@ class ContactForm {
 
   async init() {
     if (this.form) {
-      console.log('📧 ContactForm inicializando...');
-      console.log('Configuración EmailJS:', EmailJSConfig);
 
       try {
         // Inicializar EmailJS primero
         await initializeEmailJS();
         this.isEmailJSInitialized = true;
-        console.log('✅ EmailJS listo para usar');
 
         // Configurar validación y envío
         this.setupValidation();
         this.setupSubmission();
         this.setupRealTimeValidation();
-
-        console.log('✅ ContactForm configurado correctamente');
 
       } catch (error) {
         console.error('❌ Error inicializando ContactForm:', error);
@@ -154,8 +149,6 @@ class ContactForm {
   setupSubmission() {
     this.form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      console.log('📨 Envío de formulario iniciado...');
-      console.log('EmailJS Config:', EmailJSConfig);
 
       if (!this.isEmailJSInitialized) {
         this.showErrorMessage('El servicio de email no está disponible. Por favor, intenta más tarde.');
@@ -206,15 +199,8 @@ class ContactForm {
         page_url: window.location.href
       };
 
-      console.log('📤 Enviando email con EmailJS...');
-      console.log('Service ID:', EmailJSConfig.serviceId);
-      console.log('Template ID:', EmailJSConfig.templateId);
-      console.log('Datos:', templateParams);
-
       // Enviar con EmailJS usando la función del config
       const response = await sendEmail(templateParams);
-
-      console.log('✅ Email enviado exitosamente:', response);
 
       // Éxito
       this.showSuccessMessage();
@@ -362,12 +348,6 @@ class ContactForm {
   }
 
   trackFormSubmission(data) {
-    console.log('📊 Form submission tracked:', {
-      ...data,
-      timestamp: new Date().toISOString(),
-      service: 'EmailJS',
-      config: EmailJSConfig
-    });
 
     // Emitir evento personalizado
     document.dispatchEvent(new CustomEvent('contactFormSubmitted', {

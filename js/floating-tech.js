@@ -10,7 +10,6 @@ export class FloatingTech {
   }
 
   init() {
-    console.log('🚀 Inicializando elementos flotantes tecnológicos para Hero...');
 
     // Obtener la sección Hero
     this.heroSection = document.querySelector('.hero');
@@ -36,7 +35,6 @@ export class FloatingTech {
     // Configurar eventos
     this.setupEvents();
 
-    console.log('✅ Elementos flotantes creados en Hero:', this.techElements.length);
   }
 
   createContainer() {
@@ -242,7 +240,6 @@ export class FloatingTech {
     // Efecto de pulso
     techElement.classList.add('tech-pulsing');
 
-    console.log(`🎯 ${techName} (${level})`);
   }
 
   onTechLeave(element) {
