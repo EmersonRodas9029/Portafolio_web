@@ -63,13 +63,15 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/themes/light.css" id="theme-stylesheet" media="(prefers-color-scheme: light)">
-  <link rel="stylesheet" href="css/themes/dark.css" id="dark-theme-stylesheet" media="(prefers-color-scheme: dark)" disabled>  <link rel="stylesheet" href="css/custom/animations.css">
+  <link rel="stylesheet" href="css/themes/light.css" id="theme-stylesheet">
+  <link rel="stylesheet" href="css/themes/dark.css" id="dark-theme-stylesheet" disabled>
+  <link rel="stylesheet" href="css/custom/animations.css">
   <link rel="stylesheet" href="css/custom/sections.css">
 
   <!-- Preconnect a dominios externos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <!-- Skip link para accesibilidad -->
@@ -77,7 +79,7 @@
 
 <!-- Navegación Principal -->
 <header class="header" role="banner">
-  <nav class="nav" role="navigation" aria-label="Navegación principal">
+  <nav class="nav container" role="navigation" aria-label="Navegación principal">
     <div class="nav__brand">
       <a href="#inicio" class="nav__logo" aria-label="Emerson Rodas - Inicio">
         <strong>ER</strong>
@@ -92,19 +94,19 @@
 
     <ul class="nav__menu" id="main-menu" role="menubar">
       <li class="nav__item" role="none">
-        <a href="#inicio" class="nav__link" role="menuitem" aria-current="page">Inicio</a>
+        <a href="#inicio" class="nav__link" role="menuitem" aria-current="page" data-ext=".tsx">Inicio</a>
       </li>
       <li class="nav__item" role="none">
-        <a href="#sobre-mi" class="nav__link" role="menuitem">Sobre Mí</a>
+        <a href="#sobre-mi" class="nav__link" role="menuitem" data-ext=".md">Sobre Mí</a>
       </li>
       <li class="nav__item" role="none">
-        <a href="#habilidades" class="nav__link" role="menuitem">Habilidades</a>
+        <a href="#habilidades" class="nav__link" role="menuitem" data-ext=".json">Habilidades</a>
       </li>
       <li class="nav__item" role="none">
-        <a href="#proyectos" class="nav__link" role="menuitem">Proyectos</a>
+        <a href="#proyectos" class="nav__link" role="menuitem" data-ext="/">Proyectos</a>
       </li>
       <li class="nav__item" role="none">
-        <a href="#contacto" class="nav__link" role="menuitem">Contacto</a>
+        <a href="#contacto" class="nav__link" role="menuitem" data-ext=".sh">Contacto</a>
       </li>
       <li class="nav__item" role="none">
         <a href="#" class="nav__link nav__link--cv" role="menuitem" id="cv-download-link">
@@ -129,6 +131,14 @@
   <section id="inicio" class="hero" aria-labelledby="hero-title">
     <div class="container">
       <div class="hero__content">
+      <div class="hero__terminal">
+        <div class="hero__titlebar" aria-hidden="true">
+          <span class="hero__titlebar-dot hero__titlebar-dot--red"></span>
+          <span class="hero__titlebar-dot hero__titlebar-dot--yellow"></span>
+          <span class="hero__titlebar-dot hero__titlebar-dot--green"></span>
+          <span class="hero__titlebar-path">~/portfolio/emerson-rodas — zsh</span>
+        </div>
+        <div class="hero__terminal-body">
         <!-- Badge para disponibilidad -->
         <div class="hero__badge">
         <span class="badge badge--available">
@@ -202,6 +212,8 @@
             </a>
           </div>
         </div>
+        </div>
+      </div>
       </div>
 
       <div class="hero__image">
@@ -265,6 +277,7 @@
   <!-- Sección Sobre Mí -->
   <section id="sobre-mi" class="about section--alt" aria-labelledby="about-title">
     <div class="container">
+      <span class="section-eyebrow" aria-hidden="true">// sobre-mi</span>
       <h2 id="about-title" class="section__title">Sobre Mí</h2>
       <div class="about__content">
         <div class="about__text">
@@ -306,6 +319,7 @@
   <!-- Sección Habilidades - ACTUALIZADA CON NIVELES Y CATEGORÍAS -->
   <section id="habilidades" class="skills" aria-labelledby="skills-title">
     <div class="container">
+      <span class="section-eyebrow" aria-hidden="true">// habilidades</span>
       <h2 id="skills-title" class="section__title">Habilidades Técnicas</h2>
       <p class="section__description">
         Tecnologías y herramientas organizadas por categorías con indicadores de nivel de dominio
@@ -336,6 +350,7 @@
   <!-- Sección Proyectos -->
   <section id="proyectos" class="projects section--alt" aria-labelledby="projects-title">
     <div class="container">
+      <span class="section-eyebrow" aria-hidden="true">// proyectos</span>
       <h2 id="projects-title" class="section__title">Proyectos Destacados</h2>
       <p class="section__description">
         Una selección de mis trabajos más recientes y desafiantes
@@ -349,6 +364,7 @@
   <!-- Sección Contacto -->
   <section id="contacto" class="contact" aria-labelledby="contact-title">
     <div class="container">
+      <span class="section-eyebrow" aria-hidden="true">// contacto</span>
       <h2 id="contact-title" class="section__title">Contacto</h2>
       <p class="section__description">
         ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte a hacerlo realidad.

@@ -546,7 +546,7 @@
   outline: none;
   border-color: var(--primary-color);
   transform: scale(1.01);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
 }
 
 .form__textarea {
@@ -1063,7 +1063,7 @@
 
 .stat-card:hover {
   transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 20px -3px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 12px 20px -3px rgba(var(--primary-color-rgb), 0.25);
   border-color: var(--primary-color);
 }
 
@@ -1109,7 +1109,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(var(--primary-color-rgb), 0.1) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;

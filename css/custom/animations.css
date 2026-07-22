@@ -341,15 +341,17 @@
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.3);
 }
 
-/* Animaciones de texto */
+/* Nombre destacado como si fuera texto seleccionado en un editor de código */
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
+  background: rgba(var(--primary-color-rgb), 0.18);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.2em;
+  border-radius: 3px;
 }
 
 /* Animaciones de carga */
@@ -596,13 +598,13 @@
 /* Efecto de pulso para estadísticas al hover */
 @keyframes statPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb), 0.4);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 10px rgba(var(--primary-color-rgb), 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb), 0);
   }
 }
 
@@ -612,9 +614,9 @@
 
 /* Efecto de brillo intenso para texto en hover */
 .stat-card:hover .stat-number {
-  text-shadow: 0 0 10px rgba(37, 99, 235, 0.3),
-  0 0 20px rgba(37, 99, 235, 0.2),
-  0 0 30px rgba(37, 99, 235, 0.1);
+  text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.3),
+  0 0 20px rgba(var(--primary-color-rgb), 0.2),
+  0 0 30px rgba(var(--primary-color-rgb), 0.1);
 }
 
 /* Animación de aparición para iconos de estadísticas */
@@ -634,7 +636,7 @@
   left: 50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--primary-color-rgb), 0.1) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   animation: waveExpand 1s ease-out;
   pointer-events: none;
@@ -672,10 +674,10 @@
 /* Glow effect for primary button */
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+    box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+    box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.8);
   }
 }
 
