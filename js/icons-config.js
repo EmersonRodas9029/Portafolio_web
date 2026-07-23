@@ -121,6 +121,9 @@ export const IconsConfig = {
     'Tailwind CSS': 'fas fa-wind',
     'Zustand': 'fas fa-cube',
     'Framer Motion': 'fas fa-film',
+    'React Hook Form': 'fas fa-list-check',
+    'Zod': 'fas fa-shield-halved',
+    'Axios': 'fas fa-paper-plane',
     'C#': 'icon-csharp-svg',
     'Windows Forms': 'fab fa-windows',
     'CSV': 'fas fa-file-csv'
