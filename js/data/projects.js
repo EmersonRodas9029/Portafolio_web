@@ -14,7 +14,7 @@ export const projects = [
     description: 'Plataforma full-stack de finanzas personales y empresariales construida desde cero, consumiendo una API REST real (Spring Boot + JWT) en lugar de datos simulados. Implementé 13 módulos de negocio interconectados (ingresos, gastos, presupuestos, metas de ahorro, reportes, etc.) con control de acceso por rol validado en servidor, arquitectura feature-based escalable y una experiencia de usuario cuidada: dashboard con widgets reordenables (drag-and-drop), animaciones fluidas y validación de formularios robusta.',
     technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion', 'React Hook Form', 'Zod', 'Recharts', 'Axios'],
     image: 'img/projects/sistema-gestion-financiera/cover.webp',
-    demoUrl: '#',
+    demoUrl: 'https://budg-ease-local.vercel.app/#/login',
     codeUrl: 'https://github.com/EmersonRodas9029/sistema_de_gestion_financiera_frontend',
     featured: true
   },
