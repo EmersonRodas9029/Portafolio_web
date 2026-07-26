@@ -16,7 +16,8 @@ export const projects = [
     image: 'img/projects/sistema-gestion-financiera/cover.webp',
     demoUrl: 'https://budg-ease-local.vercel.app/#/login',
     codeUrl: 'https://github.com/EmersonRodas9029/sistema_de_gestion_financiera_frontend',
-    featured: true
+    featured: true,
+    badge: 'En Venta'
   },
   {
     title: 'Sistema de Venta y Compra en Granja',

@@ -467,11 +467,39 @@
   box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.15);
 }
 
+.project-card__image-container {
+  position: relative;
+}
+
 .project-card__image {
   width: 100%;
   height: 200px;
   object-fit: cover;
   transition: transform 0.5s ease;
+}
+
+.project-card__badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  z-index: 2;
+  color: #fff;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.project-card__badge--success {
+  background: var(--color-success, #22c55e);
+}
+
+.project-card__badge--neutral {
+  background: var(--color-text-secondary, #6b7280);
+}
+
+.project-card__badge--danger {
+  background: var(--color-danger, #ef4444);
 }
 
 .project-card:hover .project-card__image {

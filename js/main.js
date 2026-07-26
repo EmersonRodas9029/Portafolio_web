@@ -269,11 +269,19 @@ class PortfolioApp {
       return;
     }
 
+    // Colores por estado del badge; estados no listados caen en 'success'
+    const BADGE_STYLES = {
+      'en venta': 'success',
+      'vendido': 'neutral',
+      'no disponible': 'danger'
+    };
+
     const featuredProjects = projects.filter(project => project.featured);
 
     projectsGrid.innerHTML = featuredProjects.map(project => {
       const demoIcon = renderIcon('fas fa-external-link-alt');
       const codeIcon = renderIcon('fas fa-code');
+      const badgeStyle = project.badge ? (BADGE_STYLES[project.badge.toLowerCase()] || 'success') : '';
 
       // Icono especial para proyectos con Docker
       const dockerIcon = project.technologies.includes('Docker')
@@ -294,6 +302,7 @@ class PortfolioApp {
       return `
         <article class="project-card reveal-item">
           <div class="project-card__image-container">
+            ${project.badge ? `<span class="project-card__badge project-card__badge--${badgeStyle}">${project.badge}</span>` : ''}
             <img src="${project.image}" alt="${project.title} - Desarrollado por Emerson Rodas" class="project-card__image" loading="lazy">
             <div class="project-card__overlay">
               <div class="project-card__links--overlay">
