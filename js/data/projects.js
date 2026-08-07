@@ -29,6 +29,15 @@ export const projects = [
     featured: true
   },
   {
+    title: 'EstacionCafé',
+    description: 'Sistema full-stack para la gestión de una cafetería: pedidos, menú y operación del negocio. Backend construido en Node.js con API REST propia y frontend en React consumiendo esa API.',
+    technologies: ['React', 'Node.js', 'Express', 'JavaScript'],
+    image: 'img/projects/estacion-cafe/cover.webp',
+    demoUrl: 'https://emersonrodas9029.github.io/EstacionCafeFrontend/',
+    codeUrl: 'https://github.com/EmersonRodas9029/EstacionCafe-Backend',
+    featured: true
+  },
+  {
     title: 'Portfolio Personal',
     description: 'Portfolio profesional desarrollado con HTML5, CSS3 y JavaScript vanilla. Incluye diseño responsive, modo oscuro/claro y optimización SEO.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design'],
