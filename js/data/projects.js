@@ -6,7 +6,7 @@ export const projects = [
     technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'TypeScript', 'Recharts', 'Arquitectura Hexagonal'],
     image: 'img/projects/dashboard-ecommerce/cover.webp',
     demoUrl: '#',
-    codeUrl: '#',
+    codeUrl: 'https://github.com/EmersonRodas9029/datalysis-kpi-dashboard',
     featured: true
   },
   {
@@ -15,7 +15,7 @@ export const projects = [
     technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion', 'React Hook Form', 'Zod', 'Recharts', 'Axios'],
     image: 'img/projects/sistema-gestion-financiera/cover.webp',
     demoUrl: 'https://budg-ease-local.vercel.app/#/login',
-    codeUrl: 'https://github.com/EmersonRodas9029/sistema_de_gestion_financiera_frontend',
+    codeUrl: 'https://github.com/EmersonRodas9029/BudgEase-Frontend',
     featured: true,
     badge: 'En Venta'
   },
@@ -33,8 +33,8 @@ export const projects = [
     description: 'Sistema full-stack para la gestión de una cafetería: pedidos, menú y operación del negocio. Backend construido en Node.js con API REST propia y frontend en React consumiendo esa API.',
     technologies: ['React', 'Node.js', 'Express', 'JavaScript'],
     image: 'img/projects/estacion-cafe/cover.webp',
-    demoUrl: 'https://emersonrodas9029.github.io/EstacionCafeFrontend/',
-    codeUrl: 'https://github.com/EmersonRodas9029/EstacionCafe-Backend',
+    demoUrl: '#',
+    codeUrl: 'https://github.com/EmersonRodas9029/EstacionCafe',
     featured: true
   },
   {
@@ -43,7 +43,7 @@ export const projects = [
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design'],
     image: 'img/projects/portfolio/cover.webp',
     demoUrl: 'https://emersonrodas9029.github.io/Portafolio_web/',
-    codeUrl: 'https://github.com/EmersonRodas9029/portfolio',
+    codeUrl: 'https://github.com/EmersonRodas9029/Portafolio_web',
     featured: true
   }
 ];

@@ -311,9 +311,11 @@ class PortfolioApp {
                     ${demoIcon} Demo
                   </a>
                 ` : ''}
-                <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer" aria-label="Ver código de ${project.title}">
-                  ${codeIcon} Código
-                </a>
+                ${project.codeUrl !== '#' ? `
+                  <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer" aria-label="Ver código de ${project.title}">
+                    ${codeIcon} Código
+                  </a>
+                ` : ''}
               </div>
             </div>
           </div>
@@ -332,9 +334,11 @@ class PortfolioApp {
                   ${demoIcon} Ver Demo
                 </a>
               ` : ''}
-              <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
-                ${codeIcon} Ver Código
-              </a>
+              ${project.codeUrl !== '#' ? `
+                <a href="${project.codeUrl}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
+                  ${codeIcon} Ver Código
+                </a>
+              ` : ''}
             </div>
           </div>
         </article>
