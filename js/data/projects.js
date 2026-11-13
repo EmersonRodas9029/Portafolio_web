@@ -42,7 +42,7 @@ export const projects = [
     description: 'Portfolio profesional desarrollado con HTML5, CSS3 y JavaScript vanilla. Incluye diseño responsive, modo oscuro/claro y optimización SEO.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design'],
     image: 'img/projects/portfolio/cover.webp',
-    demoUrl: 'https://emersonrodas.dev',
+    demoUrl: 'https://emersonrodas9029.github.io/Portafolio_web/',
     codeUrl: 'https://github.com/EmersonRodas9029/portfolio',
     featured: true
   }

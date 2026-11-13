@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://emersonrodas.dev/sitemap.xml
+Sitemap: https://emersonrodas9029.github.io/Portafolio_web/sitemap.xml
 
 # No permitir archivos de configuración
 Disallow: /package.json

@@ -35,4 +35,4 @@ Personal portfolio site (Spanish) for Emerson Eduardo Rodas López — static HT
 
 **External dependencies loaded via CDN in `index.html`** (not npm): Font Awesome (icons) and the EmailJS browser SDK. `@emailjs/browser` is also an npm dependency but the CDN `<script>` tag is what's actually used at runtime, not a bundled import.
 
-**Content/SEO**: `index.html` carries full SEO meta tags, Open Graph tags, and a `Person` JSON-LD schema block — keep these in sync if changing name, title, or canonical URL (`https://emersonrodas.dev`).
+**Content/SEO**: `index.html` carries full SEO meta tags, Open Graph tags, and a `Person` JSON-LD schema block — keep these in sync if changing name, title, or canonical URL (`https://emersonrodas9029.github.io/Portafolio_web/`).

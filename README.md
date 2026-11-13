@@ -2,7 +2,7 @@
 
 Portafolio personal desarrollado en **HTML5, CSS3 y JavaScript vanilla** (sin frameworks ni bundler), con todo el contenido — habilidades, experiencia y proyectos — renderizado dinámicamente desde módulos de datos en JS.
 
-🔗 **Sitio en producción:** [emersonrodas.dev](https://emersonrodas.dev)
+🔗 **Sitio en producción:** [emersonrodas9029.github.io/Portafolio_web](https://emersonrodas9029.github.io/Portafolio_web/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](#)
