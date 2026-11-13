@@ -25,7 +25,7 @@ export const projects = [
     technologies: ['C#', 'Windows Forms', 'CSV'],
     image: 'img/projects/granja-ventas/cover.webp',
     demoUrl: '#',
-    codeUrl: '#',
+    codeUrl: 'https://github.com/EmersonRodas9029/Gestion_Compra_Eventa',
     featured: true
   },
   {
