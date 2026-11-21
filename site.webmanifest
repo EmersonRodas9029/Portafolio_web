@@ -1,12 +1,12 @@
 {
-  "short_name": "",
-  "name": "",
+  "short_name": "Emerson Rodas",
+  "name": "Emerson Eduardo Rodas López - Portfolio",
   "icons": [{
-    "src": "icon.png",
+    "src": "img/icon-192.png",
     "type": "image/png",
     "sizes": "192x192"
   }],
-  "start_url": "/?utm_source=homescreen",
-  "background_color": "#fafafa",
-  "theme_color": "#fafafa"
+  "start_url": "/Portafolio_web/?utm_source=homescreen",
+  "background_color": "#10141b",
+  "theme_color": "#2563eb"
 }
