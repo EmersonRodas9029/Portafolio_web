@@ -144,3 +144,19 @@
   background: var(--secondary-color) !important;
   transform: translateY(-2px) scale(1.05) !important;
 }
+
+/* Iconos de redes sociales en hover: fondo pasa a primary-color (ámbar
+   claro en modo oscuro), así que el ícono debe oscurecerse, no quedar
+   blanco (blanco sobre ámbar claro no pasa WCAG AA) */
+[data-theme="dark"] .social-link:hover .social-icon {
+  color: var(--bg-primary);
+}
+
+/* Botones secundario/outline en hover: mismo problema, texto blanco fijo
+   sobre fondo que pasa a primary-color (ámbar claro en modo oscuro) */
+[data-theme="dark"] .btn--secondary:hover,
+[data-theme="dark"] .btn--secondary:focus,
+[data-theme="dark"] .btn--outline:hover,
+[data-theme="dark"] .btn--outline:focus {
+  color: var(--bg-primary);
+}
