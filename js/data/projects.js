@@ -5,7 +5,7 @@ export const projects = [
     description: 'Dashboard full-stack con pipeline ETL (raw → clean → gold, +112k registros procesados) y 7 KPIs comerciales clave (GMV, Revenue, AOV, Cancel Rate, On-Time Delivery). Arquitectura hexagonal en el backend, consultas en menos de 2 segundos sobre +100k registros y 92% de cobertura de tests.',
     technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'TypeScript', 'Recharts', 'Arquitectura Hexagonal'],
     image: 'img/projects/dashboard-ecommerce/cover.webp',
-    demoUrl: '#',
+    demoUrl: 'https://datalysis-local.vercel.app/overview',
     codeUrl: 'https://github.com/EmersonRodas9029/datalysis-kpi-dashboard',
     featured: true
   },
@@ -20,30 +20,12 @@ export const projects = [
     badge: 'En Venta'
   },
   {
-    title: 'Sistema de Venta y Compra en Granja',
-    description: 'Aplicación de escritorio para la gestión de venta de gallinas y huevos: cálculo automático de totales, inventario en CSV y soporte para múltiples unidades de venta. Redujo el tiempo de procesamiento de venta en un 20%.',
-    technologies: ['C#', 'Windows Forms', 'CSV'],
-    image: 'img/projects/granja-ventas/cover.webp',
-    demoUrl: '#',
-    codeUrl: 'https://github.com/EmersonRodas9029/Gestion_Compra_Eventa',
-    featured: true
-  },
-  {
     title: 'EstacionCafé',
-    description: 'Sistema full-stack para la gestión de una cafetería: pedidos, menú y operación del negocio. Backend construido en Node.js con API REST propia y frontend en React consumiendo esa API.',
-    technologies: ['React', 'Node.js', 'Express', 'JavaScript'],
+    description: 'Sistema full-stack de punto de venta y administración para cafetería: mesas, cuentas, cobro, inventario, compras y reportes, con control de acceso por rol (admin, mesero, cajero). API REST en Node.js + PostgreSQL y frontend en React + TypeScript.',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL'],
     image: 'img/projects/estacion-cafe/cover.webp',
-    demoUrl: '#',
+    demoUrl: 'https://estacioncafe-local.vercel.app/',
     codeUrl: 'https://github.com/EmersonRodas9029/EstacionCafe',
-    featured: true
-  },
-  {
-    title: 'Portfolio Personal',
-    description: 'Portfolio profesional desarrollado con HTML5, CSS3 y JavaScript vanilla. Incluye diseño responsive, modo oscuro/claro y optimización SEO.',
-    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git', 'Responsive Design'],
-    image: 'img/projects/portfolio/cover.webp',
-    demoUrl: 'https://emersonrodas9029.github.io/Portafolio_web/',
-    codeUrl: 'https://github.com/EmersonRodas9029/Portafolio_web',
     featured: true
   }
 ];
